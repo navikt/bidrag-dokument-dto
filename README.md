@@ -1,2 +1,3 @@
 # bidrag-dokument-dto
-Data transfer objects in kotlin for bidrag-dokument
+
+Artifakt inneholder dto'er som er felles for bidrag-dokument
