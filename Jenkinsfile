@@ -53,7 +53,6 @@ node {
                         sh "${mvn} release:prepare release:perform -Dusername=d142796 -Dpassword=${token} -Djava.io.tmpdir=/tmp/${application} -B"
                         sh "${mvn} versions:set -DremoveSnapshot=true -Djava.io.tmpdir=/tmp/${application} -B"
                         sh "${mvn} clean deploy -Djava.io.tmpdir=/tmp/${application} -B"
-                        sh "${mvn} versions:set -DoldVersion=${pom.version} -Djava.io.tmpdir=/tmp/${application} -B"
             }
         }
     }
