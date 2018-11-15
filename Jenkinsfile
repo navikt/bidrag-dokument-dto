@@ -29,7 +29,7 @@ node {
            commitUrl = "https://github.com/${repo}/${application}/commit/${commitHash}"
            amount = env.BUILD_NUMBER.toString().padLeft(4,'0')
            releaseVersion = "${devVersion}.${amount}-SNAPSHOT"
-           imageVersion = "${releaseVersion}-${environment}"
+           imageVersion = "${releaseVersion}"
            newReleaseVersion = amount
        }
 
@@ -51,10 +51,10 @@ node {
        stage("#5: release artifact") {
            if (isSnapshot) {
                sh "${mvn} versions:set -B -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false"
-               sh "${mvn} clean install -Djava.io.tmpdir=/tmp/${application} -Dhendelse.environments=${environment} -B -e"
+               sh "${mvn} clean install -Djava.io.tmpdir=/tmp/${application} -B -e"
                sh "git commit -am \"set version to ${releaseVersion} (from Jenkins pipeline)\""
                sh "git push origin master"
-               sh "git tag -a ${application}-${releaseVersion}-${environment} -m ${application}-${releaseVersion}-${environment}"
+               sh "git tag -a ${application}-${releaseVersion} -m ${application}-${releaseVersion}"
                sh "git push --tags"
            }else{
                println("POM version is not a SNAPSHOT, it is ${pom.version}. Skipping releasing")
