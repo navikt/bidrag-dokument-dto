@@ -20,8 +20,8 @@
 
     <scm>
         <url>https://github.com/navikt/bidrag-dokument-dto</url>
-        <developerConnection>scm:git://github.com/navikt/bidrag-dokument-dto</developerConnection>
-    <tag>bidrag-dokument-dto-0.0.3</tag>
+        <developerConnection>scm:git:https://github.com/navikt/bidrag-dokument-dto</developerConnection>
+     <tag>bidrag-dokument-dto-0.0.3</tag>
   </scm>
 
     <repositories>
