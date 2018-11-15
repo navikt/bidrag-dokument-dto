@@ -50,7 +50,8 @@ node {
     stage("#5: release & deploy") {
         withCredentials([string(credentialsId: 'OAUTH_TOKEN', variable: 'token')]) {
                     withEnv(['HTTPS_PROXY=http://webproxy-utvikler.nav.no:8088']) {
-                        sh "${mvn} release:perform -Dusername=d142796 -Dpassword=${token} -Djava.io.tmpdir=/tmp/${application} -B"
+                        sh "${mvn} release:clean -Djava.io.tmpdir=/tmp/${application} -B"
+                        sh "${mvn} release:prepare-with-pom release:perform -Dusername=d142796 -Dpassword=${token} -Djava.io.tmpdir=/tmp/${application} -B"
                         sh "${mvn} versions:set -DremoveSnapshot=true -Djava.io.tmpdir=/tmp/${application} -B"
                         sh "${mvn} clean install -Djava.io.tmpdir=/tmp/${application} -B"
                         sh "${mvn} deploy -Djava.io.tmpdir=/tmp/${application} -B"
