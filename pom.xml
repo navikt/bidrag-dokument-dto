@@ -20,7 +20,7 @@
 
 
     <scm>
-        <developerConnection>scm:git:ssh://github.com:navikt/bidrag-dokument-dto.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:navikt/bidrag-dokument-dto.git</developerConnection>
         <url>scm:git:ssh://github.com/navikt/bidrag-dokument-dto</url>
         <connection>scm:git:git://github.com/navikt/bidrag-dokument-dto</connection>
     </scm>
