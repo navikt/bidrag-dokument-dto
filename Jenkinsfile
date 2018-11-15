@@ -28,7 +28,6 @@ node {
             commitHashShort = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
             commitUrl = "https://github.com/${repo}/${application}/commit/${commitHash}"
             amount = env.BUILD_NUMBER.toString().padLeft(4,'0')
-            releaseVersion = "${devVersion}.${amount}-SNAPSHOT"
             imageVersion = "${releaseVersion}"
             newReleaseVersion = amount
     }
@@ -53,6 +52,7 @@ node {
                     withEnv(['HTTPS_PROXY=http://webproxy-utvikler.nav.no:8088']) {
                         sh "${mvn} versions:set -DremoveSnapshot=true -Djava.io.tmpdir=/tmp/${application} -B"
                         sh "${mvn} clean deploy -Djava.io.tmpdir=/tmp/${application} -B"
+                        sh "${mvn} versions:set -DoldVersion=${pom.version} -Djava.io.tmpdir=/tmp/${application} -B"
                         sh "${mvn} release:prepare release:perform -Dusername=d142796 -Dpassword=${token} -Djava.io.tmpdir=/tmp/${application} -B"
             }
         }
