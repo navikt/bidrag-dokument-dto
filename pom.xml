@@ -21,7 +21,6 @@
     <scm>
         <url>https://github.com/navikt/bidrag-dokument-dto</url>
         <developerConnection>scm:git:https://github.com/navikt/bidrag-dokument-dto</developerConnection>
-     <tag>HEAD</tag>
   </scm>
 
     <repositories>
