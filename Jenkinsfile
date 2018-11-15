@@ -49,9 +49,13 @@ node {
     }
 
     stage("#5: release & deploy") {
-        sh "${mvn} release:prepare -Djava.io.tmpdir=/tmp/${application} -B"
-        sh "${mvn} release:perform -Djava.io.tmpdir=/tmp/${application} -B"
-        sh "${mvn} versions:set -DremoveSnapshot -Djava.io.tmpdir=/tmp/${application} -B"
-        sh "${mvn} clean deploy -Djava.io.tmpdir=/tmp/${application} -B"
+        withCredentials([string(credentialsId: 'OAUTH_TOKEN', variable: 'token')]) {
+                    withEnv(['HTTPS_PROXY=http://webproxy-utvikler.nav.no:8088']) {
+                        sh "${mvn} release:prepare -Djava.io.tmpdir=/tmp/${application} -B"
+                        sh "${mvn} release:perform -Djava.io.tmpdir=/tmp/${application} -B"
+                        sh "${mvn} versions:set -DremoveSnapshot -Djava.io.tmpdir=/tmp/${application} -B"
+                        sh "${mvn} clean deploy -Djava.io.tmpdir=/tmp/${application} -B"
+                }
+        }
     }
 }
