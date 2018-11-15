@@ -4,7 +4,7 @@
 
     <groupId>no.nav.bidrag.dokument</groupId>
     <artifactId>bidrag-dokument-dto</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
 
     <description>Backend dtos used in bidrag-dokument</description>
     <url>https://github.com/navikt/bidrag-dokument-dto</url>
@@ -12,12 +12,11 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <kotlin.version>1.3.0</kotlin.version>
+        <kotlin.version>1.3.10</kotlin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
     </properties>
-
 
     <scm>
         <url>https://github.com/navikt/bidrag-dokument-dto</url>
