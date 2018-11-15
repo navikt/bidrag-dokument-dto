@@ -48,6 +48,19 @@
         </snapshotRepository>
     </distributionManagement>
 
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nav-maven2-internal-repo</id>
+			<releases>
+				<updatePolicy>always</updatePolicy>
+			</releases>
+			<name>Nav internal repository</name>
+			<url>http://maven.adeo.no/m2internal</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+
     <dependencies>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
