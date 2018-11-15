@@ -23,7 +23,8 @@
         <url>https://github.com/navikt/bidrag-dokument-dto</url>
         <developerConnection>scm:git:git@github.com:d142796/navikt/bidrag-dokument-dto.git</developerConnection>
         <connection>scm:git:git@github.com:d142796/navikt/bidrag-dokument-dto.git</connection>
-    </scm>
+      <tag>bidrag-dokument-dto-0.0.5</tag>
+  </scm>
 
     <repositories>
         <repository>
@@ -73,7 +74,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.2.2</version>
+                    <version>2.3.2</version>
                     <configuration>
                         <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
