@@ -56,12 +56,16 @@ node {
                sh "git push origin master"
                sh "git tag -a ${application}-${releaseVersion} -m ${application}-${releaseVersion}"
                sh "git push --tags"
-           }else{
+            }else{
                println("POM version is not a SNAPSHOT, it is ${pom.version}. Skipping releasing")
            }
        }
 
-       stage("#6: new dev version") {
+       stage("#6: deploy til nexus"){
+               sh "${mvn} clean deploy -DskipTests -B -e"
+       }
+
+       stage("#7: new dev version") {
            nextVersion = "${devVersion}." + (newReleaseVersion.toInteger() + 1) + "-SNAPSHOT"
            sh "${mvn} versions:set -B -DnewVersion=${nextVersion} -DgenerateBackupPoms=false"
            sh "git commit -a -m \"updated to new dev-version ${nextVersion} after release by ${committer}\""
