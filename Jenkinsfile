@@ -49,8 +49,8 @@ node {
     }
 
     stage("#5: release & deploy") {
-        sh "${mvn} -B release:prepare"
+        sh "${mvn} -B release:prepare release:perform"
+        sh "${mvn} versions:set -DremoveSnapshot"
         sh "${mvn} clean deploy"
-        sh "${mvn} -B release:perform"
     }
 }
