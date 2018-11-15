@@ -49,7 +49,8 @@ node {
     }
 
     stage("#5: release & deploy") {
-        sh "${mvn} release:prepare release:perform -Djava.io.tmpdir=/tmp/${application} -B -e"
+        sh "${mvn} release:prepare -Djava.io.tmpdir=/tmp/${application} -B -e"
+        sh "${mvn} release:perform -Djava.io.tmpdir=/tmp/${application} -B -e"
         sh "${mvn} versions:set -DremoveSnapshot -Djava.io.tmpdir=/tmp/${application} -B -e"
         sh "${mvn} clean deploy -Djava.io.tmpdir=/tmp/${application} -B -e"
     }
