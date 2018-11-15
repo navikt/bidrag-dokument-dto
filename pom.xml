@@ -21,8 +21,8 @@
 
     <scm>
         <url>https://github.com/navikt/bidrag-dokument-dto</url>
-        <developerConnection>scm:git:ssh://d142796@github.com:navikt/bidrag-dokument-dto.git</developerConnection>
-        <connection>scm:git:ssh://d142796@github.com:navikt/bidrag-dokument-dto.git</connection>
+        <developerConnection>scm:git:d142796@github.com:navikt/bidrag-dokument-dto.git</developerConnection>
+        <connection>scm:git:d142796@github.com:navikt/bidrag-dokument-dto.git</connection>
     </scm>
 
     <repositories>
