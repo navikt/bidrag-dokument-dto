@@ -9,6 +9,7 @@
   <url>https://github.com/navikt/bidrag-dokument-dto</url>
   <scm>
     <developerConnection>scm:git:https://github.com/navikt/bidrag-dokument-dto</developerConnection>
+    <tag>bidrag-dokument-dto-0.0.42</tag>
     <url>https://github.com/navikt/bidrag-dokument-dto</url>
   </scm>
   <distributionManagement>
