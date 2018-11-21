@@ -7,6 +7,7 @@ node {
         def mvn = "/usr/bin/mvn"
 
     stage("#1-2: initialize") {
+        sh "git pull"
         pom = readMavenPom file: 'pom.xml'
             releaseVersion = pom.version.tokenize("-")[0]
             tokens = releaseVersion.tokenize(".")
