@@ -5,3 +5,6 @@ target/
 *.iws
 *.iml
 *.ipr
+
+.classpath
+.project
