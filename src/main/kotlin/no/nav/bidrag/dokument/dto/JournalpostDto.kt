@@ -15,9 +15,9 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Enhetsnummer hvor journalføring ble gjort") var journalforendeEnhet: String? = null,
         @ApiModelProperty(value = "Saksbehandler som var journalfører") var journalfortAv: String? = null,
         @ApiModelProperty(value = "Dato dokument ble journalført") var journalfortDato: LocalDate? = null,
-        @ApiModelProperty(value = "Identifikator av journalpost i midlertidig brevlager eller fra joark på formatet [BID|JOARK]-<jId>") var journalpostId: String? = null,
+        @ApiModelProperty(value = "Identifikator av journalpost i midlertidig brevlager eller fra joark på formatet [BID|JOARK]-<journalpostId>") var journalpostId: String? = null,
         @ApiModelProperty(value = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
-        @ApiModelProperty(value = "Saksnumme på format med [GSAK|BID]-{saksnummer} for å si om saken kommer fra GSAK eller BISYS") var saksnummer: String? = null,
+        @ApiModelProperty(value = "Saksnummer på format med [GSAK|BID]-{saksnummer} for å si om saken kommer fra GSAK eller BISYS") var saksnummer: String? = null,
         val hello: String = "hello from bidrag-dokument"
 )
 
