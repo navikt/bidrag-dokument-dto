@@ -17,5 +17,6 @@ data class NyJournalpostCommandDto(
         @ApiModelProperty(value = "Enhetsnummer hvor journalføring ble gjort") var journalforendeEnhet: String? = null,
         @ApiModelProperty(value = "Saksbehandler som var journalfører") var journalfortAv: String? = null,
         @ApiModelProperty(value = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = LocalDate.now(),
-        @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: String? = null
+        @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: String? = null,
+        @ApiModelProperty(value = "Fagområde journalposten tilhører for bidragssaker. 'BNR' = bidrag, 'FAR' = farskap") var fagomrade: String? = null
 )
