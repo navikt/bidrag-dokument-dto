@@ -9,7 +9,7 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Avsenders etternavn eller fornavn dersom etternavn ikke er kjent") var avsenderNavn: String? = null,
         @ApiModelProperty(value = "Dokumentene som følger journalposten") var dokumenter: List<DokumentDto> = emptyList(),
         @ApiModelProperty(value = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
-        @ApiModelProperty(value = "Fagområdet for denne journalposten. Bør alltid være BID (Bidrag)") var fagomrade: String? = null,
+        @ApiModelProperty(value = "Fagområdet for journalposten. BNR for bidrag og FAR for farskap") var fagomrade: String? = null,
         @ApiModelProperty(value = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumente(t/ne) gjelder") var gjelderBrukerId: List<String> = emptyList(),
         @ApiModelProperty(value = "Kort oppsummert av journalført innhold") var innhold: String? = null,
         @ApiModelProperty(value = "Enhetsnummer hvor journalføring ble gjort") var journalforendeEnhet: String? = null,
@@ -17,8 +17,7 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Dato dokument ble journalført") var journalfortDato: LocalDate? = null,
         @ApiModelProperty(value = "Identifikator av journalpost i midlertidig brevlager eller fra joark på formatet [BID|JOARK]-<journalpostId>") var journalpostId: String? = null,
         @ApiModelProperty(value = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
-        @ApiModelProperty(value = "Saksnummer på format med [GSAK|BID]-{saksnummer} for å si om saken kommer fra GSAK eller BISYS") var saksnummer: String? = null,
-        val hello: String = "hello from bidrag-dokument"
+        @ApiModelProperty(value = "Saksnummer på format med [GSAK|BID]-{saksnummer} for å si om saken kommer fra GSAK eller BISYS") var saksnummer: String? = null
 )
 
 @ApiModel(value = "Dokument metadata")
