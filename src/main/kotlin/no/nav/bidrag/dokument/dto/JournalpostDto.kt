@@ -9,7 +9,7 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Avsenders etternavn eller fornavn dersom etternavn ikke er kjent") var avsenderNavn: String? = null,
         @ApiModelProperty(value = "Dokumentene som følger journalposten") var dokumenter: List<DokumentDto> = emptyList(),
         @ApiModelProperty(value = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
-        @ApiModelProperty(value = "Fagområdet for journalposten. BNR for bidrag og FAR for farskap") var fagomrade: String? = null,
+        @ApiModelProperty(value = "Fagområdet for journalposten. BID for bidrag og FAR for farskap") var fagomrade: String? = null,
         @ApiModelProperty(value = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumente(t/ne) gjelder") var gjelderBrukerId: List<String> = emptyList(),
         @ApiModelProperty(value = "Kort oppsummert av journalført innhold") var innhold: String? = null,
         @ApiModelProperty(value = "Enhetsnummer hvor journalføring ble gjort") var journalforendeEnhet: String? = null,
