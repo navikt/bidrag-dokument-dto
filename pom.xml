@@ -4,7 +4,7 @@
 
     <groupId>no.nav.bidrag.dokument</groupId>
     <artifactId>bidrag-dokument-dto</artifactId>
-    <version>0.0.62-SNAPSHOT</version>
+    <version>0.0.63-SNAPSHOT</version>
 
     <description>Backend dtos used in bidrag-dokument</description>
     <url>https://github.com/navikt/bidrag-dokument-dto</url>
