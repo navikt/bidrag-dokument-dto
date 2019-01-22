@@ -4,8 +4,9 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 ## release endringer
 
-ny versjon | beskrivelse når endring
+versjon | beskrivelse
 -----------|------------------------
+0.0.67 | flyttet (slettet) `BidragSakDto`og `RolleDto` til navikt/bidrag-sak-dto
 0.0.62 | opprettet `BidragSakDto` og `RolleDto`
 0.0.57 | fjernet property `hello` på `JournalpostDto` som var read only + swagger dok
 0.0.56 | la til fagomrade i `NyJournalpostCommandDto` (bidrag/farskap)
