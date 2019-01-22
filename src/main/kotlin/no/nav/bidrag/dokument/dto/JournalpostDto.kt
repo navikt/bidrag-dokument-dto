@@ -17,7 +17,7 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Dato dokument ble journalført") var journalfortDato: LocalDate? = null,
         @ApiModelProperty(value = "Identifikator av journalpost i midlertidig brevlager eller fra joark på formatet [BID|JOARK]-<journalpostId>") var journalpostId: String? = null,
         @ApiModelProperty(value = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
-        @ApiModelProperty(value = "Saksnummer på bidragssaken") var saksnummer: String? = null
+        @ApiModelProperty(value = "Saksnummer på bidragssaken") var saksnummer: Long? = null
 )
 
 @ApiModel(value = "Dokument metadata")
