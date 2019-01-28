@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | beskrivelse
 -----------|------------------------
+0.0.73 | opprettet `BidragSakDto`og `RolleDto`
 0.0.67 | flyttet (slettet) `BidragSakDto`og `RolleDto` til navikt/bidrag-sak-dto
 0.0.62 | opprettet `BidragSakDto` og `RolleDto`
 0.0.57 | fjernet property `hello` på `JournalpostDto` som var read only + swagger dok
