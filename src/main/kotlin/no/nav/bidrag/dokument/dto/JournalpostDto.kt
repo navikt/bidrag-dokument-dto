@@ -33,6 +33,7 @@ data class BidragSakDto(
         @ApiModelProperty(value = "Eierfogd for bidragssaken") var eierfogd: String? = null,
         @ApiModelProperty(value = "Saksnummeret til bidragssaken") var saksnummer: String? = null,
         @ApiModelProperty(value = "Saksstatus til bidragssaken") var saksstatus: String? = null,
+        @ApiModelProperty(value = "kategorikode: 'N' eller 'U'") var kategori: String? = null,
         @ApiModelProperty(value = "Om saken omhandler paragraf 19") var erParagraf19: Boolean = false,
         @ApiModelProperty(value = "Rollene som saken inneholder") var roller: List<RolleDto> = emptyList()
 )
