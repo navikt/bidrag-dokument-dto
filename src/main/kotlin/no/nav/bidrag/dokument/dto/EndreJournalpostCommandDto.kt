@@ -17,7 +17,11 @@ data class EndreJournalpostCommandDto(
         @ApiModelProperty(value = "Dato dokument ble journalført") var journaldato: LocalDate? = null,
         @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: EndreSaksnummerDto? = null,
         @ApiModelProperty(value = "Id for dtoen") var dtoId: String = toHexString(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC))
-)
+) : MedDtoId {
+    override fun getBeskrevetDtoId(): String {
+        return String.format("%s(jpid-%s)", dtoId, journalpostId)
+    }
+}
 
 @ApiModel(value = "Metadata for endring av saksnummer på en eksisterende journalpost")
 data class EndreSaksnummerDto(

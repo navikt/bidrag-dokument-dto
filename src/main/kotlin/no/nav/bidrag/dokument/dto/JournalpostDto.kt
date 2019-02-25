@@ -23,7 +23,11 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Saksnummer på bidragssaken") var saksnummer: String? = null,
         @ApiModelProperty(value = "Liste over saker hvor journalpostens sin gjelderBrukerId er representert (når det er en person)") var bidragssaker: List<BidragSakDto> = emptyList(),
         @ApiModelProperty(value = "Id for dtoen") var dtoId: String = toHexString(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC))
-)
+) : MedDtoId {
+    override fun getBeskrevetDtoId(): String {
+        return String.format("%s(jpid-%s)", dtoId, journalpostId)
+    }
+}
 
 @ApiModel(value = "Dokument metadata")
 data class DokumentDto(
