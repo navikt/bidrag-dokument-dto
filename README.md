@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | beskrivelse
 -----------|------------------------
+0.0.82 | journalpost id fra int til streng i EndreJournalpostDtoCommand
 0.0.78 | kategorikode for saken (N eller U) er lagt til
 0.0.74 | saksnummer skal ikke være være et heltall, men en streng
 0.0.73 | opprettet `BidragSakDto`og `RolleDto`
