@@ -23,4 +23,8 @@ data class NyJournalpostCommandDto(
         @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: String? = null,
         @ApiModelProperty(value = "Fagområde journalposten tilhører for bidragssaker. 'BNR' = bidrag, 'FAR' = farskap") var fagomrade: String? = null,
         @ApiModelProperty(value = "Id for dtoen") var dtoId: String = toHexString(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC))
-)
+) : MedDtoId {
+    override fun getBeskrevetDtoId(): String {
+        return String.format("{}(gjelder-{}/saksnummer-{})", dtoId, gjelder, saksnummer)
+    }
+}
