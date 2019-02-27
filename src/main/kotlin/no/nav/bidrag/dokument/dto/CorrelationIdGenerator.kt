@@ -4,12 +4,14 @@ import java.lang.Long.toHexString
 
 interface CorrelationIdGenerator {
     fun payloadId(): String
-    fun generateCorrelationId(correlationId: String?): String {
-        if (correlationId == null) {
+    fun correlationId(): String?
+
+    fun generateMissingCorrelationId(): String {
+        if (correlationId() == null) {
             return toHexString(System.currentTimeMillis()) + '(' + payloadId() + ')'
         }
 
-        return correlationId
+        return correlationId()!!
     }
 }
 

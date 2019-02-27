@@ -21,6 +21,10 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Liste over saker hvor journalpostens sin gjelderBrukerId er representert (når det er en person)") var bidragssaker: List<BidragSakDto> = emptyList(),
         @ApiModelProperty(value = "Correlation Id for logging") var correlationId: String?
 ) : CorrelationIdGenerator {
+    override fun correlationId(): String? {
+        return correlationId
+    }
+
     override fun payloadId(): String {
         return "jpid=" + journalpostId
     }
