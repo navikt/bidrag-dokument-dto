@@ -2,10 +2,7 @@ package no.nav.bidrag.dokument.dto
 
 import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
-import java.lang.Long.toHexString
 import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneOffset
 
 @ApiModel(value = "Metadata for en journalpost, no.nav.bidrag.dokument::bidrag-dokument-dto")
 data class JournalpostDto(
@@ -22,12 +19,8 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
         @ApiModelProperty(value = "Saksnummer på bidragssaken") var saksnummer: String? = null,
         @ApiModelProperty(value = "Liste over saker hvor journalpostens sin gjelderBrukerId er representert (når det er en person)") var bidragssaker: List<BidragSakDto> = emptyList(),
-        @ApiModelProperty(value = "Id for dtoen") var dtoId: String = toHexString(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC))
-) : MedDtoId {
-    override fun getBeskrevetDtoId(): String {
-        return String.format("%s(jpid-%s)", dtoId, journalpostId)
-    }
-}
+        @ApiModelProperty(value = "Correlation Id for logging") var correlationId: String?
+) : CorrelationIdGenerator
 
 @ApiModel(value = "Dokument metadata")
 data class DokumentDto(
