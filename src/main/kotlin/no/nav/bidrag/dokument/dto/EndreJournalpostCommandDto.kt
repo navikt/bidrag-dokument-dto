@@ -13,7 +13,7 @@ data class EndreJournalpostCommandDto(
         @ApiModelProperty(value = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumentet gjelder") var gjelder: String? = null,
         @ApiModelProperty(value = "Dato dokument ble journalført") var journaldato: LocalDate? = null,
         @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: EndreSaksnummerDto? = null,
-        @ApiModelProperty(value = "Correlation Id for logging") var correlationId: String?
+        @ApiModelProperty(value = "Correlation Id for logging") var correlationId: String? = null
 ) : CorrelationIdGenerator {
     override fun correlationId(): String? {
         return correlationId
