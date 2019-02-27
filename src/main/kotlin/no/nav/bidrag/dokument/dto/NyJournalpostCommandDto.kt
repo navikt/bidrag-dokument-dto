@@ -19,7 +19,7 @@ data class NyJournalpostCommandDto(
         @ApiModelProperty(value = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = LocalDate.now(),
         @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: String? = null,
         @ApiModelProperty(value = "Fagområde journalposten tilhører for bidragssaker. 'BNR' = bidrag, 'FAR' = farskap") var fagomrade: String? = null,
-        @ApiModelProperty(value = "Correlation Id for logging") var correlationId: String?
+        @ApiModelProperty(value = "Correlation Id for logging") var correlationId: String? = null
 ) : CorrelationIdGenerator {
     override fun correlationId(): String? {
         return correlationId
