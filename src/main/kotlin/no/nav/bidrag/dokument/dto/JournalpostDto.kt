@@ -20,7 +20,11 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Saksnummer på bidragssaken") var saksnummer: String? = null,
         @ApiModelProperty(value = "Liste over saker hvor journalpostens sin gjelderBrukerId er representert (når det er en person)") var bidragssaker: List<BidragSakDto> = emptyList(),
         @ApiModelProperty(value = "Correlation Id for logging") var correlationId: String?
-) : CorrelationIdGenerator
+) : CorrelationIdGenerator {
+    override fun payloadId(): String {
+        return "jpid=" + journalpostId
+    }
+}
 
 @ApiModel(value = "Dokument metadata")
 data class DokumentDto(

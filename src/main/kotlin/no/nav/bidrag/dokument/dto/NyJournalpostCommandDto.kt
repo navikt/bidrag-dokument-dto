@@ -20,4 +20,8 @@ data class NyJournalpostCommandDto(
         @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: String? = null,
         @ApiModelProperty(value = "Fagområde journalposten tilhører for bidragssaker. 'BNR' = bidrag, 'FAR' = farskap") var fagomrade: String? = null,
         @ApiModelProperty(value = "Correlation Id for logging") var correlationId: String?
-) : CorrelationIdGenerator
+) : CorrelationIdGenerator {
+    override fun payloadId(): String {
+        return "gjelder=" + gjelder;
+    }
+}
