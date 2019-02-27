@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | beskrivelse
 -----------|------------------------
+0.0.91 | generateCorrelationId -> generateMissingCorrelationId
 0.0.90 | CorrelationIdGenerator har en payloadId
 0.0.88 | MedDtoId -> CorrelationIdGenerator
 0.0.86 | interface for beskrivelse av dto id
