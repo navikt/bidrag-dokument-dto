@@ -12,17 +12,8 @@ data class EndreJournalpostCommandDto(
         @ApiModelProperty(value = "Kort oppsummert av journalført innhold") var beskrivelse: String? = null,
         @ApiModelProperty(value = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumentet gjelder") var gjelder: String? = null,
         @ApiModelProperty(value = "Dato dokument ble journalført") var journaldato: LocalDate? = null,
-        @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: EndreSaksnummerDto? = null,
-        @ApiModelProperty(value = "Correlation Id for logging") var correlationId: String? = null
-) : CorrelationIdGenerator {
-    override fun correlationId(): String? {
-        return correlationId
-    }
-
-    override fun payloadId(): String {
-        return "jpid=" + journalpostId
-    }
-}
+        @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: EndreSaksnummerDto? = null
+)
 
 @ApiModel(value = "Metadata for endring av saksnummer på en eksisterende journalpost")
 data class EndreSaksnummerDto(
