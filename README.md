@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | beskrivelse
 -----------|------------------------
+0.0.98 | dokumentType for journalpost, samt journalstatus
 0.0.95 | removed correlation id from dtos
 0.0.93 | missing default value in constructor
 0.0.91 | generateCorrelationId -> generateMissingCorrelationId
