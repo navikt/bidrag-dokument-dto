@@ -7,8 +7,7 @@ import java.time.LocalDate
 @ApiModel(value = "Metadata for endring av eksisterende journalpost")
 data class EndreJournalpostCommandDto(
         @ApiModelProperty(value = "Identifikator av journalpost") var journalpostId: String? = null,
-        @ApiModelProperty(value = "Avsenders fornavn") var avsenderFornavn: String? = null,
-        @ApiModelProperty(value = "Avsenders etternavn") var avsenderEtternavn: String? = null,
+        @ApiModelProperty(value = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
         @ApiModelProperty(value = "Kort oppsummert av journalført innhold") var beskrivelse: String? = null,
         @ApiModelProperty(value = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumentet gjelder") var gjelder: String? = null,
         @ApiModelProperty(value = "Dato dokument ble journalført") var journaldato: LocalDate? = null,
