@@ -5,7 +5,8 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 ## release endringer
 
 versjon | beskrivelse
------------|------------------------
+--------|------------------------
+0.0.101 | avsenders navn (med fornavn etter komma)
 0.0.98 | dokumentType for journalpost, samt journalstatus
 0.0.95 | removed correlation id from dtos
 0.0.93 | missing default value in constructor
