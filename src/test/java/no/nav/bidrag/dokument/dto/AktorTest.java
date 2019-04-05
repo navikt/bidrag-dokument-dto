@@ -102,4 +102,13 @@ class AktorTest {
   void skalGiIdenttypeOrgnrNarNiSiffer() {
     assertThat(new OrganisasjonDto("123456789").fetchIdentType()).isEqualTo("orgnr");
   }
+
+  @Test
+  @DisplayName("skal si om aktører er en person eller ei")
+  void skalSiOmAktorenErPerson() {
+    assertAll(
+        () -> assertThat(new OrganisasjonDto().erPerson()).isFalse(),
+        () -> assertThat(new PersonDto().erPerson()).isTrue()
+    );
+  }
 }

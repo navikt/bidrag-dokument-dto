@@ -11,7 +11,7 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Dokumentene som følger journalposten") var dokumenter: List<DokumentDto> = emptyList(),
         @ApiModelProperty(value = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
         @ApiModelProperty(value = "Fagområdet for journalposten. BID for bidrag og FAR for farskap") var fagomrade: String? = null,
-        @ApiModelProperty(value = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumente(t/ne) gjelder") var gjelderBrukerId: List<String> = emptyList(),
+        @ApiModelProperty(value = "Aktøren for hvem/hva dokumente(t/ne) gjelder") var gjelderAktor: AktorDto? = null,
         @ApiModelProperty(value = "Kort oppsummert av journalført innhold") var innhold: String? = null,
         @ApiModelProperty(value = "Enhetsnummer hvor journalføring ble gjort") var journalforendeEnhet: String? = null,
         @ApiModelProperty(value = "Saksbehandler som var journalfører") var journalfortAv: String? = null,
@@ -19,7 +19,7 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Identifikator av journalpost i midlertidig brevlager eller fra joark på formatet [BID|JOARK]-<journalpostId>") var journalpostId: String? = null,
         @ApiModelProperty(value = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
         @ApiModelProperty(value = "Saksnummer på bidragssaken") var saksnummer: String? = null,
-        @ApiModelProperty(value = "Liste over saker hvor journalpostens sin gjelderBrukerId er representert (når det er en person)") var bidragssaker: List<BidragSakDto> = emptyList(),
+        @ApiModelProperty(value = "Liste over saker hvor journalpostens sin aktør er representert (når det er en person)") var bidragssaker: List<BidragSakDto> = emptyList(),
         @ApiModelProperty(value = "Inngående (I), utgående (U) journalpost; (X) internt notat") var dokumentType: String? = null,
         @ApiModelProperty(value = "Journalpostens status, (A, D, J, M, O, R, T, U)") var journalstatus: String? = null
 )
@@ -73,6 +73,10 @@ open class AktorDto(
 
     private fun ukjentIdentType(): Nothing {
         throw IllegalStateException("Ukjent ident ($ident) for $aktorType")
+    }
+
+    fun erPerson(): Boolean {
+        return this is PersonDto
     }
 }
 
