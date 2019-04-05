@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | beskrivelse
 --------|------------------------
+0.0.104 | `gjelderBrukerId` til `AktorDto` (person eller organisasjon)
 0.0.103 | avsenders navn på NyJournalpostCommendDto
 0.0.101 | avsenders navn (med fornavn etter komma)
 0.0.98 | dokumentType for journalpost, samt journalstatus
