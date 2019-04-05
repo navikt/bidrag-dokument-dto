@@ -53,6 +53,8 @@ open class AktorDto(
         @ApiModelProperty(value = "Identtypen til identen (bnr, NorskIdent eller orgnr)") var identType: String,
         @ApiModelProperty(value = "Aktørtype (person eller organisasjon)") val aktorType: String
 ) {
+    constructor() : this ("", "ukjent", "ukjent")
+
     fun fetchIdentType(): String {
         if (identType.isNotEmpty()) return identType
         if (aktorType == "person") return personIdentType(ident)
