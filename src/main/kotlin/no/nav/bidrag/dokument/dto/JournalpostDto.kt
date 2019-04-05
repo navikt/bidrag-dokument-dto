@@ -50,20 +50,29 @@ data class RolleDto(
 @ApiModel(value = "Metadata om en aktør")
 open class AktorDto(
         @ApiModelProperty(value = "Identifaktor til aktøren") var ident: String,
-        @ApiModelProperty(value = "Identtypen til identen (bnr, NorskIdent eller orgnr)")  var identType: String,
+        @ApiModelProperty(value = "Identtypen til identen (bnr, NorskIdent eller orgnr)") var identType: String,
         @ApiModelProperty(value = "Aktørtype (person eller organisasjon)") val aktorType: String
 ) {
     fun fetchIdentType(): String {
         if (identType.isNotEmpty()) return identType
         if (aktorType == "person") return personIdentType(ident)
-        if (aktorType == "organisasjon") return "orgnr"
+        if (aktorType == "organisasjon") return organisasjonIdentType(ident)
 
         throw IllegalStateException("Ukjent aktørstype: $this")
     }
 
     private fun personIdentType(ident: String): String {
-        if (ident.length != 11 || !ident.matches("[0-9]*".toRegex())) throw IllegalStateException("Ukjent ident: \"$ident\"")
+        if (ident.length != 11 || !ident.matches("[0-9]*".toRegex())) throw ukjentIdentType()
         return if ((ident.subSequence(2, 4) as String).toInt() > 20) "bnr" else "NorskIdent"
+    }
+
+    private fun organisasjonIdentType(ident: String): String {
+        if (ident.length != 9 || !ident.matches("[0-9]*".toRegex())) throw ukjentIdentType()
+        return "orgnr"
+    }
+
+    private fun ukjentIdentType(): Nothing {
+        throw IllegalStateException("Ukjent ident ($ident) for $aktorType")
     }
 }
 
@@ -81,4 +90,6 @@ data class PersonDto(
 @ApiModel(value = "Metadata om en aktør")
 data class OrganisasjonDto(
         @ApiModelProperty(value = "Identifaktor til organisasjonen") private val orgIdent: String
-) : AktorDto(orgIdent, "orgnr", "organisasjon")
+) : AktorDto(orgIdent, "", "organisasjon") {
+    constructor() : this("")
+}
