@@ -106,7 +106,9 @@ class AktorTest {
   @Test
   @DisplayName("skal si om aktører er en person eller ei")
   void skalSiOmAktorenErPerson() {
+
     assertAll(
+        () -> assertThat(new AktorDto().erPerson()).isFalse(),
         () -> assertThat(new OrganisasjonDto().erPerson()).isFalse(),
         () -> assertThat(new PersonDto().erPerson()).isTrue()
     );

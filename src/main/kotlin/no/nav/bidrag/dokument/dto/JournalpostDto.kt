@@ -64,21 +64,27 @@ open class AktorDto(
     }
 
     private fun personIdentType(ident: String): String {
-        if (ident.length != 11 || !ident.matches("[0-9]*".toRegex())) throw ukjentIdentType()
+        if (erIkkeIdentMedElleveSiffer(ident)) throwUkjentIdentType()
         return if ((ident.subSequence(2, 4) as String).toInt() > 20) "bnr" else "NorskIdent"
     }
 
+    private fun erIkkeIdentMedElleveSiffer(ident: String) = ident.length != 11 || !ident.matches("[0-9]*".toRegex())
+
     private fun organisasjonIdentType(ident: String): String {
-        if (ident.length != 9 || !ident.matches("[0-9]*".toRegex())) throw ukjentIdentType()
+        if (ident.length != 9 || !ident.matches("[0-9]*".toRegex())) throwUkjentIdentType()
         return "orgnr"
     }
 
-    private fun ukjentIdentType(): Nothing {
+    private fun throwUkjentIdentType(): Nothing {
         throw IllegalStateException("Ukjent ident ($ident) for $aktorType")
     }
 
     fun erPerson(): Boolean {
-        return this is PersonDto
+        return this is PersonDto || erIdentMedElleveSiffer(ident)
+    }
+
+    private fun erIdentMedElleveSiffer(ident: String): Boolean {
+        return !erIkkeIdentMedElleveSiffer(ident)
     }
 }
 
