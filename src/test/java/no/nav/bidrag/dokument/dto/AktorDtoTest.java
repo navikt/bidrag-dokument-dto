@@ -4,10 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class AktorTest {
+class AktorDtoTest {
 
   @Test
   @DisplayName("skal kunne gi hvilken som helst verdi til ident og identtype for en person")
@@ -109,8 +110,52 @@ class AktorTest {
 
     assertAll(
         () -> assertThat(new AktorDto().erPerson()).isFalse(),
-        () -> assertThat(new OrganisasjonDto().erPerson()).isFalse(),
-        () -> assertThat(new PersonDto().erPerson()).isTrue()
+        () -> assertThat(new OrganisasjonDto("06127412345").erPerson()).isFalse(),
+        () -> assertThat(new PersonDto().erPerson()).isTrue(),
+        () -> assertThat(new AktorDto("06127412345", "", "").erPerson()).isTrue(),
+        () -> assertThat(new AktorDto("061274123456", "", "organisasjon").erPerson()).isFalse(),
+        () -> assertThat(new AktorDto("061274123456", "", "").erPerson()).isFalse(),
+        () -> assertThat(new AktorDto("061274123456", "", "person").erPerson()).isTrue()
     );
+  }
+
+  @Test
+  @DisplayName("skal ikke hente personident når identtypen en en organisasjon")
+  void skalIkkeHentePersonIdentNarAktorTypeErOrganisasjon() {
+    AktorDto aktorDto = new AktorDto("06127412345", "", "organisasjon");
+
+    assertThat(aktorDto.fetchPersonIdentType()).isEmpty();
+  }
+
+  @Test
+  @DisplayName("skal ikke hente personident når identen inneholder andre tegn enn tall")
+  void skalIkkeHentePersonIdentVedAndreTegnEnnTall() {
+    AktorDto aktorDto = new AktorDto("061274~2345", "", "");
+
+    assertThat(aktorDto.fetchPersonIdentType()).isEmpty();
+  }
+
+  @Test
+  @DisplayName("skal hente personident som AKTOERID når identen har tall men ikke lengde som er 11")
+  void skalHentePersonIdentSomAktoerId() {
+    AktorDto aktorDto = new AktorDto("061274", "", "");
+
+    assertThat(aktorDto.fetchPersonIdentType()).isEqualTo(Optional.of("AKTOERID"));
+  }
+
+  @Test
+  @DisplayName("skal hente personident som bnr når identen har 11 tall og tall 3 og 4 har verdi over 20")
+  void skalHentePersonIdentSomBnr() {
+    AktorDto aktorDto = new AktorDto("06217412345", "", "");
+
+    assertThat(aktorDto.fetchPersonIdentType()).isEqualTo(Optional.of("bnr"));
+  }
+
+  @Test
+  @DisplayName("skal hente personident som NorskIdent når identen har 11 tall og tall 3 og 4 har verdi mindre enn 21")
+  void skalHentePersonIdentSomNorskIdent() {
+    AktorDto aktorDto = new AktorDto("06207412345", "", "");
+
+    assertThat(aktorDto.fetchPersonIdentType()).isEqualTo(Optional.of("NorskIdent"));
   }
 }
