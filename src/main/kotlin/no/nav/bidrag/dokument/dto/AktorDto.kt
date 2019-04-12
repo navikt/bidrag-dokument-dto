@@ -12,6 +12,7 @@ open class AktorDto(
         @ApiModelProperty(value = "Aktørtype (person eller organisasjon)") val aktorType: String
 ) {
     constructor() : this("", "ukjent", "ukjent")
+    constructor(ident: String, type: String) : this(ident, type, "ukjent")
 
     fun fetchIdentType(): String {
         if (identType.isNotEmpty()) return identType
