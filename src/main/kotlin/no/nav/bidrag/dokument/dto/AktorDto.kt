@@ -78,7 +78,7 @@ data class PersonDto(
     constructor(ident: String) : this(ident, null, null, null)
 }
 
-@ApiModel(value = "Metadata om en aktør")
+@ApiModel(value = "Metadata om en organisasjon")
 data class OrganisasjonDto(
         @ApiModelProperty(value = "Identifaktor til organisasjonen") private val orgIdent: String
 ) : AktorDto(orgIdent, "", "organisasjon") {
