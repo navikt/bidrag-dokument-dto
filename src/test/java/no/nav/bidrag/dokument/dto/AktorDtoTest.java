@@ -40,10 +40,12 @@ class AktorDtoTest {
   @DisplayName("skal feile når personident ikke har 11 siffer")
   void skalFeileNarIdentIkkeHarElleveSiffer() {
     assertAll(
-        () -> assertThatIllegalStateException().isThrownBy(() -> new PersonDto("1234567890").fetchIdentType())
+        () -> assertThatIllegalStateException()
+            .isThrownBy(() -> new PersonDto("1234567890").fetchIdentType())
             .withMessage("Ukjent ident (1234567890) for person"),
         () -> assertThat(new PersonDto("12345678901").fetchIdentType()).isNotNull(),
-        () -> assertThatIllegalStateException().isThrownBy(() -> new PersonDto("123456789012").fetchIdentType())
+        () -> assertThatIllegalStateException()
+            .isThrownBy(() -> new PersonDto("123456789012").fetchIdentType())
             .withMessage("Ukjent ident (123456789012) for person")
     );
   }
@@ -82,7 +84,8 @@ class AktorDtoTest {
   @Test
   @DisplayName("skal feile når ident ikke er tall for organisasjon")
   void skalFeileNarIdentIkkeErTallForOrgnisasjon() {
-    assertThatIllegalStateException().isThrownBy(() -> new OrganisasjonDto("abcdefgh").fetchIdentType())
+    assertThatIllegalStateException()
+        .isThrownBy(() -> new OrganisasjonDto("abcdefgh").fetchIdentType())
         .withMessage("Ukjent ident (abcdefgh) for organisasjon");
   }
 
@@ -90,10 +93,12 @@ class AktorDtoTest {
   @DisplayName("skal feile når organisasjonsident ikke har 9 siffer")
   void skalFeileNarIdentIkkeHarNiSiffer() {
     assertAll(
-        () -> assertThatIllegalStateException().isThrownBy(() -> new OrganisasjonDto("12345678").fetchIdentType())
+        () -> assertThatIllegalStateException()
+            .isThrownBy(() -> new OrganisasjonDto("12345678").fetchIdentType())
             .withMessage("Ukjent ident (12345678) for organisasjon"),
         () -> assertThat(new OrganisasjonDto("123456789").fetchIdentType()).isNotNull(),
-        () -> assertThatIllegalStateException().isThrownBy(() -> new OrganisasjonDto("1234567890").fetchIdentType())
+        () -> assertThatIllegalStateException()
+            .isThrownBy(() -> new OrganisasjonDto("1234567890").fetchIdentType())
             .withMessage("Ukjent ident (1234567890) for organisasjon")
     );
   }
@@ -157,5 +162,24 @@ class AktorDtoTest {
     AktorDto aktorDto = new AktorDto("06207412345", "", "");
 
     assertThat(aktorDto.fetchPersonIdentType()).isEqualTo(Optional.of("NorskIdent"));
+  }
+
+  @Test
+  @DisplayName("skal hente PersonDto fra aktør når aktør er person")
+  void skalHenteSubKlasseAvAktor() {
+    AktorDto aktorDtoSomOrg = new AktorDto("123456789", "", "organisasjon");
+    AktorDto aktorDtoSomPerson = new AktorDto("06127412345", "", "");
+
+    Optional<PersonDto> muligPerson = aktorDtoSomOrg.fetchPerson();
+
+    assertThat(muligPerson).isEmpty();
+
+    muligPerson = aktorDtoSomPerson.fetchPerson();
+
+    assertThat(muligPerson).hasValueSatisfying(personDto -> assertAll(
+        () -> assertThat(personDto.getIdent()).isEqualTo("06127412345"),
+        () -> assertThat(personDto.getAktorType()).isEqualTo("person"),
+        () -> assertThat(personDto.fetchIdentType()).isEqualTo("NorskIdent")
+    ));
   }
 }
