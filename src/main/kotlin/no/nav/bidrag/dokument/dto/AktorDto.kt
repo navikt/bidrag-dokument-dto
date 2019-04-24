@@ -12,7 +12,7 @@ open class AktorDto(
         @ApiModelProperty(value = "Aktørtype (person eller organisasjon)") val aktorType: String
 ) {
     constructor() : this("", "ukjent", "ukjent")
-    constructor(ident: String, type: String) : this(ident, type, "ukjent")
+    constructor(ident: String, identType: String) : this(ident, identType, "ukjent")
 
     fun fetchIdentType(): String {
         if (identType.isNotEmpty()) return identType
@@ -65,6 +65,10 @@ open class AktorDto(
     private fun erIdentMedElleveSiffer(): Boolean = erIdentMedSiffer() && ident.length == 11
 
     private fun erIdentMedSiffer(): Boolean = !erIkkeIdentMedSiffer()
+
+    fun fetchPerson(): Optional<PersonDto> {
+        return if (erPerson()) Optional.of(PersonDto(ident)) else Optional.empty()
+    }
 }
 
 @ApiModel(value = "Metadata om en person")
