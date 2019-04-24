@@ -12,6 +12,7 @@ open class AktorDto(
         @ApiModelProperty(value = "Aktørtype (person eller organisasjon)") val aktorType: String
 ) {
     constructor() : this("", "ukjent", "ukjent")
+    constructor(ident: String, type: String) : this(ident, type, "ukjent")
 
     fun fetchIdentType(): String {
         if (identType.isNotEmpty()) return identType
@@ -77,7 +78,7 @@ data class PersonDto(
     constructor(ident: String) : this(ident, null, null, null)
 }
 
-@ApiModel(value = "Metadata om en aktør")
+@ApiModel(value = "Metadata om en organisasjon")
 data class OrganisasjonDto(
         @ApiModelProperty(value = "Identifaktor til organisasjonen") private val orgIdent: String
 ) : AktorDto(orgIdent, "", "organisasjon") {
