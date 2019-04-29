@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | beskrivelse
 --------|------------------------
+0.0.112 | metode `fetchPerson()` i `AktorDto`
 0.0.111 | ny konstruktør: `AktorDto(ident, type)`
 0.0.110 | ny metode: `AktorDto.fetchPersonIdentType()`
 0.0.108 | metode `AktorDto.erPerson()` kaster ikke exception
