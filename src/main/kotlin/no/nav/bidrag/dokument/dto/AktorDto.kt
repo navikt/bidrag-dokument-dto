@@ -12,6 +12,8 @@ open class AktorDto(
         @ApiModelProperty(value = "Aktørtype (person eller organisasjon)") val aktorType: String
 ) {
     constructor() : this("", "ukjent", "ukjent")
+
+    @Suppress("unused") // used by java code
     constructor(ident: String, identType: String) : this(ident, identType, "ukjent")
 
     fun fetchIdentType(): String {
@@ -70,7 +72,6 @@ open class AktorDto(
         return if (erPerson()) Optional.of(PersonDto(ident)) else Optional.empty()
     }
 }
-
 @ApiModel(value = "Metadata om en person")
 data class PersonDto(
         @ApiModelProperty(value = "Identen til personen") private val personIdent: String,
