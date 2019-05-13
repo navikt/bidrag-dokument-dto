@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype | beskrivelse
 --------|--------------|------------------------
+0.0.116 | Endring      | Fjernet guava som transitiv avhengighet
 0.0.115 | Opprettet    | `DokumentUrlDto` for url til et fysisk dokument
 0.0.114 | Endring      | `bidrag-dokument-dto` - jdk: builds on release 12
 0.0.113 | Endring      | `EndreJournalpostCommandDto`: oppdatering av `dokumentdato`
