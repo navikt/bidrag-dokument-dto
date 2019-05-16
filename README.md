@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype | beskrivelse
 --------|--------------|------------------------
+0.0.118 | Opprettet    | `DokumentTilgangRequest`: Forespørsel etter visning av et dokument
 0.0.117 | Endring      | `JournalpostDto`: Fjernet feltet saksnummer
 0.0.116 | Endring      | Fjernet guava som transitiv avhengighet
 0.0.115 | Opprettet    | `DokumentUrlDto` for url til et fysisk dokument
