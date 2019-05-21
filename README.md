@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype | beskrivelse
 --------|--------------|------------------------
+0.0.119 | Endring      | `JournalpostDto`, nytt felt: `feilfort` - feilført på bidragssak
 0.0.118 | Opprettet    | `DokumentTilgangRequest`: Forespørsel etter visning av et dokument
 0.0.117 | Endring      | `JournalpostDto`: Fjernet feltet saksnummer
 0.0.116 | Endring      | Fjernet guava som transitiv avhengighet
