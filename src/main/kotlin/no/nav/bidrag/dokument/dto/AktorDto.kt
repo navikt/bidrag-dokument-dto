@@ -6,22 +6,22 @@ import java.time.LocalDate
 import java.util.Optional
 
 @ApiModel(value = "Metadata om en aktør")
-open class AktorDto(
+data class AktorDto(
         @ApiModelProperty(value = "Identifaktor til aktøren") var ident: String,
         @ApiModelProperty(value = "Identtypen til identen (bnr, NorskIdent eller orgnr)") var identType: String,
-        @ApiModelProperty(value = "Aktørtype (person eller organisasjon)") val aktorType: String
+        @ApiModelProperty(value = "Aktørtype (person eller organisasjon)") val aktorType: String,
+        @ApiModelProperty(value = "Personinformasjon dersom aktør er en person") val personinfo: PersonDto?
 ) {
-    constructor() : this("", "ukjent", "ukjent")
+    constructor(ident: String) : this(ident, "ukjent", "ukjent", null)
 
     @Suppress("unused") // used by java code
-    constructor(ident: String, identType: String) : this(ident, identType, "ukjent")
+    constructor(ident: String, identType: String) : this(ident, identType, "ukjent", null)
 
     fun fetchIdentType(): String {
-        if (identType.isNotEmpty()) return identType
-        if (aktorType == "person") return personIdentType()
-        if (aktorType == "organisasjon") return organisasjonIdentType(ident)
+        if (erPerson()) return personIdentType()
+        if (erIdentMedSiffer() && ident.length == 9) return "orgnr"
 
-        throw IllegalStateException("Ukjent aktørstype: $this")
+        return "ukjent"
     }
 
     fun fetchPersonIdentType(): Optional<String> {
@@ -47,19 +47,12 @@ open class AktorDto(
 
     private fun erIkkeIdentMedElleveSiffer() = ident.length != 11 || !ident.matches("[0-9]*".toRegex())
 
-    private fun organisasjonIdentType(ident: String): String {
-        if (ident.length != 9 || !ident.matches("[0-9]*".toRegex())) throwUkjentIdentType()
-        return "orgnr"
-    }
-
     private fun throwUkjentIdentType(): Nothing {
         throw IllegalStateException("Ukjent ident ($ident) for $aktorType")
     }
 
     fun erPerson(): Boolean {
-        if (this is PersonDto) return true
-        if (erIdentMedElleveSiffer() && aktorType != "organisasjon") return true
-        if (erIdentMedSiffer() && aktorType == "person") return true
+        if (erIdentMedElleveSiffer() || (erIdentMedSiffer() && ident.length != 9)) return true
 
         return false
     }
@@ -67,25 +60,12 @@ open class AktorDto(
     private fun erIdentMedElleveSiffer(): Boolean = erIdentMedSiffer() && ident.length == 11
 
     private fun erIdentMedSiffer(): Boolean = !erIkkeIdentMedSiffer()
-
-    fun fetchPerson(): Optional<PersonDto> {
-        return if (erPerson()) Optional.of(PersonDto(ident)) else Optional.empty()
-    }
 }
-@ApiModel(value = "Metadata om en person")
+
+@Suppress("unused") // brukes av java kode
+@ApiModel(value = "Metadata om en aktør som er en person")
 data class PersonDto(
-        @ApiModelProperty(value = "Identen til personen") private val personIdent: String,
         @ApiModelProperty(value = "Navn til person på formatet <etternavn, fornavn>") var navn: String? = null,
         @ApiModelProperty(value = "Dødsdato til død person") var doedsdato: LocalDate? = null,
         @ApiModelProperty(value = "Diskresjonskode (personvern)") var diskresjonskode: String? = null
-) : AktorDto(personIdent, "", "person") {
-    constructor() : this("", null, null, null)
-    constructor(ident: String) : this(ident, null, null, null)
-}
-
-@ApiModel(value = "Metadata om en organisasjon")
-data class OrganisasjonDto(
-        @ApiModelProperty(value = "Identifaktor til organisasjonen") private val orgIdent: String
-) : AktorDto(orgIdent, "", "organisasjon") {
-    constructor() : this("")
-}
+)

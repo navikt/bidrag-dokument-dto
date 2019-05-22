@@ -6,6 +6,10 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype | beskrivelse
 --------|--------------|------------------------
+0.0.121 | Slettet      | `OrganisasjonDto`
+0.0.121 | Endring      | `PersonDto`, fjernet aktør som moderklassse, samt fjernet feltet `personident`
+0.0.121 | Endring      | `AktorDto`, fjernet metode `fetchPerson()`
+0.0.121 | Endring      | `AktorDto`, nytt felt: `personinfo` - brukes til å berike aktør med person info når aktor er en person
 0.0.120 | Endring      | `JournalpostDto`, felt kan være null: `feilfort` - feilført på bidragssak
 0.0.119 | Endring      | `JournalpostDto`, nytt felt: `feilfort` - feilført på bidragssak
 0.0.118 | Opprettet    | `DokumentTilgangRequest`: Forespørsel etter visning av et dokument
