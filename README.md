@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype | beskrivelse
 --------|--------------|------------------------
+0.0.124 | Endring      | `AktorDto`: Feltet `ident` kan ikke være null og må derfor ha en no-arg konstruktør
 0.0.123 | Endring      | `AktorDto`: Feltet `personinfo` er et `var`-felt
 0.0.122 | Endring      | `AktorDto`: Fjernet feltene aktorType og identType
 0.0.121 | Slettet      | `OrganisasjonDto`
