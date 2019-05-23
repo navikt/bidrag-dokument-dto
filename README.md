@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype | beskrivelse
 --------|--------------|------------------------
+0.0.123 | Endring      | `AktorDto`: Feltet `personinfo` er et `var`-felt
 0.0.122 | Endring      | `AktorDto`: Fjernet feltene aktorType og identType
 0.0.121 | Slettet      | `OrganisasjonDto`
 0.0.121 | Endring      | `PersonDto`, fjernet aktør som moderklassse, samt fjernet feltet `personident`
