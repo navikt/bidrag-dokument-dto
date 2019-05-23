@@ -10,6 +10,7 @@ data class AktorDto(
         @ApiModelProperty(value = "Identifaktor til aktøren") var ident: String,
         @ApiModelProperty(value = "Personinformasjon dersom aktør er en person") var personinfo: PersonDto?
 ) {
+    constructor() : this("", null)
     constructor(ident: String) : this(ident, null)
 
     fun fetchIdentType(): String {
@@ -49,6 +50,10 @@ data class AktorDto(
         if (erIdentMedElleveSiffer() || (erIdentMedSiffer() && ident.length != 9)) return true
 
         return false
+    }
+
+    fun erIkkePerson(): Boolean {
+        return !erPerson()
     }
 
     private fun erIdentMedElleveSiffer(): Boolean = erIdentMedSiffer() && ident.length == 11
