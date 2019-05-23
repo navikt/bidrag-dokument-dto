@@ -8,7 +8,7 @@ import java.util.Optional
 @ApiModel(value = "Metadata om en aktør")
 data class AktorDto(
         @ApiModelProperty(value = "Identifaktor til aktøren") var ident: String,
-        @ApiModelProperty(value = "Personinformasjon dersom aktør er en person") val personinfo: PersonDto?
+        @ApiModelProperty(value = "Personinformasjon dersom aktør er en person") var personinfo: PersonDto?
 ) {
     constructor(ident: String) : this(ident, null)
 
