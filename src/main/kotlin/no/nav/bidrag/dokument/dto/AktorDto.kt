@@ -7,11 +7,9 @@ import java.util.Optional
 
 @ApiModel(value = "Metadata om en aktør")
 data class AktorDto(
-        @ApiModelProperty(value = "Identifaktor til aktøren") var ident: String,
-        @ApiModelProperty(value = "Personinformasjon dersom aktør er en person") var personinfo: PersonDto?
+        @ApiModelProperty(value = "Identifaktor til aktøren") var ident: String
 ) {
-    constructor() : this("", null)
-    constructor(ident: String) : this(ident, null)
+    constructor() : this("")
 
     fun fetchIdentType(): String {
         if (erPerson()) return personIdentType()
@@ -60,11 +58,3 @@ data class AktorDto(
 
     private fun erIdentMedSiffer(): Boolean = !erIkkeIdentMedSiffer()
 }
-
-@Suppress("unused") // brukes av java kode
-@ApiModel(value = "Metadata om en aktør som er en person")
-data class PersonDto(
-        @ApiModelProperty(value = "Navn til person på formatet <etternavn, fornavn>") var navn: String? = null,
-        @ApiModelProperty(value = "Dødsdato til død person") var doedsdato: LocalDate? = null,
-        @ApiModelProperty(value = "Diskresjonskode (personvern)") var diskresjonskode: String? = null
-)

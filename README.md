@@ -6,6 +6,8 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype | beskrivelse
 --------|--------------|------------------------
+0.1.0   | Endring      | `AktorDto`: Feltet `personInfo` er fjernet
+0.1.0   | Endring      | `JournalpostDto`: Listen over bidragssaker og tilhørende objekt `BidragSakDto` er fjernet
 0.0.125 | Endring      | `AktorDto`: Feltet `ident` kan ikke være null og må derfor ha en no-arg konstruktør
 0.0.124 | feil release | ingen endring fra forrige versjon
 0.0.123 | Endring      | `AktorDto`: Feltet `personinfo` er et `var`-felt
