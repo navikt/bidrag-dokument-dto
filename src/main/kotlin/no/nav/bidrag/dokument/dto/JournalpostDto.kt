@@ -22,6 +22,13 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Om journalposten er feilført på bidragssak") var feilfort: Boolean? = null
 )
 
+@ApiModel(value = "Metadata om en aktør")
+data class AktorDto(
+        @ApiModelProperty(value = "Identifaktor til aktøren") var ident: String
+) {
+    constructor() : this("")
+}
+
 @ApiModel(value = "Dokument metadata")
 data class DokumentDto(
         @ApiModelProperty(value = "Referanse som brukes når dokument er i midlertidig-brevlager") var dokumentreferanse: String? = null,
