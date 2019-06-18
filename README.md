@@ -6,10 +6,11 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype | beskrivelse
 --------|--------------|------------------------
-  0.2.1 | Slettet      | `DokumentUrlRequest`
-  0.2.0 | Endring      | `DokumentUrlRequest`/`DokumentUrlResponse`:  feltene kan ikke være null
-  0.2.0 | Endring      | `DokumentUrlRequest`:  fjernet `saksbehandler` som del av request
-  0.2.0 | Endring      | `DokumentUrlDto` -> `DokumentUrlResponse`
+  0.2.2 | Endring      | `DokumentTilgangResponse` har no-args constructor for json (defaults to empty strings)
+  0.2.1 | Slettet      | `DokumentTilgangRequest`
+  0.2.0 | Endring      | `DokumentTilganglRequest`/`DokumentTilgangResponse`:  feltene kan ikke være null
+  0.2.0 | Endring      | `DokumentTilgangRequest`:  fjernet `saksbehandler` som del av request
+  0.2.0 | Endring      | `DokumentUrlDto` -> `DokumentTilgangResponse`
   0.1.0 | Endring      | `AktorDto`: Fjernet all logikk som omhandler identtype
   0.1.0 | Endring      | `AktorDto`: Feltet `personinfo` er fjernet
   0.1.0 | Endring      | `JournalpostDto`: Feltet `bidragssaker` og tilhørende objekt `BidragSakDto` er fjernet
