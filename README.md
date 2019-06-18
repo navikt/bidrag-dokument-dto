@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype | beskrivelse
 --------|--------------|------------------------
+  0.2.1 | Slettet      | `DokumentUrlRequest`
   0.2.0 | Endring      | `DokumentUrlRequest`/`DokumentUrlResponse`:  feltene kan ikke være null
   0.2.0 | Endring      | `DokumentUrlRequest`:  fjernet `saksbehandler` som del av request
   0.2.0 | Endring      | `DokumentUrlDto` -> `DokumentUrlResponse`
