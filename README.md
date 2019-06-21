@@ -6,6 +6,8 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype | beskrivelse
 --------|--------------|------------------------
+  0.2.3 | Opprettet    | `BestillOrginal` som er en `Avvikshendelse`
+  0.2.3 | Opprettet    | `Avvikshendelse` (interface)
   0.2.2 | Endring      | `DokumentTilgangResponse` har no-args constructor for json (defaults to empty strings)
   0.2.1 | Slettet      | `DokumentTilgangRequest`
   0.2.0 | Endring      | `DokumentTilganglRequest`/`DokumentTilgangResponse`:  feltene kan ikke være null
