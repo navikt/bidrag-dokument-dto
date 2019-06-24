@@ -4,16 +4,12 @@ import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
 
 @ApiModel(value = "En avvikshendelse som kan utføres på en journalpost")
-abstract class Avvikshendelse(
+data class Avvikshendelse(
         @ApiModelProperty(value = "Type avvik") val avvikType: String
-)
-
-@ApiModel(value = "Bestill orginalt scannet dokument for en journalpost")
-data class BestillOrginal(
-        private val avvik: AvvikType = AvvikType.BESTILL_ORGINAL
-) : Avvikshendelse(
-        avvikType = avvik.name
-)
+) {
+    constructor() : this("avvik ikke angitt")
+    constructor(avvikType: AvvikType) : this(avvikType = avvikType.name)
+}
 
 enum class AvvikType {
     BESTILL_ORGINAL
