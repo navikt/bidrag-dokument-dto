@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype | beskrivelse
 --------|--------------|------------------------
+  0.2.5 | Opprettet    | `OpprettAvvikshendelseResponse`
   0.2.4 | Slettet      | `BestillOrginal`. `Avvikshendelse` er ikke et abstrakt objekt
   0.2.3 | Opprettet    | `BestillOrginal` som er en `Avvikshendelse`
   0.2.3 | Opprettet    | `Avvikshendelse` (interface)
