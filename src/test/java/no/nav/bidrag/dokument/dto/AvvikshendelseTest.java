@@ -4,18 +4,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 class AvvikshendelseTest {
 
-  @Test
+  @ParameterizedTest
   @DisplayName("skal hente AvvikType fra streng")
-  void skalHenteAvvikTypeFraStreng() {
-    var funnetAvvik = new Avvikshendelse(AvvikType.BESTILL_ORGINAL).hent();
+  @EnumSource(AvvikType.class)
+  void skalHenteAvvikTypeFraStreng(AvvikType avvikType) {
+    var funnetAvvik = new Avvikshendelse(avvikType).hent();
     var manglendeAvvik = new Avvikshendelse().hent();
 
     assertAll(
-        () -> assertThat(funnetAvvik).isPresent(),
+        () -> assertThat(funnetAvvik).isPresent().get().isEqualTo(avvikType),
         () -> assertThat(manglendeAvvik).isEmpty()
     );
   }

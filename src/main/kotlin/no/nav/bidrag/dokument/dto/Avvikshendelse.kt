@@ -2,7 +2,7 @@ package no.nav.bidrag.dokument.dto
 
 import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
-import java.util.*
+import java.util.Optional
 
 @ApiModel(value = "En avvikshendelse som kan utføres på en journalpost")
 data class Avvikshendelse(
@@ -32,5 +32,6 @@ data class OpprettAvvikshendelseResponse(
 }
 
 enum class AvvikType {
-    BESTILL_ORGINAL
+    BESTILL_ORGINAL,
+    BESTILL_RESKANNING
 }
