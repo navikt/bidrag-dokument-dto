@@ -6,6 +6,8 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+  0.2.9 | Endring/Opprettet | gjenopprettet konstruktør `OpprettAvvikshendelse`
+  0.2.8 | Endring/Slettet   | en konstruktør i `OpprettAvvikshendelse`
   0.2.8 | Endring/Opprettet | `OpprettAvvikshendelse.oppgaveId`
   0.2.8 | Endring/Opprettet | `OpprettAvvikshendelse.oppgavetype`
   0.2.8 | Endring/Opprettet | `OpprettAvvikshendelse.tema`

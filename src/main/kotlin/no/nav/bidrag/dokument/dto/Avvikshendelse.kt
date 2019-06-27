@@ -28,6 +28,7 @@ data class OpprettAvvikshendelseResponse(
         @ApiModelProperty(value = "Oppgavens type") var oppgavetype: String? = null
 ) {
     constructor() : this("avvik ikke angitt")
+    constructor(avvikType: AvvikType) : this(avvikType.name)
 }
 
 enum class AvvikType {
