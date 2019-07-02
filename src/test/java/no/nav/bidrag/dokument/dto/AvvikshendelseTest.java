@@ -13,7 +13,7 @@ class AvvikshendelseTest {
   @DisplayName("skal hente AvvikType fra streng")
   @EnumSource(AvvikType.class)
   void skalHenteAvvikTypeFraStreng(AvvikType avvikType) {
-    var funnetAvvik = new Avvikshendelse(avvikType).hent();
+    var funnetAvvik = new Avvikshendelse(avvikType).hent(); // enum blir lagret som streng i en Avvikshendelse
     var manglendeAvvik = new Avvikshendelse().hent();
 
     assertAll(

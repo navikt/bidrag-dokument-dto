@@ -41,3 +41,37 @@ data class RolleDto(
         @ApiModelProperty(value = "Fødselsnummer til en person i en bidragssak") var foedselsnummer: String? = null,
         @ApiModelProperty(value = "Rolletypen til en person i en bidragssak, f.eks: BM eller BP (bidragsmottaker eller bidragspliktig)") var rolleType: String? = null
 )
+
+@ApiModel(value = "Metadata for registrering av ny journalpost")
+data class NyJournalpostCommandDto(
+        @ApiModelProperty(value = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
+        @ApiModelProperty(value = "Kort oppsummert av journalført innhold") var beskrivelse: String? = null,
+        @ApiModelProperty(value = "Dato for dokument i journalpost") var dokumentdato: LocalDate? = null,
+        @ApiModelProperty(value = "Dokumentreferanse for det arkiverte dokumentet") var dokumentreferanse: String? = null,
+        @ApiModelProperty(value = "Inngående (I), utgående (U) dokument, (X) internt notat") var dokumentType: String? = null,
+        @ApiModelProperty(value = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumentet gjelder") var gjelder: String? = null,
+        @ApiModelProperty(value = "Dato dokument ble journalført") var journaldato: LocalDate? = null,
+        @ApiModelProperty(value = "Enhetsnummer hvor journalføring ble gjort") var journalforendeEnhet: String? = null,
+        @ApiModelProperty(value = "Saksbehandler som var journalfører") var journalfortAv: String? = null,
+        @ApiModelProperty(value = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = LocalDate.now(),
+        @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: String? = null,
+        @ApiModelProperty(value = "Fagområde journalposten tilhører for bidragssaker. 'BNR' = bidrag, 'FAR' = farskap") var fagomrade: String? = null
+)
+
+@ApiModel(value = "Metadata for endring av eksisterende journalpost")
+data class EndreJournalpostCommandDto(
+        @ApiModelProperty(value = "Identifikator av journalpost") var journalpostId: String? = null,
+        @ApiModelProperty(value = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
+        @ApiModelProperty(value = "Kort oppsummert av journalført innhold") var beskrivelse: String? = null,
+        @ApiModelProperty(value = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
+        @ApiModelProperty(value = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumentet gjelder") var gjelder: String? = null,
+        @ApiModelProperty(value = "Dato dokument ble journalført") var journaldato: LocalDate? = null,
+        @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: EndreSaksnummerDto? = null
+)
+
+@ApiModel(value = "Metadata for endring av saksnummer på en eksisterende journalpost")
+data class EndreSaksnummerDto(
+        @ApiModelProperty(value = "Saksnummeret som skal tilknyttes journalposten") var saksnummer: String? = null,
+        @ApiModelProperty(value = "Legg til som ny journalsak") var erTilknyttetNySak: Boolean = false,
+        @ApiModelProperty(value = "Saksnummer som skal erstattes på journalposten") var saksnummerSomSkalErstattes: String? = null
+)
