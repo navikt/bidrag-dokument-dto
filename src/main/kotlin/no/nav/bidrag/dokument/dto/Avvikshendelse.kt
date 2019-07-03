@@ -6,10 +6,11 @@ import java.util.Optional
 
 @ApiModel(value = "En avvikshendelse som kan utføres på en journalpost")
 data class Avvikshendelse(
-        @ApiModelProperty(value = "Type avvik") val avvikType: String
+        @ApiModelProperty(value = "Type avvik") var avvikType: String,
+        @ApiModelProperty(value = "Enhetsnummer for gjeldense avvik, eks: sendes til i BESTILL_ORGINAL") var enhetsnummer: String? = null
 ) {
-    constructor() : this("avvik ikke angitt")
-    constructor(avvikType: AvvikType) : this(avvikType = avvikType.name)
+    constructor() : this("avvik ikke angitt", null)
+    constructor(avvikType: AvvikType) : this(avvikType.name, null)
 
     fun hent(): Optional<AvvikType> {
         try {
