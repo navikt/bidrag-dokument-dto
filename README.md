@@ -6,7 +6,8 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
- 0.2.11 | Endring/Opprettet | `Avvikshendelse.enhetsummer`, brukes foreløpig til beriking av tknr og navn ved `BestillOrginal`  
+ 0.2.12 | Endring.          | `AvvikType`, `BESTILL_ORGINAL`-> `BESTILL_ORIGINAL`
+ 0.2.11 | Endring/Opprettet | `Avvikshendelse.enhetsummer`, brukes foreløpig til beriking av tknr og navn ved `BestillOriginal`  
  0.2.10 | Endring/Opprettet | `AvvikType.BESTILL_RESKANNING`
   0.2.9 | Endring/Opprettet | gjenopprettet konstruktør `OpprettAvvikshendelse`
   0.2.8 | Endring/Slettet   | en konstruktør i `OpprettAvvikshendelse`
