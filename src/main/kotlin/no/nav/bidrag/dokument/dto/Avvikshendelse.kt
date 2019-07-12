@@ -9,8 +9,6 @@ data class Avvikshendelse(
         @ApiModelProperty(value = "Type avvik") var avvikType: String,
         @ApiModelProperty(value = "Enhetsnummer for gjeldense avvik, eks: sendes til i BESTILL_ORIGINAL") var enhetsnummer: String? = null
 ) {
-    constructor() : this("avvik ikke angitt", null)
-    constructor(avvikType: AvvikType) : this(avvikType.name, null)
 
     fun hent(): Optional<AvvikType> {
         try {
@@ -27,10 +25,7 @@ data class OpprettAvvikshendelseResponse(
         @ApiModelProperty(value = "Enhetsnummer til enheten som oppgaven er tildelt") var tildeltEnhetsnr: String? = null,
         @ApiModelProperty(value = "Oppgavens tema") var tema: String? = null,
         @ApiModelProperty(value = "Oppgavens type") var oppgavetype: String? = null
-) {
-    constructor() : this("avvik ikke angitt")
-    constructor(avvikType: AvvikType) : this(avvikType.name)
-}
+)
 
 enum class AvvikType {
     BESTILL_ORIGINAL,
