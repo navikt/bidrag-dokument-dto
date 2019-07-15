@@ -25,7 +25,10 @@ data class OpprettAvvikshendelseResponse(
         @ApiModelProperty(value = "Enhetsnummer til enheten som oppgaven er tildelt") var tildeltEnhetsnr: String? = null,
         @ApiModelProperty(value = "Oppgavens tema") var tema: String? = null,
         @ApiModelProperty(value = "Oppgavens type") var oppgavetype: String? = null
-)
+) {
+    constructor() : this("avvik ikke angitt")
+    constructor(avvikType: AvvikType) : this(avvikType.name)
+}
 
 enum class AvvikType {
     BESTILL_ORIGINAL,
