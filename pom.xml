@@ -19,7 +19,7 @@
 
     <!-- dependencies -->
     <assertj.version>3.12.2</assertj.version>
-    <junit-jupiter.version>5.4.2</junit-jupiter.version>
+    <junit-jupiter.version>5.5.1</junit-jupiter.version>
     <springfox-swagger.version>2.9.2</springfox-swagger.version>
 
     <!-- build -->
