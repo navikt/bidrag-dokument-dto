@@ -21,14 +21,13 @@ data class Avvikshendelse(
 }
 
 data class OpprettAvvikshendelseResponse(
-        @ApiModelProperty(value = "Type avvik") var avvikType: String,
+        @ApiModelProperty(value = "Type avvik") var avvikType: String? = null,
         @ApiModelProperty(value = "Oppgave id for oppgaven som ble opprettet på bakgrunn av avviket") var oppgaveId: Long? = null,
         @ApiModelProperty(value = "Enhetsnummer til enheten som oppgaven er tildelt") var tildeltEnhetsnr: String? = null,
         @ApiModelProperty(value = "Oppgavens tema") var tema: String? = null,
         @ApiModelProperty(value = "Oppgavens type") var oppgavetype: String? = null
 ) {
-    constructor() : this("avvik ikke angitt")
-    constructor(avvikType: AvvikType) : this(avvikType.name)
+    constructor(avvikType: AvvikType) : this(avvikType.name, null,  null, null, null)
 }
 
 enum class AvvikType {
