@@ -6,16 +6,18 @@ import java.util.Optional
 
 @ApiModel(value = "En avvikshendelse som kan utføres på en journalpost")
 data class Avvikshendelse(
-        @ApiModelProperty(value = "Type avvik") var avvikType: String,
+        @ApiModelProperty(value = "Type avvik") var avvikType: String? = null,
         @ApiModelProperty(value = "Enhetsnummer for gjeldense avvik, eks: sendes til i BESTILL_ORIGINAL") var enhetsnummer: String? = null
 ) {
-    constructor() : this("avvik ikke angitt", null)
-
     fun hent(): Optional<AvvikType> {
         try {
-            return Optional.of(AvvikType.valueOf(avvikType))
+            if (avvikType == null) {
+                return Optional.empty()
+            }
+
+            return Optional.of(AvvikType.valueOf(avvikType!!))
         } catch (exception: Exception) {
-            return Optional.empty();
+            return Optional.empty()
         }
     }
 }
