@@ -6,7 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
- 0.2.18 | Endring           | `Avvikshendelse`, Kode som versjon til 0.2.16, med no-arg constructor og not-nullable felt 
+ 0.2.18 | Endring           | `Avvikshendelse`, som versjon til 0.2.16, med no-arg constructor og not-nullable felt 
  0.2.17 | Endring           | `Avvikshendelse`, Swagger dokumentasjon og ingen not nullable felter 
  0.2.12 | Endring           | `AvvikType`, `BESTILL_ORGINAL`-> `BESTILL_ORIGINAL`
  0.2.11 | Endring/Opprettet | `Avvikshendelse.enhetsummer`, brukes foreløpig til beriking av tknr og navn ved `BestillOriginal`  
