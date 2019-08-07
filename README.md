@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+ 0.2.20 | Endring/Opprettet | `Avvikshendelse`, konstruktør med argumenter utenom beskrivelse    
  0.2.20 | Endring/Opprettet | `Avvikshendelse`, beskrivelse: input fra saksbehandler   
  0.2.19 | Endring/Opprettet | `AvvikType`, ny enumeration: BESTILL_SPLITTING 
  0.2.17 | Endring           | `Avvikshendelse`, Swagger dokumentasjon og ingen not nullable felter 
