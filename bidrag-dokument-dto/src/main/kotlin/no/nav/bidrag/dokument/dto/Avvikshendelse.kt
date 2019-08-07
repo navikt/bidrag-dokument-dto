@@ -11,6 +11,7 @@ data class Avvikshendelse(
         @ApiModelProperty(value = "Manuell beskrivelse av avvik") var beskrivelse: String? = null
 ) {
     constructor() : this("avvik ikke angitt", null, null)
+    constructor(avvikType: String, enhetsnummer: String?) : this(avvikType, enhetsnummer, null)
 
     fun hent(): Optional<AvvikType> {
         try {
