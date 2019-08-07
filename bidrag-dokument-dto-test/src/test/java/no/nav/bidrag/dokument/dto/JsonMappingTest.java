@@ -30,4 +30,20 @@ class JsonMappingTest {
         () -> assertThat(hendelsen.hent()).as("avvikshendelse.avvikType (som enum)").isPresent().get().isEqualTo(AvvikType.BESTILL_ORIGINAL)
     );
   }
+
+  @Test
+  @DisplayName("skal mappe Avvikshendelse med beskrivelse")
+  void skalMappeAvvikshendelseMedBeskrivelse() throws IOException {
+    String avvikshendelse = " {\"avvikType\":\"BESTILL_SPLITTING\",\"enhetsnummer\":\"4806\", \"beskrivelse\":\"avsnitt 2\"}";
+
+    Avvikshendelse hendelsen = objectMapper.readValue(avvikshendelse, Avvikshendelse.class);
+
+    assertAll(
+        () -> assertThat(hendelsen).as("avvikshendelse").isNotNull(),
+        () -> assertThat(hendelsen.getEnhetsnummer()).as("avvikshendelse.enhetsnummer").isEqualTo("4806"),
+        () -> assertThat(hendelsen.getAvvikType()).as("avvikshendelse.avvikType").isEqualTo(AvvikType.BESTILL_SPLITTING.name()),
+        () -> assertThat(hendelsen.hent()).as("avvikshendelse.avvikType (som enum)").isPresent().get().isEqualTo(AvvikType.BESTILL_SPLITTING),
+        () -> assertThat(hendelsen.getBeskrivelse()).as("avvikshendelse.beskrivelse").isEqualTo("avsnitt 2")
+    );
+  }
 }
