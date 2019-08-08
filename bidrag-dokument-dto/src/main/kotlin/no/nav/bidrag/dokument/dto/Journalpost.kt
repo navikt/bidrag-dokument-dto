@@ -77,7 +77,7 @@ data class EndreSaksnummerDto(
         @ApiModelProperty(value = "Saksnummer som skal erstattes på journalposten") var saksnummerSomSkalErstattes: String? = null
 )
 
-@ApiModel(value = "Metadata for kodeo/dekode")
+@ApiModel(value = "Metadata for kode/dekode")
 data class KodeDto(
         @ApiModelProperty(value = "Koden") var kode: String? = null,
         @ApiModelProperty(value = "Dekode (kodebeskrivelse)") var dekode: String? = null,
