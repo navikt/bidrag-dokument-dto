@@ -19,7 +19,8 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
         @ApiModelProperty(value = "Inngående (I), utgående (U) journalpost; (X) internt notat") var dokumentType: String? = null,
         @ApiModelProperty(value = "Journalpostens status, (A, D, J, M, O, R, T, U)") var journalstatus: String? = null,
-        @ApiModelProperty(value = "Om journalposten er feilført på bidragssak") var feilfort: Boolean? = null
+        @ApiModelProperty(value = "Om journalposten er feilført på bidragssak") var feilfort: Boolean? = null,
+        @ApiModelProperty(value = "Brevkoden til en journalpost") var brevkode: KodeDto? = null
 )
 
 @ApiModel(value = "Metadata om en aktør")
@@ -74,4 +75,11 @@ data class EndreSaksnummerDto(
         @ApiModelProperty(value = "Saksnummeret som skal tilknyttes journalposten") var saksnummer: String? = null,
         @ApiModelProperty(value = "Legg til som ny journalsak") var erTilknyttetNySak: Boolean = false,
         @ApiModelProperty(value = "Saksnummer som skal erstattes på journalposten") var saksnummerSomSkalErstattes: String? = null
+)
+
+@ApiModel(value = "Metadata for kodeo/dekode")
+data class KodeDto(
+        @ApiModelProperty(value = "Koden") var kode: String? = null,
+        @ApiModelProperty(value = "Dekode (kodebeskrivelse)") var dekode: String? = null,
+        @ApiModelProperty(value = "Om kodeobjektet inneholder en gyldig verdi")  var erGyldig: Boolean = true
 )
