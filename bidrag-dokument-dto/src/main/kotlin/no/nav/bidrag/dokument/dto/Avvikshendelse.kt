@@ -39,5 +39,5 @@ enum class AvvikType {
     BESTILL_SPLITTING,
     ENDRE_FAGOMRADE,
     INNG_TIL_UTG_DOKUMENT,
-    FEILFORE
+    FEILFORE_SAK
 }
