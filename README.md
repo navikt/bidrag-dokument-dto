@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+ 0.2.26 | Endring/Opprettet | `AvvikType`, ny enumeration: FEILFORE 
  0.2.25 | Endring/Opprettet | `AvvikType`, ny enumeration: INNG_TIL_UTG_DOKUMENT 
  0.2.24 | Endring/Opprettet | `AvvikType`, ny enumeration: ENDRE_FAGOMRADE 
  0.2.23 | Endring/Opprettet | `JournalpostDto`, nytt felt: `brevkode`    
