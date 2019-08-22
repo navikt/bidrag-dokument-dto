@@ -6,7 +6,7 @@
 
   <groupId>no.nav.bidrag.dokument</groupId>
   <artifactId>bidrag-dokument-dto-multimodule</artifactId>
-  <version>0.2.28-SNAPSHOT</version>
+  <version>0.3.0</version>
 
   <modules>
     <module>bidrag-dokument-dto</module>
