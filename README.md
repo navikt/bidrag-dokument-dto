@@ -6,41 +6,42 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
- 0.2.27 | Endring           | `AvvikType`, : FEILFORE -> FEILFORE_SAK 
- 0.2.26 | Endring/Opprettet | `AvvikType`, ny enumeration: FEILFORE 
- 0.2.25 | Endring/Opprettet | `AvvikType`, ny enumeration: INNG_TIL_UTG_DOKUMENT 
- 0.2.24 | Endring/Opprettet | `AvvikType`, ny enumeration: ENDRE_FAGOMRADE 
- 0.2.23 | Endring/Opprettet | `JournalpostDto`, nytt felt: `brevkode`    
- 0.2.23 | Opprettet         | `KodeDto`, kode / dekode    
- 0.2.22 | Endring/Opprettet | `Avvikshendelse`, konstruktør med argumenter utenom beskrivelse    
- 0.2.21 | Endring/Opprettet | `Avvikshendelse`, beskrivelse: input fra saksbehandler   
- 0.2.20 | Endring/Opprettet | `AvvikType`, ny enumeration: BESTILL_SPLITTING 
- 0.2.17 | Endring           | `Avvikshendelse`, Swagger dokumentasjon og ingen not nullable felter 
- 0.2.17 | Endring           | `Avvikshendelse`, Swagger dokumentasjon og ingen not nullable felter 
- 0.2.12 | Endring           | `AvvikType`, `BESTILL_ORGINAL`-> `BESTILL_ORIGINAL`
- 0.2.11 | Endring/Opprettet | `Avvikshendelse.enhetsummer`, brukes foreløpig til beriking av tknr og navn ved `BestillOriginal`  
- 0.2.10 | Endring/Opprettet | `AvvikType.BESTILL_RESKANNING`
-  0.2.9 | Endring/Opprettet | gjenopprettet konstruktør `OpprettAvvikshendelse`
-  0.2.8 | Endring/Slettet   | en konstruktør i `OpprettAvvikshendelse`
-  0.2.8 | Endring/Opprettet | `OpprettAvvikshendelse.oppgaveId`
-  0.2.8 | Endring/Opprettet | `OpprettAvvikshendelse.oppgavetype`
-  0.2.8 | Endring/Opprettet | `OpprettAvvikshendelse.tema`
-  0.2.8 | Endring/Opprettet | `OpprettAvvikshendelse.tildelesEnhetsnr`
-  0.2.8 | Endring/Slettet   | `OpprettAvvikshendelse.beskrivelse`
-  0.2.7 | Endring           | `Avvikshendelse` kan hente `AvvikType` fra streng property
-  0.2.6 | Feil              | Feil i release
-  0.2.5 | Opprettet         | `OpprettAvvikshendelseResponse`
-  0.2.4 | Slettet           | `BestillOrginal`. `Avvikshendelse` er ikke et abstrakt objekt
-  0.2.3 | Opprettet         | `BestillOrginal` som er en `Avvikshendelse`
-  0.2.3 | Opprettet         | `Avvikshendelse` og `AvvikType`
-  0.2.2 | Endring           | `DokumentTilgangResponse` har no-args constructor for json (defaults to empty strings)
-  0.2.1 | Slettet           | `DokumentTilgangRequest`
-  0.2.0 | Endring           | `DokumentTilganglRequest`/`DokumentTilgangResponse`:  feltene kan ikke være null
-  0.2.0 | Endring           | `DokumentTilgangRequest`:  fjernet `saksbehandler` som del av request
-  0.2.0 | Endring           | `DokumentUrlDto` -> `DokumentTilgangResponse`
-  0.1.0 | Endring           | `AktorDto`: Fjernet all logikk som omhandler identtype
-  0.1.0 | Endring           | `AktorDto`: Feltet `personinfo` er fjernet
-  0.1.0 | Endring           | `JournalpostDto`: Feltet `bidragssaker` og tilhørende objekt `BidragSakDto` er fjernet
+0.3.0   | Endring/Opprettet | `EndreJournalpostCommandDto`, ny metode som kvalitetsikrer journalpostId 
+0.2.27  | Endring           | `AvvikType`, : FEILFORE -> FEILFORE_SAK 
+0.2.26  | Endring/Opprettet | `AvvikType`, ny enumeration: FEILFORE 
+0.2.25  | Endring/Opprettet | `AvvikType`, ny enumeration: INNG_TIL_UTG_DOKUMENT 
+0.2.24  | Endring/Opprettet | `AvvikType`, ny enumeration: ENDRE_FAGOMRADE 
+0.2.23  | Endring/Opprettet | `JournalpostDto`, nytt felt: `brevkode`    
+0.2.23  | Opprettet         | `KodeDto`, kode / dekode    
+0.2.22  | Endring/Opprettet | `Avvikshendelse`, konstruktør med argumenter utenom beskrivelse    
+0.2.21  | Endring/Opprettet | `Avvikshendelse`, beskrivelse: input fra saksbehandler   
+0.2.20  | Endring/Opprettet | `AvvikType`, ny enumeration: BESTILL_SPLITTING 
+0.2.17  | Endring           | `Avvikshendelse`, Swagger dokumentasjon og ingen not nullable felter 
+0.2.17  | Endring           | `Avvikshendelse`, Swagger dokumentasjon og ingen not nullable felter 
+0.2.12  | Endring           | `AvvikType`, `BESTILL_ORGINAL`-> `BESTILL_ORIGINAL`
+0.2.11  | Endring/Opprettet | `Avvikshendelse.enhetsummer`, brukes foreløpig til beriking av tknr og navn ved `BestillOriginal`  
+0.2.10  | Endring/Opprettet | `AvvikType.BESTILL_RESKANNING`
+0.2.9   | Endring/Opprettet | gjenopprettet konstruktør `OpprettAvvikshendelse`
+0.2.8   | Endring/Slettet   | en konstruktør i `OpprettAvvikshendelse`
+0.2.8   | Endring/Opprettet | `OpprettAvvikshendelse.oppgaveId`
+0.2.8   | Endring/Opprettet | `OpprettAvvikshendelse.oppgavetype`
+0.2.8   | Endring/Opprettet | `OpprettAvvikshendelse.tema`
+0.2.8   | Endring/Opprettet | `OpprettAvvikshendelse.tildelesEnhetsnr`
+0.2.8   | Endring/Slettet   | `OpprettAvvikshendelse.beskrivelse`
+0.2.7   | Endring           | `Avvikshendelse` kan hente `AvvikType` fra streng property
+0.2.6   | Feil              | Feil i release
+0.2.5   | Opprettet         | `OpprettAvvikshendelseResponse`
+0.2.4   | Slettet           | `BestillOrginal`. `Avvikshendelse` er ikke et abstrakt objekt
+0.2.3   | Opprettet         | `BestillOrginal` som er en `Avvikshendelse`
+0.2.3   | Opprettet         | `Avvikshendelse` og `AvvikType`
+0.2.2   | Endring           | `DokumentTilgangResponse` har no-args constructor for json (defaults to empty strings)
+0.2.1   | Slettet           | `DokumentTilgangRequest`
+0.2.0   | Endring           | `DokumentTilganglRequest`/`DokumentTilgangResponse`:  feltene kan ikke være null
+0.2.0   | Endring           | `DokumentTilgangRequest`:  fjernet `saksbehandler` som del av request
+0.2.0   | Endring           | `DokumentUrlDto` -> `DokumentTilgangResponse`
+0.1.0   | Endring           | `AktorDto`: Fjernet all logikk som omhandler identtype
+0.1.0   | Endring           | `AktorDto`: Feltet `personinfo` er fjernet
+0.1.0   | Endring           | `JournalpostDto`: Feltet `bidragssaker` og tilhørende objekt `BidragSakDto` er fjernet
 0.0.125 | Endring           | `AktorDto`: Feltet `ident` kan ikke være null og må derfor ha en no-arg konstruktør
 0.0.124 | feil release      | ingen endring fra forrige versjon
 0.0.123 | Endring           | `AktorDto`: Feltet `personinfo` er et `var`-felt

@@ -68,7 +68,15 @@ data class EndreJournalpostCommandDto(
         @ApiModelProperty(value = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumentet gjelder") var gjelder: String? = null,
         @ApiModelProperty(value = "Dato dokument ble journalført") var journaldato: LocalDate? = null,
         @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: EndreSaksnummerDto? = null
-)
+) {
+    fun harIkkeJournalpostIdSammeVerdi(kvalitetsikreJournalpostId: String): Boolean {
+        if (journalpostId == null) {
+            journalpostId = kvalitetsikreJournalpostId
+        }
+
+        return kvalitetsikreJournalpostId != journalpostId
+    }
+}
 
 @ApiModel(value = "Metadata for endring av saksnummer på en eksisterende journalpost")
 data class EndreSaksnummerDto(
