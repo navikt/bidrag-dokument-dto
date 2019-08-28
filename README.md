@@ -6,8 +6,9 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.3.1   | Endring           | `AvvikType`: SLETT_JOURNALPOST
 0.3.0   | Endring/Opprettet | `EndreJournalpostCommandDto`, ny metode som kvalitetsikrer journalpostId 
-0.2.27  | Endring           | `AvvikType`, : FEILFORE -> FEILFORE_SAK 
+0.2.27  | Endring           | `AvvikType`: FEILFORE -> FEILFORE_SAK 
 0.2.26  | Endring/Opprettet | `AvvikType`, ny enumeration: FEILFORE 
 0.2.25  | Endring/Opprettet | `AvvikType`, ny enumeration: INNG_TIL_UTG_DOKUMENT 
 0.2.24  | Endring/Opprettet | `AvvikType`, ny enumeration: ENDRE_FAGOMRADE 
