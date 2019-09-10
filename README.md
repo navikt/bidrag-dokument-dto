@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.4.1   | Opprettet         | `EndretJournalpostResponse`
 0.4.0   | Slettet           | `RolleDto`
 0.4.0   | Slettet           | `EndreJournalpostCommand.harIkkeJournalpostIdSammeVerdi(String)`
 0.4.0   | Endring/Opprettet | `EndreJournalpostCommand`: nye felter som bare er aktuelle ifm. oppdateringer i joark
@@ -36,7 +37,7 @@ versjon | endringstype      | beskrivelse
 0.2.8   | Endring/Opprettet | `OpprettAvvikshendelse.tildelesEnhetsnr`
 0.2.8   | Endring/Slettet   | `OpprettAvvikshendelse.beskrivelse`
 0.2.7   | Endring           | `Avvikshendelse` kan hente `AvvikType` fra streng property
-0.2.6   | Feil              | Feil i release
+0.2.6   | Ingen             | Feil i release
 0.2.5   | Opprettet         | `OpprettAvvikshendelseResponse`
 0.2.4   | Slettet           | `BestillOrginal`. `Avvikshendelse` er ikke et abstrakt objekt
 0.2.3   | Opprettet         | `BestillOrginal` som er en `Avvikshendelse`
