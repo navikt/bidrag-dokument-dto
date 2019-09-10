@@ -6,6 +6,12 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.4.0   | Slettet           | `RolleDto`
+0.4.0   | Slettet           | `EndreJournalpostCommand.harIkkeJournalpostIdSammeVerdi(String)`
+0.4.0   | Endring/Opprettet | `EndreJournalpostCommand`: nye felter som bare er aktuelle ifm. oppdateringer i joark
+0.4.0   | Endring           | `NyJournalpostCommand`, endret fra gammelt navn: `NyJournalpostCommandDto` 
+0.4.0   | Endring           | `EndreJournalpostCommand`, endret fra gammelt navn: `EndreJournalpostCommandDto` 
+0.4.0   | Endring           | `EndreSaksnummer`, endret fra gammelt navn: `EndreSaksnummerDto` 
 0.3.1   | Endring           | `AvvikType`: SLETT_JOURNALPOST
 0.3.0   | Endring/Opprettet | `EndreJournalpostCommandDto`, ny metode som kvalitetsikrer journalpostId 
 0.2.27  | Endring           | `AvvikType`: FEILFORE -> FEILFORE_SAK 
