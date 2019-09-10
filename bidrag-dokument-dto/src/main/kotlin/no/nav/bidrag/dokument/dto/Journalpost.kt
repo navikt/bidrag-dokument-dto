@@ -25,10 +25,8 @@ data class JournalpostDto(
 
 @ApiModel(value = "Metadata om en aktør")
 data class AktorDto(
-        @ApiModelProperty(value = "Identifaktor til aktøren") var ident: String
-) {
-    constructor() : this("")
-}
+        @ApiModelProperty(value = "Identifaktor til aktøren") var ident: String = ""
+)
 
 @ApiModel(value = "Dokument metadata")
 data class DokumentDto(
@@ -37,14 +35,8 @@ data class DokumentDto(
         @ApiModelProperty(value = "Kort oppsummert av journalført innhold") var tittel: String? = null
 )
 
-@ApiModel(value = "Metadata om en rolle i en bidraggsak (når rollen er en person)")
-data class RolleDto(
-        @ApiModelProperty(value = "Fødselsnummer til en person i en bidragssak") var foedselsnummer: String? = null,
-        @ApiModelProperty(value = "Rolletypen til en person i en bidragssak, f.eks: BM eller BP (bidragsmottaker eller bidragspliktig)") var rolleType: String? = null
-)
-
 @ApiModel(value = "Metadata for registrering av ny journalpost")
-data class NyJournalpostCommandDto(
+data class NyJournalpostCommand(
         @ApiModelProperty(value = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
         @ApiModelProperty(value = "Kort oppsummert av journalført innhold") var beskrivelse: String? = null,
         @ApiModelProperty(value = "Dato for dokument i journalpost") var dokumentdato: LocalDate? = null,
@@ -60,34 +52,38 @@ data class NyJournalpostCommandDto(
 )
 
 @ApiModel(value = "Metadata for endring av eksisterende journalpost")
-data class EndreJournalpostCommandDto(
+data class EndreJournalpostCommand(
         @ApiModelProperty(value = "Identifikator av journalpost") var journalpostId: String? = null,
         @ApiModelProperty(value = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
         @ApiModelProperty(value = "Kort oppsummert av journalført innhold") var beskrivelse: String? = null,
         @ApiModelProperty(value = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
         @ApiModelProperty(value = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumentet gjelder") var gjelder: String? = null,
         @ApiModelProperty(value = "Dato dokument ble journalført") var journaldato: LocalDate? = null,
-        @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: EndreSaksnummerDto? = null
-) {
-    fun harIkkeJournalpostIdSammeVerdi(kvalitetsikreJournalpostId: String): Boolean {
-        if (journalpostId == null) {
-            journalpostId = kvalitetsikreJournalpostId
-        }
-
-        return kvalitetsikreJournalpostId != journalpostId
-    }
-}
+        @ApiModelProperty(value = "Saksnummeret til tilknyttet bidragsak") var saksnummer: EndreSaksnummer? = null,
+        @ApiModelProperty(value = "En liste over endringer i dokumenter") var endreDokumenter: List<EndreDokument> = emptyList(),
+        @ApiModelProperty(value = "Behandlingstema") var behandlingstema: String? = null,
+        @ApiModelProperty(value = "Endre fagområde") var fagomrade: String? = null,
+        @ApiModelProperty(value = "Type ident for gjelder: FNR, ORGNR, AKTOERID") var gjelderType: String? = null,
+        @ApiModelProperty(value = "Journalførende enhet") var journalforendeEnhet: String? = null,
+        @ApiModelProperty(value = "Tittel på journalposten") var tittel: String? = null
+)
 
 @ApiModel(value = "Metadata for endring av saksnummer på en eksisterende journalpost")
-data class EndreSaksnummerDto(
+data class EndreSaksnummer(
         @ApiModelProperty(value = "Saksnummeret som skal tilknyttes journalposten") var saksnummer: String? = null,
         @ApiModelProperty(value = "Legg til som ny journalsak") var erTilknyttetNySak: Boolean = false,
         @ApiModelProperty(value = "Saksnummer som skal erstattes på journalposten") var saksnummerSomSkalErstattes: String? = null
+)
+
+data class EndreDokument(
+        @ApiModelProperty(value = "Brevkoden til dokumentet") var brevkode: String? = null,
+        @ApiModelProperty(value = "Identifikator av dokument informasjon") var dokId: Int = -1,
+        @ApiModelProperty(value = "Tittel på dokumentet") var tittel: String? = null
 )
 
 @ApiModel(value = "Metadata for kode/dekode")
 data class KodeDto(
         @ApiModelProperty(value = "Koden") var kode: String? = null,
         @ApiModelProperty(value = "Dekode (kodebeskrivelse)") var dekode: String? = null,
-        @ApiModelProperty(value = "Om kodeobjektet inneholder en gyldig verdi")  var erGyldig: Boolean = true
+        @ApiModelProperty(value = "Om kodeobjektet inneholder en gyldig verdi") var erGyldig: Boolean = true
 )
