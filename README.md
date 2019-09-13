@@ -6,6 +6,8 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.4.2   | Opprettet         | `OpprettDokument`: nye felter for oppretting av et dokument på en journalpost med journalpostapi v1
+0.4.2   | Endring           | `NyJournalpostCommand`: nye felter for oppretting av journalpost med journalpostapi v1
 0.4.1   | Opprettet         | `EndretJournalpostResponse`
 0.4.0   | Slettet           | `RolleDto`
 0.4.0   | Slettet           | `EndreJournalpostCommand.harIkkeJournalpostIdSammeVerdi(String)`
