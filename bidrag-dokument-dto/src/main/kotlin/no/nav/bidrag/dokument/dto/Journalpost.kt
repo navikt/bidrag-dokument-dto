@@ -97,9 +97,3 @@ data class KodeDto(
         @ApiModelProperty(value = "Dekode (kodebeskrivelse)") var dekode: String? = null,
         @ApiModelProperty(value = "Om kodeobjektet inneholder en gyldig verdi") var erGyldig: Boolean = true
 )
-
-@ApiModel(value = "Metadata for en endret Journalpost")
-data class EndretJournalpostResponse(
-        @ApiModelProperty(value = "Saksnummer til den endrede journalposten") var saksnummer: String? = null,
-        @ApiModelProperty(value = "JournalpostId til den endrede journalposten") var journalpostId: String? = null
-)

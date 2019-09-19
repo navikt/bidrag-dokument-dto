@@ -6,6 +6,7 @@ Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.5.0   | Slettet           | `EndretJournalpostResponse`: Vi skal ikke returnere noen response når en journalpost oppdateres
 0.4.2   | Opprettet         | `OpprettDokument`: nye felter for oppretting av et dokument på en journalpost med journalpostapi v1
 0.4.2   | Endring           | `NyJournalpostCommand`: nye felter for oppretting av journalpost med journalpostapi v1
 0.4.1   | Opprettet         | `EndretJournalpostResponse`
