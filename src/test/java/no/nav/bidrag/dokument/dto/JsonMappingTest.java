@@ -3,8 +3,10 @@ package no.nav.bidrag.dokument.dto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +47,17 @@ class JsonMappingTest {
         () -> assertThat(hendelsen.hent()).as("avvikshendelse.avvikType (som enum)").isPresent().get().isEqualTo(AvvikType.BESTILL_SPLITTING),
         () -> assertThat(hendelsen.getBeskrivelse()).as("avvikshendelse.beskrivelse").isEqualTo("avsnitt 2")
     );
+  }
+
+  @Test
+  @DisplayName("skal hente Avvikshendelse.detaljer som json")
+  void skalHenteAvvikshendelseDetaljerSomJson() throws JsonProcessingException {
+    var avvikshendelse = new Avvikshendelse(
+        AvvikType.ENDRE_FAGOMRADE.name(), "123", "FAR", Map.of("bekreftetSendtScanning", "true")
+    );
+
+    var json = objectMapper.writeValueAsString(avvikshendelse);
+
+    assertThat(json).containsSequence("bekreftetSendtScanning").containsSequence("true");
   }
 }
