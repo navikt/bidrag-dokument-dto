@@ -75,9 +75,8 @@ jobs:
       ARTIFACT: 'bidrag-dokument-dto'
       IMAGE: 'maven:3.6.2-jdk-12'
       M2_REPO: '.m2/repository'
-      COMMIT_MSG: 'Bump patch version'
 
-    if: startsWith(github.event.commits[0].message, $COMMIT_MSG) == false
+    if: startsWith(github.event.commits[0].message, 'Bump patch version') == false
 
     steps:
       - uses: actions/cache@v1
@@ -94,5 +93,5 @@ jobs:
             -w /usr/src/maven "$IMAGE" mvn -B release:update-version
           export BUMP_VERSION="$(cat pom.xml | grep version | grep -e SNAPSHOT | sed 's:version::g' | sed 's:[< />]::g')"
           git add pom.xml
-          git commit -m "$COMMIT_MSG for $ARTIFACT: $BUMP_VERSION"
+          git commit -m "Bump patch version for $ARTIFACT: $BUMP_VERSION"
           git push
