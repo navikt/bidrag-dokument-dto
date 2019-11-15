@@ -18,6 +18,7 @@ jobs:
 
   verify-dependencies:
     needs: checkout
+    runs-on: ubuntu-latest
     env:
       ARTIFACT: 'bidrag-dokument-dto'
       IMAGE: 'maven:3.6.2-jdk-12'
