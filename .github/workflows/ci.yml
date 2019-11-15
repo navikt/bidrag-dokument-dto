@@ -49,30 +49,9 @@ jobs:
             -v "$HOME/.m2":/root/.m2 \
             -v "$PWD":/usr/src/maven \
             -w /usr/src/maven "$IMAGE" mvn -B install
-
-  bump_version:
-    needs: build
-    runs-on: ubuntu-latest
-
-    env:
-      ARTIFACT: 'bidrag-dokument-dto'
-      IMAGE: 'maven:3.6.2-jdk-12'
-      M2_REPO: '.m2/repository'
-
-    if: startsWith(github.event.commits[0].message, 'Bump patch version') == false
-#    if: github.ref == 'refs/heads/master' && startsWith(github.event.commits[0].message, 'Bump patch version') == false
-
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v1
-      - name: cache maven dependencies
-        uses: actions/cache@v1
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
       - name: bump patch version
+        #if: github.ref == 'refs/heads/master' && startsWith(github.event.commits[0].message, 'Bump patch version') == false
+        if: startsWith(github.event.commits[0].message, 'Bump patch version') == false
         run: |
           docker run --rm --name "$ARTIFAC-bump-versionT" \
             -v "$HOME/.m2":/root/.m2 \
