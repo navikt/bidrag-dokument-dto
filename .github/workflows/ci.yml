@@ -24,13 +24,14 @@ jobs:
           fetch-depth: 1
       - name: debug
         run: env
-      - name: verify that no dependencies is of type SNAPSHOT
+      - name: cache maven dependencies
         uses: actions/cache@v1
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      - name: verify that no dependencies is of type SNAPSHOT
         run: |
           docker run --rm --name "$ARTIFACT:dependencies" \
             -v "$HOME/.m2":/root/.m2 \
@@ -64,18 +65,19 @@ jobs:
       IMAGE: 'maven:3.6.2-jdk-12'
       M2_REPO: '.m2/repository'
 
-    if: startsWith(github.event.commits[0].message, 'Bump patch version') == false
+    if: github.ref == 'refs/heads/master' && startsWith(github.event.commits[0].message, 'Bump patch version') == false
 
     steps:
       - name: checkout code
         uses: actions/checkout@v1
-      - name: build & test with maven
+      - name: cache maven dependencies
         uses: actions/cache@v1
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      - name: bump patch version
         run: |
           docker run --rm --name "$ARTIFACT" \
             -v "$HOME/.m2":/root/.m2 \
