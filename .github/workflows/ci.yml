@@ -9,30 +9,28 @@ on:
 
 jobs:
 
-  checkout:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: init
-        uses: actions/checkout@v1
-      - name: debug
-        run: env
 
-  verify-dependencies:
-    needs: checkout
-    runs-on: ubuntu-latest
     env:
       ARTIFACT: 'bidrag-dokument-dto'
       IMAGE: 'maven:3.6.2-jdk-12'
       M2_REPO: '.m2/repository'
 
     steps:
-      - uses: actions/cache@v1
+      - name: init
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: debug
+        run: env
+      - name: verify that no dependencies is of type SNAPSHOT
+        uses: actions/cache@v1
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      - name: verify that no dependencies is of type SNAPSHOT
         run: |
           docker run --rm --name "$ARTIFACT:dependencies" \
             -v "$HOME/.m2":/root/.m2 \
@@ -44,23 +42,13 @@ jobs:
               >&2 echo "[ERROR] Found $NUM_OF_SNAPSHOT_DEPENDENCIES in $ARTFIFACT"
               exit 1;
           fi
-
-  maven:
-    needs: verify-dependencies
-    runs-on: ubuntu-latest
-    env:
-      ARTIFACT: 'bidrag-dokument-dto'
-      IMAGE: 'maven:3.6.2-jdk-12'
-      M2_REPO: '.m2/repository'
-
-    steps:
-      - uses: actions/cache@v1
+      - name: build & test with maven
+        uses: actions/cache@v1
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      - name: build & test with maven
         run: |
           docker run --rm --name "$ARTIFACT" \
             -v "$HOME/.m2":/root/.m2 \
@@ -68,7 +56,7 @@ jobs:
             -w /usr/src/maven "$IMAGE" mvn -B install
 
   bump_version:
-    needs: maven
+    needs: build
     runs-on: ubuntu-latest
 
     env:
@@ -79,13 +67,15 @@ jobs:
     if: startsWith(github.event.commits[0].message, 'Bump patch version') == false
 
     steps:
-      - uses: actions/cache@v1
+      - name: checkout code
+        uses: actions/checkout@v1
+      - name: build & test with maven
+        uses: actions/cache@v1
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      - name: build & test with maven
         run: |
           docker run --rm --name "$ARTIFACT" \
             -v "$HOME/.m2":/root/.m2 \
