@@ -3,22 +3,28 @@ on:
   push:
     branches:
       - '**'
-      - '!master'
   pull_request:
     branches:
       - master
 
 jobs:
-  ci-maven:
-    runs-on: ubuntu-latest
+  env:
+    ARTIFACT: 'bidrag-dokument-dto'
+    IMAGE: 'maven:3.6.2-jdk-12'
+    M2_REPO: '.m2/repository'
 
+  checkout:
     steps:
       - name: init
         uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
       - name: debug
         run: env
+
+  maven:
+    needs: checkout
+    runs-on: ubuntu-latest
+
+    steps:
       - uses: actions/cache@v1
         with:
           path: ~/.m2/repository
@@ -26,12 +32,32 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: build & test with maven
-        env:
-          ARTIFACT: 'bidrag-dokument-dto'
-          IMAGE: 'maven:3.6.2-jdk-12'
-          M2_REPO: '.m2/repository'
         run: |
           docker run --rm --name "$ARTIFACT" \
-            -v "$HOME/$M2_REPO":/root/.m2 \
+            -v "$HOME/.m2":/root/.m2 \
             -v "$PWD":/usr/src/maven \
             -w /usr/src/maven "$IMAGE" mvn -B install
+
+  bump_version:
+    needs: maven
+    runs-on: ubuntu-latest
+
+    if: startsWith(github.event.commits[0].message, 'Bump patch version') == false
+
+    steps:
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: build & test with maven
+        run: |
+          docker run --rm --name "$ARTIFACT" \
+            -v "$HOME/.m2":/root/.m2 \
+            -v "$PWD":/usr/src/maven \
+            -w /usr/src/maven "$IMAGE" mvn -B release:update-version
+          export BUMP_VERSION="$(cat pom.xml | grep  version | grep -e SNAPSHOT | sed 's:version::g' | sed 's:[< />]::g')"
+          git add pom.xml
+          git commit -m "Bump patch version for $ARTIFACT: $BUMP_VERSION"
+          git push
