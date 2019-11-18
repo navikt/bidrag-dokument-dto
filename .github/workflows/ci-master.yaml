@@ -34,7 +34,7 @@ jobs:
             -v "$HOME/.m2":/root/.m2 \
             -v "$PWD":/usr/src/maven \
             -w /usr/src/maven "$IMAGE" mvn -B dependency:tree | tee dependency.tree
-          export COUNT="$(tail -n +5 deps | grep -v :test | grep -v $ARTIFACT | grep -c SNAPSHOT)"
+          export COUNT="$(tail -n +5 dependency.tree | grep -v :test | grep -v $ARTIFACT | grep -c SNAPSHOT)"
           if [ $COUNT -eq 1 ]
             then
               >&2 echo ERROR: Found a SNAPSHOT dependency in "$ARTFIFACT"
