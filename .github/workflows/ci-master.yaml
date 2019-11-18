@@ -2,7 +2,7 @@ name: continious integration on master
 on:
   push:
     branches:
-      - feature-message
+      - master
 
 jobs:
 
@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-maven-
       - name: verify that no dependencies is of type SNAPSHOT
         run: |
-          mvn -B  dependency:tree | tee dependency.tree
+          mvn -B dependency:tree | tee dependency.tree
           export COUNT="$(cat dependency.tree | grep -e '|' -e '+' | grep -c SNAPSHOT)"
           if [ $COUNT -eq 1 ]
             then
