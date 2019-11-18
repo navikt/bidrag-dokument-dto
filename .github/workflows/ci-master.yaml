@@ -1,9 +1,6 @@
-name: continious integration
+name: continious integration on master
 on:
   push:
-    branches:
-      - '**'
-  pull_request:
     branches:
       - master
 
@@ -13,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ARTIFACT: 'bidrag-dokument-dto'
-      IMAGE: 'maven:3.6.2-jdk-12'
+      ARTIFACT: 'jactor-persistence'
+      IMAGE: 'maven:3.6.2-jdk-13'
       M2_REPO: '.m2/repository'
 
     steps:
@@ -27,7 +24,7 @@ jobs:
       - name: cache maven dependencies
         uses: actions/cache@v1
         with:
-          path: ~/.m2/repository
+          path: ~/.m2
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
@@ -36,11 +33,15 @@ jobs:
           docker run --rm --name "$ARTIFACT-dependencies" \
             -v "$HOME/.m2":/root/.m2 \
             -v "$PWD":/usr/src/maven \
-            -w /usr/src/maven "$IMAGE" mvn -B install | tee dependency.tree
-          export NUM_OF_SNAPSHOT_DEPENDENCIES="$(cat dependency.tree | grep - | grep -v :test | grep -v $ARTIFACT | grep -c SNAPSHOT)"
-          if [ ! $NUM_OF_SNAPSHOT_DEPENDENCIES==0 ]
+            -w /usr/src/maven "$IMAGE" mvn -B dependency:tree | tee dependency.tree
+          export COUNT="$(tail -n +5 deps | grep -v :test | grep -v $ARTIFACT | grep -c SNAPSHOT)"
+          if [ $COUNT -eq 1 ]
             then
-              >&2 echo "[ERROR] Found $NUM_OF_SNAPSHOT_DEPENDENCIES in $ARTFIFACT"
+              >&2 echo ERROR: Found a SNAPSHOT dependency in "$ARTFIFACT"
+              exit 1;
+          elif [ $COUNT -gt 0 ]
+            then
+              >&2 echo ERROR: Found $COUNT SNAPSHOT dependencies in "$ARTFIFACT"
               exit 1;
           fi
       - name: build & test with maven
@@ -49,15 +50,22 @@ jobs:
             -v "$HOME/.m2":/root/.m2 \
             -v "$PWD":/usr/src/maven \
             -w /usr/src/maven "$IMAGE" mvn -B install
-      - name: bump patch version
-        #if: github.ref == 'refs/heads/master' && startsWith(github.event.commits[0].message, 'Bump patch version') == false
-        if: startsWith(github.event.commits[0].message, 'Bump patch version') == false
+      - name: bump patch version on source
         run: |
-          docker run --rm --name "$ARTIFACT-bump-version" \
+          docker run --rm --name "$ARTIFACT-bump" \
             -v "$HOME/.m2":/root/.m2 \
             -v "$PWD":/usr/src/maven \
             -w /usr/src/maven "$IMAGE" mvn -B release:update-versions
-          export BUMP_VERSION="$(cat pom.xml | grep version | grep -e SNAPSHOT | sed 's:version::g' | sed 's:[< />]::g')"
-          git add pom.xml
-          git commit -m "Bump patch version for $ARTIFACT: $BUMP_VERSION"
-          git push
+            cat pom.xml | grep version | grep SNAPSHOT | \
+              sed 's:version::g' | sed 's:  :Bunped to new version :' | sed 's:[</>]::g'
+      - name: commit new version
+        uses: EndBug/add-and-commit@v2.1.0
+        with:
+          author_name: Tor Egil Jacobsen
+          author_email: tor.egil.jacobsen@gmail.com
+          message: "Bumped version after release"
+          path: "."
+          pattern: "pom.xml"
+          force: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
