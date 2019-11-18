@@ -44,7 +44,7 @@ jobs:
           mvn -B install
       - name: bump patch version on source
         run: |
-          release:update-versions
+          mvn -B release:update-versions
             cat pom.xml | grep version | grep SNAPSHOT | \
               sed 's:version::g' | sed 's:  :Bunped to new version :' | sed 's:[</>]::g'
       - name: commit new version
