@@ -2,7 +2,7 @@ name: check pull request
 on: [pull_request]
 
 jobs:
-  build:
+  build-pull-request:
     runs-on: ubuntu-latest
 
     env:
