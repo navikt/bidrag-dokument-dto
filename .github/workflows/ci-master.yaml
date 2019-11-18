@@ -53,10 +53,9 @@ jobs:
         with:
           author_name: Tor Egil Jacobsen
           author_email: tor.egil.jacobsen@nav.no
-          message: "$COMMIT_MSG"
+          message: "Bumped to new version"
           path: "."
           pattern: "pom.xml"
           force: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COMMIT_MSG: ${{cat commit-message}}
