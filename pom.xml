@@ -48,14 +48,14 @@
   <distributionManagement>
     <repository>
       <id>github</id>
-      <url>https://maven.pkg.github.com/navikt/bidrag-commons</url>
+      <url>https://maven.pkg.github.com/navikt/bidrag-dokument-dto</url>
     </repository>
   </distributionManagement>
 
   <scm>
-    <developerConnection>scm:git:git@github.com:navikt/bidrag-commons.git</developerConnection>
-    <connection>scm:git:git@github.com:navikt/bidrag-commons.git</connection>
-    <url>https://github.com/navikt/bidrag-commons.git</url>
+    <developerConnection>scm:git:git@github.com:navikt/bidrag-dokument-dto.git</developerConnection>
+    <connection>scm:git:git@github.com:navikt/bidrag-dokument-dto.git</connection>
+    <url>https://github.com/navikt/bidrag-dokument-dto.git</url>
     <tag>HEAD</tag>
   </scm>
 
