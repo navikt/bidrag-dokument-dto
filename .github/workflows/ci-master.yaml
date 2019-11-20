@@ -39,15 +39,10 @@ jobs:
               >&2 echo ERROR: Found $COUNT SNAPSHOT dependencies
               exit 1;
           fi
-      - name: build & test with maven
-        run: |
-          mvn -B install
-      - name: bump patch version on source
-        run: |
-          mvn -B release:update-versions
-          cat pom.xml | grep version | grep SNAPSHOT | \
-            sed 's:version::g' | sed 's\  \Bunped to new version: \' | sed 's:[</>]::g' > commit-message
-          cat commit-message
+      - name: Run Maven release
+        run: ./release.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: commit new version
         uses: EndBug/add-and-commit@v2.1.0
         with:
