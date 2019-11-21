@@ -2,7 +2,7 @@
 
 Artifakt inneholder dto'er som er felles for bidrag-dokument
 
-![](https://github.com/navikt/bidrag-dokument-dto/workflows/.github/workflows/ci-master.yml/badge.svg)
+![](https://github.com/navikt/bidrag-dokument-dto/.github/workflows/ci-master.yml/badge.svg)
 
 ## release endringer
 
