@@ -2,6 +2,8 @@
 
 Artifakt inneholder dto'er som er felles for bidrag-dokument
 
+https://github.com/navikt/bidrag-dokument-dto/workflows/continious%20integration%20on%20master/badge.svg
+
 ## release endringer
 
 versjon | endringstype      | beskrivelse
