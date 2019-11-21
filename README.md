@@ -1,5 +1,7 @@
 # bidrag-dokument-dto
 
+ ![](https://github.com/navikt/bidrag-dokument-dto/workflows/continious%20integration%20on%20master/badge.svg)
+
 Artifakt inneholder dto'er som er felles for bidrag-dokument
 
 ## release endringer
