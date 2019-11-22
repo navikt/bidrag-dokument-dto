@@ -40,7 +40,7 @@ jobs:
               exit 1;
           fi
       - name: Run Maven release
-        run: ./release.sh
+        uses: navikt/bidrag-actions/release-mvn-pkg@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: commit new version
