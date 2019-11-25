@@ -28,7 +28,14 @@ jobs:
             ${{ runner.os }}-maven-
       - name: Verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
-      - name: Run Maven release
+      - id: prepare
+        name: prepare release of maven package
+        uses: navikt/bidrag-actions/prepare-release-mvn-pkg@master
+      - name: the commit sha
+        run: echo "${{ steps.prepare.outputs.commit-sha }}"
+      - name: the generated tagged release
+        run: echo "${{ steps.prepare.outputs.tagged-release }}"
+      - name: release maven package
         uses: navikt/bidrag-actions/release-mvn-pkg@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
