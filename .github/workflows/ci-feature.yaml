@@ -33,4 +33,4 @@ jobs:
         run: mvn -B install
       - name: prepare-release
         uses: navikt/bidrag-actions/prepare-release-mvn-pkg@feature-prepare
-      - run: echo "${{ steps.git_commit.outputs.commit-sha }}"
+      - run: echo "${{ steps.prepare_release.outputs.commit-sha }}"
