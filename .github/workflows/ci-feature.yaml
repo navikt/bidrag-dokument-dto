@@ -27,8 +27,10 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      - name: Verify that no dependencies are of type SNAPSHOT
+      - name: verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
       - name: build & test with maven
-        run: |
-          mvn -B install
+        run: mvn -B install
+      - name: prepare-release
+        uses: navikt/bidrag-actions/prepare-release-mvn-pkg@feature-prepare
+      - run: echo "${{ steps.git_commit.outputs.commit-sha }}"
