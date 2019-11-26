@@ -27,21 +27,6 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      - id: prepare
-        name: prepare release of maven package
-        uses: navikt/bidrag-actions/prepare-release-mvn-pkg@feature-release
-      - name: the commit sha
-        run: echo "${{ steps.prepare.outputs.commit-sha }}"
-      - name: the generated tagged release
-        run: echo "${{ steps.prepare.outputs.tagged-release }}"
-      - name: the new snapshot version
-        run: echo "${{ steps.prepare.outputs.new-snapshot-version }}"
-      - name: release maven package
-        uses: navikt/bidrag-actions/release-mvn-pkg@feature-release
-        with:
-          new-snapshot-version: "${{ steps.prepare.outputs.new-snapshot-version }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
       - name: build & test with maven
