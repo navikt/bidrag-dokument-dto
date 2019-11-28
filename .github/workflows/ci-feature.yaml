@@ -28,14 +28,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - id: verify
-        name: verify if artifact is eligable for deployment
+        name: is artifact eligable for deployment
         uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-verify-auto-deploy
         with:
           changelog-file: README.md
           release-version: ingen
-        register: find_output
-      - debug:
-        var: find_output
+      - name: release candidate
+        run: echo "release candidate - ${{ jobs.build.steps.verif.is-release-candidate }}"
       - name: verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
         if: find_output.is-release-candidate
