@@ -35,7 +35,7 @@ jobs:
           - release-version: ingen
       - name: verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
-        if: ${{ steps.verify.is-release-candidate }}
+        if: job.verify.is-release-candidate
       - name: build & test with maven
         run: mvn -B install
-        if: ${{ steps.verify.is-release-candidate }}
+        if: job.verify.is-release-candidate
