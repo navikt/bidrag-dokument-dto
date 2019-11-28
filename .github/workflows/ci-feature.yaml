@@ -37,7 +37,7 @@ jobs:
         run: echo "release candidate - ${{ jobs.build.steps.verif.is-release-candidate }}"
       - name: verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
-        if: find_output.is-release-candidate
+        if: {{ steps.verify.is-release-candidate }}
       - name: build & test with maven
         run: mvn -B install
-        if: jobs.build.steps.verify.is-release-candidate
+        if: {{ steps.verify.is-release-candidate }}
