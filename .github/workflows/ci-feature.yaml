@@ -33,9 +33,12 @@ jobs:
         with:
           changelog-file: README.md
           release-version: ingen
+        register: find_output
+      - debug:
+        var: find_output
       - name: verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
-        if: jobs.build.steps.verify.is-release-candidate
+        if: find_output.is-release-candidate
       - name: build & test with maven
         run: mvn -B install
         if: jobs.build.steps.verify.is-release-candidate
