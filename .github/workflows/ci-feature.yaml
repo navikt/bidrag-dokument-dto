@@ -35,7 +35,7 @@ jobs:
         uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-verify-auto-deploy
         with:
           changelog-file: README.md
-          release-version: {{ steps.prepare.release-version}}
+          release-version: ${{ steps.prepare.release-version}}
       - name: release candidate
         run: echo release candidate - "${{ steps.verify.is-release-candidate }}"
       - name: verify that no dependencies are of type SNAPSHOT
