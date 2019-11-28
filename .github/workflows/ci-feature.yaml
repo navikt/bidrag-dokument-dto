@@ -34,7 +34,7 @@ jobs:
           changelog-file: README.md
           release-version: ingen
       - name: release candidate
-        run: echo "release candidate - ${{ jobs.build.steps.verif.is-release-candidate }}"
+        run: echo "release candidate - ${{ steps.verif.is-release-candidate }}"
       - name: verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
         if: {{ steps.verify.is-release-candidate }}
