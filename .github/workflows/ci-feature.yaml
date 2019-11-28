@@ -27,7 +27,15 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      - id: verify
+        name: verify if artifact is eligable for deployment
+        uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-verify-auto-deploy
+        with:
+          - changelog-file: README.md
+          - release-version: ingen
       - name: verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
+        if: ${{ steps.verify.is-release-candidate }}
       - name: build & test with maven
         run: mvn -B install
+        if: ${{ steps.verify.is-release-candidate }}
