@@ -30,6 +30,8 @@ jobs:
       - id: prepare
         name: prepare release of maven package
         uses: navikt/bidrag-actions/release-prepare-for-mvn@master
+      - name: debug release version
+        run: echo release version - "${{ steps.prepare.release-version }}"
       - id: verify
         name: is artifact eligable for deployment
         uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-verify-auto-deploy
