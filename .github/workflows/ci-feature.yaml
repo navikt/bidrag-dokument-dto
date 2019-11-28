@@ -31,8 +31,8 @@ jobs:
         name: verify if artifact is eligable for deployment
         uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-verify-auto-deploy
         with:
-          - changelog-file: "README.md"
-          - release-version: ingen
+          changelog-file: README.md
+          release-version: ingen
       - name: verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
         if: jobs.build.steps.verify.is-release-candidate
