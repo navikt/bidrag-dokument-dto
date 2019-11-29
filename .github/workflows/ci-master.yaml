@@ -28,16 +28,14 @@ jobs:
             ${{ runner.os }}-maven-
       - name: Verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
-      - id: prepare
-        name: prepare release of maven package
-        uses: navikt/bidrag-actions/release-prepare-for-mvn@master
       - id: verify
         name: is artifact eligable for deployment
         uses: navikt/bidrag-actions/release-verify-auto-deploy@master
+      - id: prepare
+        name: prepare release of maven package
+        uses: navikt/bidrag-actions/release-prepare-for-mvn@master
       - name: release maven package
         uses: navikt/bidrag-actions/release-mvn-pkg@master
-        with:
-          new-snapshot-version: "${{ steps.prepare.outputs.new-snapshot-version }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: commit new version
