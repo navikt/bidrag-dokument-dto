@@ -32,16 +32,11 @@ jobs:
       - id: prepare
         name: prepare release of maven package
         uses: navikt/bidrag-actions/release-prepare-for-mvn@feature-io
-      - name: debug semantic release version
-        run: echo semantic release version - "${{ steps.prepare.semantic-release-version }}"
       - id: verify
         name: is artifact eligable for deployment
         uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-io
         with:
           changelog-file: README.md
-          semantic-release-version: ${{ steps.prepare.semantic-release-version-version}}
-      - name: release candidate
-        run: echo release candidate - "${{ steps.verify.is-release-candidate }}"
       - name: build & test with maven
         run: mvn -B install
         if: steps.verify.is-release-candidate
