@@ -35,8 +35,6 @@ jobs:
       - id: verify
         name: is artifact eligable for deployment
         uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-io
-        with:
-          changelog-file: README.md
       - name: build & test with maven
         run: mvn -B install
         if: steps.verify.is-release-candidate
