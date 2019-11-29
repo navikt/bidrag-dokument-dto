@@ -28,13 +28,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: verify that no dependencies are of type SNAPSHOT
-        uses: navikt/bidrag-actions/verify-mvn-dependencies@feature-io
-      - id: prepare
-        name: prepare release of maven package
-        uses: navikt/bidrag-actions/release-prepare-for-mvn@feature-io
-      - id: verify
-        name: is artifact eligable for deployment
-        uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-io
+        uses: navikt/bidrag-actions/verify-mvn-dependencies@master
       - name: build & test with maven
         run: mvn -B install
         if: steps.verify.is-release-candidate
