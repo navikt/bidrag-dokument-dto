@@ -30,14 +30,14 @@ jobs:
       - id: prepare
         name: prepare release of maven package
         uses: navikt/bidrag-actions/release-prepare-for-mvn@feature-auto-deploy
-      - name: debug release version
-        run: echo release version - "${{ steps.prepare.release-version }}"
+      - name: debug semantic release version
+        run: echo semantic release version - "${{ steps.prepare.semantic-release-version }}"
       - id: verify
         name: is artifact eligable for deployment
         uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-auto-deploy
         with:
           changelog-file: README.md
-          release-version: ${{ steps.prepare.release-version}}
+          semantic-release-version: ${{ steps.prepare.semantic-release-version-version}}
       - name: release candidate
         run: echo release candidate - "${{ steps.verify.is-release-candidate }}"
       - name: verify that no dependencies are of type SNAPSHOT
