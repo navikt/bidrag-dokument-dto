@@ -42,7 +42,7 @@ jobs:
       - name: commit new version
         uses: EndBug/add-and-commit@v2.1.0
         if: steps.verify.is-release-candidate
-         with:
+        with:
           author_name: Tor Egil Jacobsen
           author_email: tor.egil.jacobsen@nav.no
           message: "Bumped to new version after release of ${{ steps.prepare.outputs.tagged-release }}"
