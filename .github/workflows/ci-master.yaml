@@ -36,12 +36,10 @@ jobs:
         uses: navikt/bidrag-actions/release-verify-auto-deploy@master
       - name: release maven package
         uses: navikt/bidrag-actions/release-mvn-pkg@master
-        if: steps.verify.is-release-candidate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: commit new version
         uses: EndBug/add-and-commit@v2.1.0
-        if: steps.verify.is-release-candidate
         with:
           author_name: Tor Egil Jacobsen
           author_email: tor.egil.jacobsen@nav.no
