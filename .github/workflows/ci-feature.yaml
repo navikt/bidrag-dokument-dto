@@ -33,13 +33,13 @@ jobs:
         name: prepare release of maven package
         uses: navikt/bidrag-actions/release-prepare-for-mvn@feature-io
         env:
-          - NEW_SNAPSHOT_VERSION_FILE=.new-snapshot-version
-          - RELEASE_VERSION_FILE=.release-version
+          NEW_SNAPSHOT_VERSION_FILE=.new-snapshot-version
+          RELEASE_VERSION_FILE=.release-version
       - id: verify
         name: is artifact eligable for deployment
         uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-io
         env:
-          - CHANGELOG_FILE=README.md
-          - RELEASE_VERSION_FILE=.release-version
+          CHANGELOG_FILE=README.md
+          RELEASE_VERSION_FILE=.release-version
       - name: build & test with maven
         run: mvn -B install
