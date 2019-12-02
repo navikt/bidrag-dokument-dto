@@ -31,4 +31,3 @@ jobs:
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
       - name: build & test with maven
         run: mvn -B install
-        if: steps.verify.is-release-candidate
