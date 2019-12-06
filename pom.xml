@@ -4,7 +4,7 @@
 
   <groupId>no.nav.bidrag.dokument</groupId>
   <artifactId>bidrag-dokument-dto</artifactId>
-  <version>0.5.18-SNAPSHOT</version>
+  <version>0.5.1-SNAPSHOT</version>
 
   <description>Backend dtos used in bidrag-dokument</description>
   <url>https://github.com/navikt/bidrag-dokument-dto</url>
@@ -33,7 +33,7 @@
     <!-- dependencies -->
     <assertj.version>3.14.0</assertj.version>
     <junit-jupiter.version>5.5.2</junit-jupiter.version>
-    <spring-boot.version>2.2.1.RELEASE</spring-boot.version>
+    <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
     <springfox-swagger.version>2.9.2</springfox-swagger.version>
 
     <!-- build -->
