@@ -31,6 +31,7 @@ jobs:
       - name: build & test with maven
         run: mvn -B install
       - name: prepare release of maven package
+        if: github.ref == 'refs/heads/master'
         uses: navikt/bidrag-actions/release-prepare-mvn-pkg@master
         with:
           new_snapshot_version_file_name: .new-snapshot-version
@@ -49,6 +50,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: commit new version
+        if: github.ref == 'refs/heads/master'
         uses: jactor-rises/add-and-commit@master
         with:
           message: "Bumped to new SNAPSHOT version after release by ${{ github.actor }}."
