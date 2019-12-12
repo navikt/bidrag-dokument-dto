@@ -50,7 +50,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: commit new version
-        if: github.ref == 'refs/heads/master'
         uses: jactor-rises/add-and-commit@feature-node
         with:
           message: "Bumped to new SNAPSHOT version after release by ${{ github.actor }}."
