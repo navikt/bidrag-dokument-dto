@@ -49,7 +49,6 @@ jobs:
         uses: jactor-rises/add-and-commit@master
         with:
           message: "Bumped to new SNAPSHOT version after release by ${{ github.actor }}."
-          path: "."
           pattern: "pom.xml"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
