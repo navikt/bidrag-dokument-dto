@@ -1,8 +1,8 @@
-name: continious integration on master
+name: continious integration
 on:
   push:
     branches:
-      - master
+      - '**'
 
 jobs:
 
@@ -28,25 +28,30 @@ jobs:
             ${{ runner.os }}-maven-
       - name: Verify that no dependencies are of type SNAPSHOT
         uses: navikt/bidrag-actions/verify-mvn-dependencies@master
+      - name: build & test with maven
+        run: mvn -B install
       - name: prepare release of maven package
+        if: github.ref == 'refs/heads/master'
         uses: navikt/bidrag-actions/release-prepare-mvn-pkg@master
         with:
           new_snapshot_version_file_name: .new-snapshot-version
           release_version_file_name: .release-version
       - name: is artifact eligable for deployment
+        if: github.ref == 'refs/heads/master'
         uses: navikt/bidrag-actions/release-verify-auto-deploy@master
         with:
           changelog_file: README.md
           release_version_file: .release-version
       - name: release maven package
-        uses: navikt/bidrag-actions/release-mvn-pkg@master
+        if: github.ref == 'refs/heads/master'
+        uses: navikt/bidrag-actions/release-mvn-pkg@feature-skip-tests
         with:
           new_snapshot_version_file: .new-snapshot-version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: commit new version
         if: github.ref == 'refs/heads/master'
-        uses: jactor-rises/add-and-commit@master
+        uses: jactor-rises/add-and-commit@feature-node
         with:
           message: "Bumped to new SNAPSHOT version after release by ${{ github.actor }}."
           pattern: "pom.xml"
