@@ -51,7 +51,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: commit new version
 #        if: github.ref == 'refs/heads/master'
-        uses: Endbug/add-and-commit@2.3.0
+        uses: Endbug/add-and-commit@v2.3.0
         with:
           message: "Bumped to new SNAPSHOT version after release by ${{ github.actor }}."
           pattern: "pom.xml"
