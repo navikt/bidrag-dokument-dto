@@ -2,7 +2,7 @@
 
 ![](https://github.com/navikt/bidrag-dokument-dto/workflows/continious%20integration/badge.svg)
 
-Artifakt inneholder dto'er som er felles for bidrag-dokument
+Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 ## release endringer
 
