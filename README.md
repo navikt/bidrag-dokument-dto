@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.6.1   | -- ingen --       | test action 2.0.0
 0.6.0   | -- ingen --       | Overgang til bruk av github som mavenrepo
 0.5.0   | Slettet           | `EndretJournalpostResponse`: Vi skal ikke returnere noen response når en journalpost oppdateres
 0.4.2   | Opprettet         | `OpprettDokument`: nye felter for oppretting av et dokument på en journalpost med journalpostapi v1
