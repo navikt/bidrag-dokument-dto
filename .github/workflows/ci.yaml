@@ -29,7 +29,6 @@ jobs:
       - name: Build & test with maven
         run: mvn -B install
       - name: Prepare release of maven package
-        if: github.ref == 'refs/heads/master'
         uses: navikt/bidrag-actions/release-prepare-mvn-pkg@v1.0.1
         with:
           new_snapshot_version_file_name: .new-snapshot-version
@@ -48,7 +47,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Tag and commit new version
-        if: github.ref == 'refs/heads/master'
         uses: navikt/bidrag-actions/git-tag-n-commit-mvn-deploy@v4.0.0
         with:
           commit_message: Bumped to new SNAPSHOT version after release of version {}
