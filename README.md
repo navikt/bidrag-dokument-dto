@@ -1,6 +1,6 @@
 # bidrag-dokument-dto
 
-![](https://github.com/navikt/bidrag-dokument-dto/workflows/continious%20integration/badge.svg)
+ ![](https://github.com/navikt/bidrag-commons-test/workflows/maven%20deploy/badge.svg)
 
 Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
