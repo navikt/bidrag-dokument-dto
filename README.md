@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.8.1   | Endring           | `RegistrereJournalpostCommand`: `skalJournalfores` har default verdi: true
 0.8.0   | Opprettet         | `RegistrereJournalpostCommand`: registrere (journalføre) mottaksregistrert journalpost
 0.7.0   | Slettet           | `NyJournalpostCommand`: Journalposter blir registrert av annet system
 0.6.0   | -- ingen --       | Overgang til bruk av github som mavenrepo
