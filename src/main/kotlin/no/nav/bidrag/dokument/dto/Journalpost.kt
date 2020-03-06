@@ -72,7 +72,7 @@ data class RegistrereJournalpostCommand(
         @ApiModelProperty(value = "Type ident for gjelder: FNR, ORGNR, AKTOERID") var gjelderType: String? = null,
         @ApiModelProperty(value = "Journalførende enhet") var journalforendeEnhet: String? = null,
         @ApiModelProperty(value = "Tittel på journalposten") var tittel: String? = null,
-        @ApiModelProperty(value = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false
+        @ApiModelProperty(value = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = true
 )
 
 data class EndreDokument(
