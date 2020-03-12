@@ -20,19 +20,19 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      - uses: navikt/bidrag-actions/maven-verify-dependencies@v5
+      - uses: navikt/bidrag-actions/maven-verify-dependencies@v1.0.2-maven
       - run: mvn -B install -e
-      - uses: navikt/bidrag-actions/release-prepare-mvn-pkg@v1.0.1
+      - uses: navikt/bidrag-actions/release-prepare-mvn-pkg@vv1-release
         if: github.ref == 'refs/heads/master'
         with:
           new_snapshot_version_file_name: .new-snapshot-version
           release_version_file_name: .release-version
-      - uses: navikt/bidrag-actions/release-verify-auto-deploy@v1.0.0
+      - uses: navikt/bidrag-actions/release-verify-auto-deploy@v1-release
         if: github.ref == 'refs/heads/master'
         with:
           changelog_file: README.md
           release_version_file: .release-version
-      - uses: navikt/bidrag-actions/release-mvn-pkg@v1.0.0
+      - uses: navikt/bidrag-actions/release-mvn-pkg@v1-release
         if: github.ref == 'refs/heads/master'
         with:
           new_snapshot_version_file: .new-snapshot-version
