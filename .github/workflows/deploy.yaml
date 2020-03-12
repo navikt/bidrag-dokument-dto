@@ -38,7 +38,7 @@ jobs:
           new_snapshot_version_file: .new-snapshot-version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: navikt/bidrag-actions/git-tag-n-commit-mvn-deploy@v4.0.0
+      - uses: navikt/bidrag-actions/git-tag-n-commit-mvn-deploy@v1-git
         if: github.ref == 'refs/heads/master'
         with:
           commit_message: Bumped to new SNAPSHOT version after release of version {}
