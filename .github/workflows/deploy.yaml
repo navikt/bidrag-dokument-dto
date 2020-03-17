@@ -24,21 +24,21 @@ jobs:
       - run: mvn -B install -e
       - uses: navikt/bidrag-actions/release-prepare-mvn-pkg@feature-outputs
         id: prepare
-        if: github.ref == 'refs/heads/master'
+#        if: github.ref == 'refs/heads/master'
       - uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-outputs
         id: verify
-        if: github.ref == 'refs/heads/master'
+#        if: github.ref == 'refs/heads/master'
         with:
           changelog_file: README.md
           release_version: ${{ steps.prepare.release_version }}
       - uses: navikt/bidrag-actions/release-mvn-pkg@feature-outputs
-        if: github.ref == 'refs/heads/master'
+#        if: github.ref == 'refs/heads/master'
         with:
           new_snapshot_version: ${{ steps.prepare.new_snapshot_version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: navikt/bidrag-actions/git-tag-n-commit-mvn-deploy@feature-outputs
-        if: github.ref == 'refs/heads/master'
+#        if: github.ref == 'refs/heads/master'
         with:
           commit_message: Bumped to new SNAPSHOT version after release of version  ${{ steps.prepare.release_version }}
           tag_message: Released new version ${{ steps.prepare.release_version }}
