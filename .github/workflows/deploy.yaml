@@ -30,12 +30,14 @@ jobs:
 #        if: github.ref == 'refs/heads/master'
         with:
           changelog_file: README.md
+          new_snapshot_version: ${{ steps.prepare.outputs.new_snapshot_version }}
           release_version: ${{ steps.prepare.outputs.release_version }}
       - uses: navikt/bidrag-actions/release-mvn-pkg@feature-outputs
 #        if: github.ref == 'refs/heads/master'
         with:
           is_release_cancidate: ${{ steps.verify.outputs.is_release_candidate }}
           new_snapshot_version: ${{ steps.prepare.outputs.new_snapshot_version }}
+          release_version: ${{ steps.prepare.outputs.release_version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: navikt/bidrag-actions/git-tag-n-commit-mvn-deploy@feature-outputs
