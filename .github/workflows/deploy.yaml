@@ -25,6 +25,9 @@ jobs:
       - uses: navikt/bidrag-actions/release-prepare-mvn-pkg@feature-outputs
         id: prepare
 #        if: github.ref == 'refs/heads/master'
+      - run: |
+          echo ${{ steps.prepare.outputs.new_snapshot_version }}
+          echo ${{ steps.prepare.outputs.release_version }}
       - uses: navikt/bidrag-actions/release-verify-auto-deploy@feature-outputs
         id: verify
 #        if: github.ref == 'refs/heads/master'
@@ -32,6 +35,7 @@ jobs:
           changelog_file: README.md
           new_snapshot_version: ${{ steps.prepare.outputs.new_snapshot_version }}
           release_version: ${{ steps.prepare.outputs.release_version }}
+      - run: echo ${{ steps.verify.outputs.is_release_candidate }}
       - uses: navikt/bidrag-actions/release-mvn-pkg@feature-outputs
 #        if: github.ref == 'refs/heads/master'
         with:
