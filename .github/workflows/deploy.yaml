@@ -30,11 +30,12 @@ jobs:
 #        if: github.ref == 'refs/heads/master'
         with:
           changelog_file: README.md
-          release_version: ${{ steps.prepare.release_version }}
+          release_version: ${{ steps.prepare.outputs.release_version }}
       - uses: navikt/bidrag-actions/release-mvn-pkg@feature-outputs
 #        if: github.ref == 'refs/heads/master'
         with:
-          new_snapshot_version: ${{ steps.prepare.new_snapshot_version }}
+          is_release_cancidate: ${{ steps.verify.outputs.is_release_candidate }}
+          new_snapshot_version: ${{ steps.prepare.outputs.new_snapshot_version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: navikt/bidrag-actions/git-tag-n-commit-mvn-deploy@feature-outputs
@@ -43,6 +44,6 @@ jobs:
           commit_message: Bumped to new SNAPSHOT version after release of version  ${{ steps.prepare.release_version }}
           tag_message: Released new version ${{ steps.prepare.release_version }}
           pattern: pom.xml
-          is_release_cancidate: ${{ steps.verify.is_release_candidate }}
+          is_release_cancidate: ${{ steps.verify.outputs.is_release_candidate }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
