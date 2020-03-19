@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.8.2   | -- ingen --       | test av nye release actions
 0.8.1   | Endring           | `RegistrereJournalpostCommand`: `skalJournalfores` har default verdi: true
 0.8.0   | Opprettet         | `RegistrereJournalpostCommand`: registrere (journalføre) mottaksregistrert journalpost
 0.7.0   | Slettet           | `NyJournalpostCommand`: Journalposter blir registrert av annet system
@@ -86,7 +87,7 @@ versjon | endringstype      | beskrivelse
 0.0.101 | Endring           | `EndreJournalpostCommandDto` og `JournalpostDto`: avsenders navn (med fornavn etter komma)
  0.0.98 | Endring           | `JournalpostDto`: 2 ekstra felter dokumentType OG journalstatus
  0.0.95 | Endring           | `NyJournalpostCommendDto`, `EndreJournalpostCommandDto` og `JournalpostDto`: fjernet correlation id
- 0.0.95 | Slettet           | `CorrelationIdGenerator`
+ 0.0.95 | Slettet           | `CorrelationIdGenerator`, web-filter for dette er opprettet i `bidrag-commons`
  0.0.93 | Endring           | `NyJournalpostCommendDto`, `EndreJournalpostCommandDto` og `JournalpostDto`:  missing default value for correlation id in constructor
  0.0.91 | Endring           | `CorrelationIdGenerator`: generateCorrelationId -> generateMissingCorrelationId
  0.0.90 | Endring           | `CorrelationIdGenerator`: CorrelationIdGenerator har en payloadId
