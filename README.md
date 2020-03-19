@@ -86,7 +86,7 @@ versjon | endringstype      | beskrivelse
 0.0.101 | Endring           | `EndreJournalpostCommandDto` og `JournalpostDto`: avsenders navn (med fornavn etter komma)
  0.0.98 | Endring           | `JournalpostDto`: 2 ekstra felter dokumentType OG journalstatus
  0.0.95 | Endring           | `NyJournalpostCommendDto`, `EndreJournalpostCommandDto` og `JournalpostDto`: fjernet correlation id
- 0.0.95 | Slettet           | `CorrelationIdGenerator`
+ 0.0.95 | Slettet           | `CorrelationIdGenerator`, web-filter for dette er opprettet i `bidrag-commons`
  0.0.93 | Endring           | `NyJournalpostCommendDto`, `EndreJournalpostCommandDto` og `JournalpostDto`:  missing default value for correlation id in constructor
  0.0.91 | Endring           | `CorrelationIdGenerator`: generateCorrelationId -> generateMissingCorrelationId
  0.0.90 | Endring           | `CorrelationIdGenerator`: CorrelationIdGenerator har en payloadId
