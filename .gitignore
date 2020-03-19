@@ -5,5 +5,3 @@ target/
 *.ipr
 .classpath
 .project
-*.versionsBackup
-dependency.tree
