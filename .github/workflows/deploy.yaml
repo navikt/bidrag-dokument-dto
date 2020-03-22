@@ -46,5 +46,6 @@ jobs:
           tag_message: Released new version ${{ steps.prepare.outputs.release_version }}
           pattern: pom.xml
           is_release_cancidate: ${{ steps.verify.outputs.is_release_candidate }}
+          tag: ${{ steps.prepare.outputs.release_version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
