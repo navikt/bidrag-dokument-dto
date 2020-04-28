@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
 import java.time.LocalDate
 
-@ApiModel(value = "Metadata for en journalpost, no.nav.bidrag.dokument::bidrag-dokument-dto")
+@ApiModel(value = "Metadata til en journalpost")
 data class JournalpostDto(
         @ApiModelProperty(value = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
         @ApiModelProperty(value = "Dokumentene som følger journalposten") var dokumenter: List<DokumentDto> = emptyList(),
@@ -28,14 +28,14 @@ data class AktorDto(
         @ApiModelProperty(value = "Identifaktor til aktøren") var ident: String = ""
 )
 
-@ApiModel(value = "Dokument metadata")
+@ApiModel(value = "Metadata for et dokument")
 data class DokumentDto(
         @ApiModelProperty(value = "Referanse som brukes når dokument er i midlertidig-brevlager") var dokumentreferanse: String? = null,
         @ApiModelProperty(value = "Inngående (I), utgående (U) dokument, (X) internt notat") var dokumentType: String? = null,
         @ApiModelProperty(value = "Kort oppsummert av journalført innhold") var tittel: String? = null
 )
 
-@ApiModel(value = "Metadata for endring av eksisterende journalpost")
+@ApiModel(value = "Metadata for endring av en journalpost")
 data class EndreJournalpostCommand(
         @ApiModelProperty(value = "Identifikator av journalpost") var journalpostId: String? = null,
         @ApiModelProperty(value = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
@@ -52,7 +52,7 @@ data class EndreJournalpostCommand(
         @ApiModelProperty(value = "Tittel på journalposten") var tittel: String? = null
 )
 
-@ApiModel(value = "Metadata for endring av saksnummer på en eksisterende journalpost")
+@ApiModel(value = "Metadata for endring av et saksnummer")
 data class EndreSaksnummer(
         @ApiModelProperty(value = "Saksnummeret som skal tilknyttes journalposten") var saksnummer: String? = null,
         @ApiModelProperty(value = "Legg til som ny journalsak") var erTilknyttetNySak: Boolean = false,
@@ -75,13 +75,14 @@ data class RegistrereJournalpostCommand(
         @ApiModelProperty(value = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = true
 )
 
+@ApiModel(value = "Metadata for endring av et dokument")
 data class EndreDokument(
         @ApiModelProperty(value = "Brevkoden til dokumentet") var brevkode: String? = null,
         @ApiModelProperty(value = "Identifikator av dokument informasjon") var dokId: Int = -1,
         @ApiModelProperty(value = "Tittel på dokumentet") var tittel: String? = null
 )
 
-@ApiModel(value = "Metadata for kode/dekode")
+@ApiModel(value = "Metadata for kode vs dekode i et kodeobjekt")
 data class KodeDto(
         @ApiModelProperty(value = "Koden") var kode: String? = null,
         @ApiModelProperty(value = "Dekode (kodebeskrivelse)") var dekode: String? = null,
