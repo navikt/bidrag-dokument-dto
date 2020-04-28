@@ -23,6 +23,7 @@ data class Avvikshendelse(
     }
 }
 
+@ApiModel(value = "Responsen til en avvikshendelse")
 data class OpprettAvvikshendelseResponse(
         @ApiModelProperty(value = "Type avvik") var avvikType: String,
         @ApiModelProperty(value = "Oppgave id for oppgaven som ble opprettet på bakgrunn av avviket") var oppgaveId: Long? = null,
