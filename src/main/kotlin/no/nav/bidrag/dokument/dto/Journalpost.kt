@@ -88,3 +88,9 @@ data class KodeDto(
         @ApiModelProperty(value = "Dekode (kodebeskrivelse)") var dekode: String? = null,
         @ApiModelProperty(value = "Om kodeobjektet inneholder en gyldig verdi") var erGyldig: Boolean = true
 )
+
+@ApiModel(value = "Metadata til en respons etter journalpost med tilhørende data")
+data class JournalpostResponse(
+        @ApiModelProperty(value = "journalposten som er etterspurt") var journalpost: JournalpostDto? = null,
+        @ApiModelProperty(value = "alle saker som journalposten er tilknyttet") var sakstilknytninger: List<String> = emptyList()
+)

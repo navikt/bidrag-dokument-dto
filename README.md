@@ -1,6 +1,6 @@
 # bidrag-dokument-dto
 
- ![](https://github.com/navikt/bidrag-dokument-dto/workflows/maven%20deploy/badge.svg)
+![](https://github.com/navikt/bidrag-dokument-dto/workflows/maven%20deploy/badge.svg)
 
 Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.9.0   | Opprettet         | `JournalpostResponse`: `JournalpostDto` med tilhørende data
 0.8.2   | Endring           | `io.swagger.annotations.ApiModel`: Synkronisert beskrivelser
 0.8.1   | Endring           | `RegistrereJournalpostCommand`: `skalJournalfores` har default verdi: true
 0.8.0   | Opprettet         | `RegistrereJournalpostCommand`: registrere (journalføre) mottaksregistrert journalpost
