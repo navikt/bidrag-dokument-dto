@@ -18,7 +18,7 @@ data class JournalpostDto(
         @ApiModelProperty(value = "Identifikator av journalpost i midlertidig brevlager eller fra joark på formatet [BID|JOARK]-<journalpostId>") var journalpostId: String? = null,
         @ApiModelProperty(value = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
         @ApiModelProperty(value = "Inngående (I), utgående (U) journalpost; (X) internt notat") var dokumentType: String? = null,
-        @ApiModelProperty(value = "Journalpostens status, (A, D, J, M, O, R, T, U)") var journalstatus: String? = null,
+        @ApiModelProperty(value = "Journalpostens status, (A, D, J, M, O, R, S, T, U)") var journalstatus: String? = null,
         @ApiModelProperty(value = "Om journalposten er feilført på bidragssak") var feilfort: Boolean? = null,
         @ApiModelProperty(value = "Brevkoden til en journalpost") var brevkode: KodeDto? = null
 )
