@@ -8,6 +8,9 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.10.0  | Endring           | `EndreJournalpostCommand`: Smeltes sammen med `RegistrereJournalpostCommand`
+0.10.0  | Slettet           | `RegistrereJournalpostCommand`: Smeltes sammen med `EndreJournalpostCommand`
+0.10.0  | Slettet           | `EndreSaksnummer`: Funksjon videreføres med `EndreJournalpostCommand.tilknyttSaker`
 0.9.0   | Opprettet         | `JournalpostResponse`: `JournalpostDto` med tilhørende data
 0.8.2   | Endring           | `io.swagger.annotations.ApiModel`: Synkronisert beskrivelser
 0.8.1   | Endring           | `RegistrereJournalpostCommand`: `skalJournalfores` har default verdi: true
