@@ -55,6 +55,23 @@ data class EndreJournalpostCommand(
     fun manglerGjelder() = gjelder == null
 }
 
+@ApiModel(value = "Metadata for registrering av journalpost")
+@Deprecated(message = "will be removed when version 0.10.0 is implemented in bidrag-dokument")
+data class RegistrereJournalpostCommand(
+        @ApiModelProperty(value = "Identifikator av journalpost") var journalpostId: String? = null,
+        @ApiModelProperty(value = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
+        @ApiModelProperty(value = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
+        @ApiModelProperty(value = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumentet gjelder") var gjelder: String? = null,
+        @ApiModelProperty(value = "Saksnummer til bidragsaker som journalpost skal registreres på") var saksnummer: List<String> = emptyList(),
+        @ApiModelProperty(value = "En liste over endringer i dokumenter") var endreDokumenter: List<EndreDokument> = emptyList(),
+        @ApiModelProperty(value = "Behandlingstema") var behandlingstema: String? = null,
+        @ApiModelProperty(value = "Endre fagområde") var fagomrade: String? = null,
+        @ApiModelProperty(value = "Type ident for gjelder: FNR, ORGNR, AKTOERID") var gjelderType: String? = null,
+        @ApiModelProperty(value = "Journalførende enhet") var journalforendeEnhet: String? = null,
+        @ApiModelProperty(value = "Tittel på journalposten") var tittel: String? = null,
+        @ApiModelProperty(value = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = true
+)
+
 @ApiModel(value = "Metadata for endring av et dokument")
 data class EndreDokument(
         @ApiModelProperty(value = "Brevkoden til dokumentet") var brevkode: String? = null,
