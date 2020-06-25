@@ -53,7 +53,7 @@ class JsonMappingTest {
   @DisplayName("skal hente Avvikshendelse.detaljer som json")
   void skalHenteAvvikshendelseDetaljerSomJson() throws JsonProcessingException {
     var avvikshendelse = new Avvikshendelse(
-        AvvikType.ENDRE_FAGOMRADE.name(), "123", "FAR", Map.of("bekreftetSendtScanning", "true")
+        AvvikType.ENDRE_FAGOMRADE.name(), "123", "FAR", Map.of("bekreftetSendtScanning", "true"), "1234567"
     );
 
     var json = objectMapper.writeValueAsString(avvikshendelse);
