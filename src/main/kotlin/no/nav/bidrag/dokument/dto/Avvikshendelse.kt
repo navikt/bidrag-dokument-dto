@@ -9,10 +9,14 @@ data class Avvikshendelse(
         @ApiModelProperty(value = "Type avvik") var avvikType: String,
         @ApiModelProperty(value = "Enhetsnummer for gjeldense avvik, eks: sendes til i BESTILL_ORIGINAL") var enhetsnummer: String? = null,
         @ApiModelProperty(value = "Manuell beskrivelse av avvik") var beskrivelse: String? = null,
-        @ApiModelProperty(value = "Eventuelle detaljer som skal følge avviket") var detaljer: Map<String, String> = HashMap()
+        @ApiModelProperty(value = "Eventuelle detaljer som skal følge avviket") var detaljer: Map<String, String> = HashMap(),
+        @ApiModelProperty(value = "Saksnummer til sak når journalpost er journalført") var saksnummer: String?
 ) {
-    constructor() : this("avvik ikke angitt", null, null)
-    constructor(avvikType: String, enhetsnummer: String?) : this(avvikType, enhetsnummer, null)
+    constructor() : this(avvikType = "avvik ikke angitt", enhetsnummer = null, beskrivelse = null, saksnummer = null)
+    constructor(avvikType: String, enhetsnummer: String?) : this(avvikType, enhetsnummer, beskrivelse = null, saksnummer = null)
+    constructor(avvikType: String, enhetsnummer: String?, saksnummer: String?) : this(
+            avvikType, enhetsnummer, beskrivelse = null, saksnummer = saksnummer
+    )
 
     fun hent(): Optional<AvvikType> {
         try {
