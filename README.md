@@ -8,7 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
-0.11.0  | Endring/ omstrukt | Ny `AvvikType` ARKIVERE_JOURNALPOST. Omstrukturere `OpprettAvvikshendelseRespone` for å åpe for forskjellige responstyper. `Avvikshendelse` lagt til ny konstruktør.
+0.11.0  | Endring/ omstrukt | Ny `AvvikType` ARKIVERE_JOURNALPOST. Omstrukturere `OpprettAvvikshendelseRespone` for å åpne for forskjellige responstyper. `Avvikshendelse` lagt til ny konstruktør.
 0.10.1  | Endring           | `Avvikshendelse` inneholder saksnummer når et avvik blir opprettet for en sak
 0.10.0.1| Endring           | `RegistrereJournalpostCommand` er lagt inn, men vil bli slettet etter fullstendig oppgradering
 0.10.0  | Endring           | `EndreJournalpostCommand`: Smeltes sammen med `RegistrereJournalpostCommand`
