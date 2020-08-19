@@ -33,18 +33,14 @@ data class Avvikshendelse(
     }
 }
 
-interface OpprettAvvikshendelseResponse {
-    var avvikType: String
-}
-
 @ApiModel(value = "Responsen til en avvikshendelse med oppgave")
-data class OpprettAvvikshendelseOppgaveResponse(
-        override @ApiModelProperty(value = "Type avvik") var avvikType: String,
+data class OpprettAvvikshendelseResponse(
+        @ApiModelProperty(value = "Type avvik") var avvikType: String,
         @ApiModelProperty(value = "Oppgave id for oppgaven som ble opprettet på bakgrunn av avviket") var oppgaveId: Long? = null,
         @ApiModelProperty(value = "Enhetsnummer til enheten som oppgaven er tildelt") var tildeltEnhetsnr: String? = null,
         @ApiModelProperty(value = "Oppgavens tema") var tema: String? = null,
         @ApiModelProperty(value = "Oppgavens type") var oppgavetype: String? = null
-) : OpprettAvvikshendelseResponse {
+) {
     constructor() : this("avvik ikke angitt")
     constructor(avvikType: AvvikType) : this(avvikType.name)
 }
