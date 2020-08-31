@@ -48,7 +48,6 @@ data class EndreJournalpostCommand(
         @ApiModelProperty(value = "Behandlingstema") var behandlingstema: String? = null,
         @ApiModelProperty(value = "Endre fagområde") var fagomrade: String? = null,
         @ApiModelProperty(value = "Type ident for gjelder: FNR, ORGNR, AKTOERID") var gjelderType: String? = null,
-        @ApiModelProperty(value = "Journalførende enhet") var journalforendeEnhet: String? = null,
         @ApiModelProperty(value = "Tittel på journalposten") var tittel: String? = null,
         @ApiModelProperty(value = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false
 ) {
