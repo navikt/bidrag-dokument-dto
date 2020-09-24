@@ -27,6 +27,7 @@
   <properties>
 
     <!-- language -->
+    <java.version>12</java.version>
     <kotlin.version>1.4.10</kotlin.version>
 
     <!-- dependencies -->
