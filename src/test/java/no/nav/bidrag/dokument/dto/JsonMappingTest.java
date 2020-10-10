@@ -28,9 +28,14 @@ class JsonMappingTest {
     @Test
     @DisplayName("skal mappe Avvikshendelse")
     void skalMappeAvvikshendelse() throws IOException {
-      String avvikshendelse = " {\"avvikType\":\"BESTILL_ORIGINAL\",\"enhetsnummer\":\"4806\"}";
+      var avvikshendelse = """
+          {
+            "avvikType":"BESTILL_ORIGINAL",
+            "enhetsnummer":"4806"}
+          }
+          """;
 
-      Avvikshendelse hendelsen = objectMapper.readValue(avvikshendelse, Avvikshendelse.class);
+      var hendelsen = objectMapper.readValue(avvikshendelse, Avvikshendelse.class);
 
       assertAll(
           () -> assertThat(hendelsen).as("avvikshendelse").isNotNull(),
@@ -43,9 +48,15 @@ class JsonMappingTest {
     @Test
     @DisplayName("skal mappe Avvikshendelse med beskrivelse")
     void skalMappeAvvikshendelseMedBeskrivelse() throws IOException {
-      String avvikshendelse = " {\"avvikType\":\"BESTILL_SPLITTING\",\"enhetsnummer\":\"4806\", \"beskrivelse\":\"avsnitt 2\"}";
+      var avvikshendelse = """ 
+          {
+            "avvikType":"BESTILL_SPLITTING",
+            "enhetsnummer":"4806",
+            "beskrivelse":"avsnitt 2"
+          }
+          """;
 
-      Avvikshendelse hendelsen = objectMapper.readValue(avvikshendelse, Avvikshendelse.class);
+      var hendelsen = objectMapper.readValue(avvikshendelse, Avvikshendelse.class);
 
       assertAll(
           () -> assertThat(hendelsen).as("avvikshendelse").isNotNull(),
@@ -59,16 +70,17 @@ class JsonMappingTest {
     @Test
     @DisplayName("skal mappe til EndreJournalpostCommand")
     void skalMappeTilEndreJournalpostCommand() throws JsonProcessingException {
-      var json = String.join("\n", "{",
-          "\"skalJournalfores\":true,",
-          "\"gjelder\":\"25018543055\",",
-          "\"tittel\":\"journalfør\",",
-          "\"tilknyttSaker\":[\"0703467\"],",
-          "\"endreDokumenter\": [],",
-          "\"fagomrade\":\"BID\",",
-          "\"dokumentDato\":\"2020-01-01\"",
-          "}"
-      );
+      var json = """
+          {
+            "skalJournalfores":true,
+            "gjelder":"25018543055",
+            "tittel":"journalfør",
+            "tilknyttSaker":["0703467"],
+            "endreDokumenter": [],
+            "fagomrade":"BID",
+            "dokumentDato":"2020-01-01"
+          }
+          """;
 
       var endreJournalpostCommand = objectMapper.readValue(json, EndreJournalpostCommand.class);
       assertThat(endreJournalpostCommand).as("endre command").isNotNull();
