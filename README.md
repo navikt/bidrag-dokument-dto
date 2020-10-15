@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.14.0  | Endret/Opprettet  | Ny `AvvikType` TREKK_JOURNALPOST, for sletting av mottakregistrert journalpost. 
 0.13.0  | Slettet           | `EndreJournalpostCommand`: Slettet felt journalforendeEnhet
 0.12.0  | Endring/ omstrukt | Tilbakestille `OpprettAvvikshendelseResponse` til bare én responstype
 0.11.0  | Endring/ omstrukt | Ny `AvvikType` ARKIVERE_JOURNALPOST. Omstrukturere `OpprettAvvikshendelseRespone` for å åpne for forskjellige responstyper. `Avvikshendelse` lagt til ny konstruktør.
