@@ -68,6 +68,28 @@ class JsonMappingTest {
     }
 
     @Test
+    @DisplayName("skal mappe Avvikshendelse med detaljer")
+    void skalMappeAvvikshendelseMedDetaljer() throws IOException {
+      var avvikshendelse = """ 
+          {
+            "avvikType":"BESTILL_SPLITTING",
+            "detaljer":{
+              "fagomrade":"BID"
+            }
+          }
+          """;
+
+      var hendelsen = objectMapper.readValue(avvikshendelse, Avvikshendelse.class);
+
+      assertAll(
+          () -> assertThat(hendelsen).as("avvikshendelse").isNotNull(),
+          () -> assertThat(hendelsen.getAvvikType()).as("avvikshendelse.avvikType").isEqualTo(AvvikType.BESTILL_SPLITTING.name()),
+          () -> assertThat(hendelsen.hent()).as("avvikshendelse.avvikType (som enum)").isPresent().get().isEqualTo(AvvikType.BESTILL_SPLITTING),
+          () -> assertThat(hendelsen.getDetaljer()).as("avvikshendelse.detaljer").isEqualTo(Map.of("fagomrade", "BID"))
+      );
+    }
+
+    @Test
     @DisplayName("skal mappe til EndreJournalpostCommand")
     void skalMappeTilEndreJournalpostCommand() throws JsonProcessingException {
       var json = """
