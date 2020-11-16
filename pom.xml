@@ -32,7 +32,7 @@
 
     <!-- dependencies -->
     <spring-boot.version>2.3.5.RELEASE</spring-boot.version>
-    <springfox-swagger.version>2.10.5</springfox-swagger.version>
+    <springfox-swagger.version>3.0.0</springfox-swagger.version>
 
     <!-- build -->
     <maven-compiler.version>3.8.1</maven-compiler.version>
@@ -98,27 +98,7 @@
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>
       <version>${springfox-swagger.version}</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>guava</artifactId>
-          <groupId>com.google.guava</groupId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.springframework.plugin</groupId>
-          <artifactId>spring-plugin-core</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger-ui</artifactId>
-      <version>${springfox-swagger.version}</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>guava</artifactId>
-          <groupId>com.google.guava</groupId>
-        </exclusion>
-      </exclusions>
+      <scope>compile</scope>
     </dependency>
 
     <!-- test scope -->
