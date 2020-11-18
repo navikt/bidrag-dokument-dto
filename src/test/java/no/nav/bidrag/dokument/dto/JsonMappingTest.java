@@ -31,7 +31,9 @@ class JsonMappingTest {
       var avvikshendelse = """
           {
             "avvikType":"BESTILL_ORIGINAL",
-            "enhetsnummer":"4806"}
+            "detaljer": {
+              "enhetsnummer":"4806"
+            }
           }
           """;
 
@@ -39,7 +41,8 @@ class JsonMappingTest {
 
       assertAll(
           () -> assertThat(hendelsen).as("avvikshendelse").isNotNull(),
-          () -> assertThat(hendelsen.getEnhetsnummer()).as("avvikshendelse.enhetsnummer").isEqualTo("4806"),
+          () -> assertThat(hendelsen.getDetaljer()).as("avvikshendelse.detaljer.enhetsnummer")
+              .containsKey("enhetsnummer").extracting("enhetsnummer").isEqualTo("4806"),
           () -> assertThat(hendelsen.getAvvikType()).as("avvikshendelse.avvikType").isEqualTo(AvvikType.BESTILL_ORIGINAL.name()),
           () -> assertThat(hendelsen.hent()).as("avvikshendelse.avvikType (som enum)").isPresent().get().isEqualTo(AvvikType.BESTILL_ORIGINAL)
       );
@@ -51,8 +54,10 @@ class JsonMappingTest {
       var avvikshendelse = """ 
           {
             "avvikType":"BESTILL_SPLITTING",
-            "enhetsnummer":"4806",
-            "beskrivelse":"avsnitt 2"
+            "beskrivelse":"avsnitt 2",
+            "detaljer": {
+              "enhetsnummer":"4806"
+            }
           }
           """;
 
@@ -60,7 +65,8 @@ class JsonMappingTest {
 
       assertAll(
           () -> assertThat(hendelsen).as("avvikshendelse").isNotNull(),
-          () -> assertThat(hendelsen.getEnhetsnummer()).as("avvikshendelse.enhetsnummer").isEqualTo("4806"),
+          () -> assertThat(hendelsen.getDetaljer()).as("avvikshendelse.detaljer.enhetsnummer")
+              .extracting("enhetsnummer").isEqualTo("4806"),
           () -> assertThat(hendelsen.getAvvikType()).as("avvikshendelse.avvikType").isEqualTo(AvvikType.BESTILL_SPLITTING.name()),
           () -> assertThat(hendelsen.hent()).as("avvikshendelse.avvikType (som enum)").isPresent().get().isEqualTo(AvvikType.BESTILL_SPLITTING),
           () -> assertThat(hendelsen.getBeskrivelse()).as("avvikshendelse.beskrivelse").isEqualTo("avsnitt 2")
@@ -127,7 +133,7 @@ class JsonMappingTest {
     @DisplayName("skal hente Avvikshendelse.detaljer som json")
     void skalHenteAvvikshendelseDetaljerSomJson() throws JsonProcessingException {
       var avvikshendelse = new Avvikshendelse(
-          AvvikType.ENDRE_FAGOMRADE.name(), "123", "FAR", Map.of("bekreftetSendtScanning", "true"), "1234567"
+          AvvikType.ENDRE_FAGOMRADE.name(), Map.of("fagomrade", "FAR", "bekreftetSendtScanning", "true"), "1234567"
       );
 
       var json = objectMapper.writeValueAsString(avvikshendelse);

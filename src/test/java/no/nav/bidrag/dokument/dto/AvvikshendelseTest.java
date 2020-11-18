@@ -14,8 +14,8 @@ class AvvikshendelseTest {
   @DisplayName("skal hente AvvikType fra streng")
   @EnumSource(AvvikType.class)
   void skalHenteAvvikTypeFraStreng(AvvikType avvikType) {
-    var funnetAvvik = new Avvikshendelse(avvikType.name(), null, null, Map.of(), null).hent(); // enum blir lagret som streng i en Avvikshendelse
-    var manglendeAvvik = new Avvikshendelse("feil", null, null, Map.of(), null).hent();
+    var funnetAvvik = new Avvikshendelse(avvikType.name(), null, Map.of(), null).hent(); // enum blir lagret som streng i en Avvikshendelse
+    var manglendeAvvik = new Avvikshendelse("feil", null, Map.of(), null).hent();
 
     assertAll(
         () -> assertThat(funnetAvvik).isPresent().get().isEqualTo(avvikType),
