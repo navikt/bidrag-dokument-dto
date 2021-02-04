@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.15.1  | Endret            | Avhengigheter til kotlin og spring-boot 
 0.15.0  | Endret            | `Avvikshendelse` bruker enhetsnummer som et innhold i detaljer-map 
 0.14.1  | Endret            | Springfox avhengigheter er nå compile time (og versjon 3.0.0). 
 0.14.0  | Endret/Opprettet  | Ny `AvvikType` TREKK_JOURNALPOST, for sletting av mottakregistrert journalpost. 
