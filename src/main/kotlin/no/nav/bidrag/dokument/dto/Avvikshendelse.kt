@@ -24,10 +24,13 @@ data class Avvikshendelse(
             : this(avvikType, detaljer = mapOf(Pair("enhetsnummer", enhetsnummer)), beskrivelse = null, saksnummer = saksnummer)
 
     fun hent(): Optional<AvvikType> {
-        try {
-            return Optional.of(AvvikType.valueOf(avvikType))
-        } catch (exception: Exception) {
-            return Optional.empty()
+        val funnetAvvikstype = AvvikType.values()
+            .filter { it.name == avvikType }
+
+        return if (funnetAvvikstype.size == 1) {
+            Optional.of(funnetAvvikstype[0])
+        } else {
+            Optional.empty()
         }
     }
 }
@@ -43,7 +46,6 @@ data class OpprettAvvikshendelseResponse(
     constructor() : this("avvik ikke angitt")
     constructor(avvikType: AvvikType) : this(avvikType.name)
 }
-
 
 enum class AvvikType {
     ARKIVERE_JOURNALPOST,
