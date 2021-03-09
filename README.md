@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.15.3  | Endret            | `Avvikshendelse`: henter AvvikType uten å bruke exception handling...
 0.15.2  | Endret            | Ny `AvvikType`: OVERFOR_TIL_ANNEN_ENHET
 0.15.1  | Endret            | Avhengigheter til kotlin og spring-boot 
 0.15.0  | Endret            | `Avvikshendelse` bruker enhetsnummer som et innhold i detaljer-map 
