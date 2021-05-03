@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.16.0  | Lagt til          | `OpprettAvvikshendelseResponse` deprecated, `BehandleAvvikshendelseResponse` opprettet
 0.15.6  | Endret            | bumped kotlin version 1.4.32 -> 1.5.0
 0.15.5  | Endret            | bumped kotlin version 1.4.31 -> 1.4.32
 0.15.4  | Endret            | bumped kotlin version 1.4.30 -> 1.4.31
