@@ -4,7 +4,7 @@
 
   <groupId>no.nav.bidrag.dokument</groupId>
   <artifactId>bidrag-dokument-dto</artifactId>
-  <version>0.15.7-SNAPSHOT</version>
+  <version>0.10.0-SNAPSHOT</version>
 
   <description>Backend dtos used in bidrag-dokument</description>
   <url>https://github.com/navikt/bidrag-dokument-dto</url>
@@ -93,6 +93,7 @@
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib-jdk8</artifactId>
       <version>${kotlin.version}</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>io.springfox</groupId>
