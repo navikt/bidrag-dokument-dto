@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>no.nav.bidrag.dokument</groupId>
@@ -32,7 +33,7 @@
 
     <!-- dependencies -->
     <spring-boot.version>2.4.4</spring-boot.version>
-    <springfox-swagger.version>3.0.0</springfox-swagger.version>
+    <springdoc-open-api.version>1.5.8</springdoc-open-api.version>
 
     <!-- build -->
     <maven-compiler.version>3.8.1</maven-compiler.version>
@@ -96,9 +97,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger2</artifactId>
-      <version>${springfox-swagger.version}</version>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>${springdoc-open-api.version}</version>
       <scope>compile</scope>
     </dependency>
 

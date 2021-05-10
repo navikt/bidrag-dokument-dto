@@ -1,15 +1,16 @@
+@file:Suppress("unused")
+
 package no.nav.bidrag.dokument.dto
 
-import io.swagger.annotations.ApiModel
-import io.swagger.annotations.ApiModelProperty
+import io.swagger.v3.oas.annotations.media.Schema
 import java.util.Optional
 
-@ApiModel(value = "En avvikshendelse som kan utføres på en journalpost")
+@Schema(description = "En avvikshendelse som kan utføres på en journalpost")
 data class Avvikshendelse(
-    @ApiModelProperty(value = "Type avvik") var avvikType: String,
-    @ApiModelProperty(value = "Manuell beskrivelse av avvik") var beskrivelse: String? = null,
-    @ApiModelProperty(value = "Eventuelle detaljer som skal følge avviket") var detaljer: Map<String, String> = HashMap(),
-    @ApiModelProperty(value = "Saksnummer til sak når journalpost er journalført") var saksnummer: String?
+    @Schema(description = "Type avvik") var avvikType: String,
+    @Schema(description = "Manuell beskrivelse av avvik") var beskrivelse: String? = null,
+    @Schema(description = "Eventuelle detaljer som skal følge avviket") var detaljer: Map<String, String> = HashMap(),
+    @Schema(description = "Saksnummer til sak når journalpost er journalført") var saksnummer: String?
 ) {
     constructor()
             : this(avvikType = "avvik ikke angitt", beskrivelse = null, saksnummer = null)
@@ -35,26 +36,26 @@ data class Avvikshendelse(
     }
 }
 
-@ApiModel(value = "Responsen til en avvikshendelse med oppgave")
+@Schema(description = "Responsen til en avvikshendelse med oppgave")
 @Deprecated(level = DeprecationLevel.WARNING, replaceWith = ReplaceWith("BehandleAvvikshendelseResponse"), message = "Vil erstattet")
 data class OpprettAvvikshendelseResponse(
-    @ApiModelProperty(value = "Type avvik") var avvikType: String,
-    @ApiModelProperty(value = "Oppgave id for oppgaven som ble opprettet på bakgrunn av avviket") var oppgaveId: Long? = null,
-    @ApiModelProperty(value = "Enhetsnummer til enheten som oppgaven er tildelt") var tildeltEnhetsnr: String? = null,
-    @ApiModelProperty(value = "Oppgavens tema") var tema: String? = null,
-    @ApiModelProperty(value = "Oppgavens type") var oppgavetype: String? = null
+    @Schema(description = "Type avvik") var avvikType: String,
+    @Schema(description = "Oppgave id for oppgaven som ble opprettet på bakgrunn av avviket") var oppgaveId: Long? = null,
+    @Schema(description = "Enhetsnummer til enheten som oppgaven er tildelt") var tildeltEnhetsnr: String? = null,
+    @Schema(description = "Oppgavens tema") var tema: String? = null,
+    @Schema(description = "Oppgavens type") var oppgavetype: String? = null
 ) {
     constructor() : this("avvik ikke angitt")
     constructor(avvikType: AvvikType) : this(avvikType.name)
 }
 
-@ApiModel(value = "Responsen til en avvikshendelse")
+@Schema(description = "Responsen til en avvikshendelse")
 data class BehandleAvvikshendelseResponse(
-    @ApiModelProperty(value = "Type avvik") var avvikType: String,
-    @ApiModelProperty(value = "Oppgave id for oppgaven som ble opprettet på bakgrunn av avviket") var oppgaveId: Long? = null,
-    @ApiModelProperty(value = "Enhetsnummer til enheten som oppgaven er tildelt") var tildeltEnhetsnr: String? = null,
-    @ApiModelProperty(value = "Oppgavens tema") var tema: String? = null,
-    @ApiModelProperty(value = "Oppgavens type") var oppgavetype: String? = null
+    @Schema(description = "Type avvik") var avvikType: String,
+    @Schema(description = "Oppgave id for oppgaven som ble opprettet på bakgrunn av avviket") var oppgaveId: Long? = null,
+    @Schema(description = "Enhetsnummer til enheten som oppgaven er tildelt") var tildeltEnhetsnr: String? = null,
+    @Schema(description = "Oppgavens tema") var tema: String? = null,
+    @Schema(description = "Oppgavens type") var oppgavetype: String? = null
 ) {
     constructor() : this("avvik ikke angitt")
     constructor(avvikType: AvvikType) : this(avvikType.name)
