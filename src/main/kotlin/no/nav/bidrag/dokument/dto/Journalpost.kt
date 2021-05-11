@@ -15,6 +15,7 @@ data class JournalpostDto(
     @Schema(description = "Saksbehandler som var journalfører") var journalfortAv: String? = null,
     @Schema(description = "Dato dokument ble journalført") var journalfortDato: LocalDate? = null,
     @Schema(description = "Identifikator av journalpost i midlertidig brevlager eller fra joark på formatet [BID|JOARK]-<journalpostId>") var journalpostId: String? = null,
+    @Schema(description = "Kanalen som er kilden til at journalposten ble registrert") var kilde: Kanal? = null,
     @Schema(description = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
     @Schema(description = "Inngående (I), utgående (U) journalpost; (X) internt notat") var dokumentType: String? = null,
     @Schema(description = "Journalpostens status, (A, D, J, M, O, R, S, T, U)") var journalstatus: String? = null,
@@ -33,6 +34,14 @@ data class DokumentDto(
     @Schema(description = "Inngående (I), utgående (U) dokument, (X) internt notat") var dokumentType: String? = null,
     @Schema(description = "Kort oppsummert av journalført innhold") var tittel: String? = null
 )
+
+@Schema(description = "Journalpostens ble mottatt i kanal")
+enum class Kanal {
+    @Schema(description = "Ditt NAV (Innsending bidrag)") NAV_NO_BID,
+    @Schema(description = "Skanning Bidrag") SKAN_BID,
+    @Schema(description = "Ditt NAV") NAV_NO,
+    @Schema(description = "Skanning Nwra") SKAN_NETS,
+}
 
 @Schema(description = "Metadata for endring av en journalpost")
 data class EndreJournalpostCommand(
