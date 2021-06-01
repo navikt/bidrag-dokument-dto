@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.18.0  | dokId, Int->Long  | `EndreDokument.dokId`: type fra Int -> Long
 0.17.0  | Opprettet         | `Kanal`: enum for en journalposts kilde
 0.17.0  | Lagt til/Endret   | `JournalpostDto.kilde` er lagt til, samt swagger avhengigheter er nå springdoc-openapi-ui
 0.16.0  | Lagt til          | `OpprettAvvikshendelseResponse` deprecated, `BehandleAvvikshendelseResponse` opprettet
