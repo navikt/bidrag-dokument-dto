@@ -32,7 +32,7 @@
 
     <!-- dependencies -->
     <spring-boot.version>2.4.5</spring-boot.version>
-    <springdoc-open-api.version>1.5.8</springdoc-open-api.version>
+    <springdoc-open-api.version>1.5.9</springdoc-open-api.version>
 
     <!-- build -->
     <maven-compiler.version>3.8.1</maven-compiler.version>
