@@ -8,6 +8,10 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.20.0  | Opprettet         | `JournalpostBeskrivelseException`
+0.20.0  | Opprettet         | `JournalpostHendelseException`
+0.20.0  | Opprettet         | `OppgaveException`
+0.20.0  | Opprettet         | `TokenException`
 0.19.1  | Endret            | bumped kotlin version -> 1.5.30
 0.19.0  | Opprettet         | `JournalpostIkkeFunnetException`
 0.19.0  | Opprettet         | `OppgaveIkkeOpprettetException`
