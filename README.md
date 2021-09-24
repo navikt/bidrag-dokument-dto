@@ -8,6 +8,9 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.21.0  | Opprettet         | `IdentType`: enum med verdier: [AKTOERID, FNR, ORGNR]
+0.21.0  | Endret            | `AktorDto`: ny property `type` (streng som kan hentes som enum) 
+0.21.0  | Endret            | bumped kotlin version -> 1.5.31 
 0.20.0  | Opprettet         | `JournalpostBeskrivelseException`
 0.20.0  | Opprettet         | `JournalpostHendelseException`
 0.20.0  | Opprettet         | `OppgaveException`

@@ -25,8 +25,21 @@ data class JournalpostDto(
 
 @Schema(description = "Metadata om en aktør")
 data class AktorDto(
-    @Schema(description = "Identifaktor til aktøren") var ident: String = ""
-)
+    @Schema(description = "Identifaktor til aktøren") var ident: String = "",
+    @Schema(description = "Hvilken identtype som skal brukes") var type: String = ""
+) {
+    fun hentIdentType(): IdentType? {
+        return try {
+            IdentType.valueOf(type)
+        } catch (e: Exception) {
+            return null
+        }
+    }
+}
+
+enum class IdentType {
+    AKTOERID, FNR, ORGNR
+}
 
 @Schema(description = "Metadata for et dokument")
 data class DokumentDto(
