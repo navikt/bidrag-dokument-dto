@@ -26,19 +26,25 @@ data class JournalpostDto(
 @Schema(description = "Metadata om en aktør")
 data class AktorDto(
     @Schema(description = "Identifaktor til aktøren") var ident: String = "",
-    @Schema(description = "Hvilken identtype som skal brukes") var type: String = ""
+    @Schema(description = "Hvilken identtype som skal brukes") var type: String? = null
 ) {
-    fun hentIdentType(): IdentType? {
-        return try {
-            IdentType.valueOf(type)
-        } catch (e: Exception) {
-            return null
-        }
+    fun hentIdentType(): IdentType? = if (type == null) null else try {
+        IdentType.valueOf(type!!)
+    } catch (e: Exception) {
+        null
     }
 }
 
+@Schema(description = "Identtypene til en aktør")
 enum class IdentType {
-    AKTOERID, FNR, ORGNR
+    @Schema(description = "AktoerId (nav sitt løpenummer)")
+    AKTOERID,
+
+    @Schema(description = "Fødselsnummer")
+    FNR,
+
+    @Schema(description = "Organisasjonsnummer ")
+    ORGNR
 }
 
 @Schema(description = "Metadata for et dokument")
@@ -50,10 +56,17 @@ data class DokumentDto(
 
 @Schema(description = "Journalpostens ble mottatt i kanal")
 enum class Kanal {
-    @Schema(description = "Ditt NAV (Innsending bidrag)") NAV_NO_BID,
-    @Schema(description = "Skanning Bidrag") SKAN_BID,
-    @Schema(description = "Ditt NAV") NAV_NO,
-    @Schema(description = "Skanning Nwra") SKAN_NETS,
+    @Schema(description = "Ditt NAV (Innsending bidrag)")
+    NAV_NO_BID,
+
+    @Schema(description = "Skanning Bidrag")
+    SKAN_BID,
+
+    @Schema(description = "Ditt NAV")
+    NAV_NO,
+
+    @Schema(description = "Skanning Nwra")
+    SKAN_NETS,
 }
 
 @Schema(description = "Metadata for endring av en journalpost")

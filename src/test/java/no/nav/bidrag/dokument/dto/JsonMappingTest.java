@@ -123,6 +123,24 @@ class JsonMappingTest {
           () -> assertThat(endreJournalpostCommand.getDokumentDato()).as("dokument dato").isEqualTo(LocalDate.of(2020, 1, 1))
       );
     }
+
+    @Test
+    @DisplayName("skal mappe aktør fra json uten type")
+    void skalMappeAktorFraJson() throws JsonProcessingException {
+      var json = """
+          {
+            "ident": "06127412345"
+          }
+          """;
+
+      var aktorDto = objectMapper.readValue(json, AktorDto.class);
+
+      assertAll(
+          () -> assertThat(aktorDto.getIdent()).as("ident").isEqualTo("06127412345"),
+          () -> assertThat(aktorDto.getType()).as("type").isNull(),
+          () -> assertThat(aktorDto.hentIdentType()).as("identtype").isNull()
+      );
+    }
   }
 
   @Nested
