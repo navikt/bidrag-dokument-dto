@@ -159,4 +159,48 @@ class JsonMappingTest {
       assertThat(json).containsSequence("bekreftetSendtScanning").containsSequence("true");
     }
   }
+
+  @Nested
+  @DisplayName("til og fra json")
+  class TilFraJson {
+
+    @Test
+    @DisplayName("skal mappe JournalpostHendelse til json og mappe tilbake til objekt ")
+    void skalMappeJournalpostHendelseTilJsonOgTilbakeTilObjekt() throws JsonProcessingException {
+      var journalpostHendelse = new JournalpostHendelse(
+          "journalpostId",
+          "aktorId",
+          "fagomrade",
+          "enhet",
+          "journalstatus",
+          new Sporingsdata("xyz", "jb", "Jon Blund")
+      );
+
+      var json = objectMapper.writeValueAsString(journalpostHendelse);
+      var fraJson = objectMapper.readValue(json, JournalpostHendelse.class);
+
+      assertThat(fraJson).as("journalpostHendelse fra json").isNotNull();
+
+      assertAll(
+          () -> assertThat(fraJson.getJournalpostId()).as("journalpostId").isEqualTo(journalpostHendelse.getJournalpostId()),
+          () -> assertThat(fraJson.getAktorId()).as("aktorId").isEqualTo(journalpostHendelse.getAktorId()),
+          () -> assertThat(fraJson.getEnhet()).as("enhet").isEqualTo(journalpostHendelse.getEnhet()),
+          () -> assertThat(fraJson.getFagomrade()).as("fagomrade").isEqualTo(journalpostHendelse.getFagomrade()),
+          () -> assertThat(fraJson.getJournalstatus()).as("journalstatus")
+              .isEqualTo(journalpostHendelse.getJournalstatus())
+      );
+
+      var sporing = fraJson.getSporing();
+
+      assertThat(sporing).as("sporing fra json").isNotNull();
+
+      //noinspection ConstantConditions
+      assertAll(
+          () -> assertThat(sporing.getBrukerident()).as("brukerident").isEqualTo(journalpostHendelse.getSporing().getBrukerident()),
+          () -> assertThat(sporing.getCorrelationId()).as("correlationId").isEqualTo(journalpostHendelse.getSporing().getCorrelationId()),
+          () -> assertThat(sporing.getSaksbehandlersNavn()).as("saksbehandlers navn")
+              .isEqualTo(journalpostHendelse.getSporing().getSaksbehandlersNavn())
+      );
+    }
+  }
 }
