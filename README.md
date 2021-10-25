@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+0.22.1   | Endret            | `JournalpostHendelse`: Ny alternativ konstruktør
 0.22.0  | Opprettet         | `JournalpostHendelse`: Hendelse for endret journalpost
 0.21.1  | Endret            | `AktorDto`: type er et nullable felt
 0.21.0  | Opprettet         | `IdentType`: enum med verdier: [AKTOERID, FNR, ORGNR]

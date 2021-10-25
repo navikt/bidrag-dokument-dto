@@ -1,7 +1,5 @@
 package no.nav.bidrag.dokument.dto
 
-import java.time.LocalDateTime
-
 data class JournalpostHendelse(
     var journalpostId: String = "na",
     var aktorId: String? = null,
@@ -14,6 +12,20 @@ data class JournalpostHendelse(
     constructor(journalpostId: String, fagomrade: String?, correlationId: String?) : this(
         journalpostId = journalpostId,
         fagomrade = fagomrade,
+        sporing = Sporingsdata(correlationId = correlationId)
+    )
+
+    constructor(
+        journalpostId: String?,
+        enhet: String?,
+        fagomrade: String?,
+        journalstatus: String?,
+        correlationId: String?
+    ) : this(
+        journalpostId = journalpostId ?: "na",
+        enhet = enhet,
+        fagomrade = fagomrade,
+        journalstatus = journalstatus,
         sporing = Sporingsdata(correlationId = correlationId)
     )
 }
