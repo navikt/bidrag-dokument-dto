@@ -8,12 +8,13 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
-0.22.1   | Endret            | `JournalpostHendelse`: Ny alternativ konstruktør
+0.22.2  | Endret            | springdoc-openapi-ui dependency and spring-boot test dependencies
+0.22.1  | Endret            | `JournalpostHendelse`: Ny alternativ konstruktør
 0.22.0  | Opprettet         | `JournalpostHendelse`: Hendelse for endret journalpost
 0.21.1  | Endret            | `AktorDto`: type er et nullable felt
 0.21.0  | Opprettet         | `IdentType`: enum med verdier: [AKTOERID, FNR, ORGNR]
 0.21.0  | Endret            | `AktorDto`: ny property `type` (streng som kan hentes som enum) 
-0.21.0  | Endret            | bumped kotlin version -> 1.5.31 
+0.21.0  | Endret            | bumped kotlin version -> 1.5.31
 0.20.0  | Opprettet         | `JournalpostBeskrivelseException`
 0.20.0  | Opprettet         | `JournalpostHendelseException`
 0.20.0  | Opprettet         | `OppgaveException`
