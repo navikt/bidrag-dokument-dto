@@ -89,23 +89,6 @@ data class EndreJournalpostCommand(
     fun manglerGjelder() = gjelder == null
 }
 
-@Schema(description = "Metadata for registrering av journalpost")
-@Deprecated(message = "will be removed when version 0.10.0 is implemented in bidrag-dokument")
-data class RegistrereJournalpostCommand(
-    @Schema(description = "Identifikator av journalpost") var journalpostId: String? = null,
-    @Schema(description = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
-    @Schema(description = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
-    @Schema(description = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumentet gjelder") var gjelder: String? = null,
-    @Schema(description = "Saksnummer til bidragsaker som journalpost skal registreres på") var saksnummer: List<String> = emptyList(),
-    @Schema(description = "En liste over endringer i dokumenter") var endreDokumenter: List<EndreDokument> = emptyList(),
-    @Schema(description = "Behandlingstema") var behandlingstema: String? = null,
-    @Schema(description = "Endre fagområde") var fagomrade: String? = null,
-    @Schema(description = "Type ident for gjelder: FNR, ORGNR, AKTOERID") var gjelderType: String? = null,
-    @Schema(description = "Journalførende enhet") var journalforendeEnhet: String? = null,
-    @Schema(description = "Tittel på journalposten") var tittel: String? = null,
-    @Schema(description = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = true
-)
-
 @Schema(description = "Metadata for endring av et dokument")
 data class EndreDokument(
     @Schema(description = "Brevkoden til dokumentet") var brevkode: String? = null,

@@ -36,19 +36,6 @@ data class Avvikshendelse(
     }
 }
 
-@Schema(description = "Responsen til en avvikshendelse med oppgave")
-@Deprecated(level = DeprecationLevel.WARNING, replaceWith = ReplaceWith("BehandleAvvikshendelseResponse"), message = "Vil erstattet")
-data class OpprettAvvikshendelseResponse(
-    @Schema(description = "Type avvik") var avvikType: String,
-    @Schema(description = "Oppgave id for oppgaven som ble opprettet på bakgrunn av avviket") var oppgaveId: Long? = null,
-    @Schema(description = "Enhetsnummer til enheten som oppgaven er tildelt") var tildeltEnhetsnr: String? = null,
-    @Schema(description = "Oppgavens tema") var tema: String? = null,
-    @Schema(description = "Oppgavens type") var oppgavetype: String? = null
-) {
-    constructor() : this("avvik ikke angitt")
-    constructor(avvikType: AvvikType) : this(avvikType.name)
-}
-
 @Schema(description = "Responsen til en avvikshendelse")
 data class BehandleAvvikshendelseResponse(
     @Schema(description = "Type avvik") var avvikType: String,

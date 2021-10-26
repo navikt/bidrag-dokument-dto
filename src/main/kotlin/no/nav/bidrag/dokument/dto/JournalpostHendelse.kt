@@ -9,12 +9,6 @@ data class JournalpostHendelse(
     var sporing: Sporingsdata? = null
 ) {
 
-    constructor(journalpostId: String, fagomrade: String?, correlationId: String?) : this(
-        journalpostId = journalpostId,
-        fagomrade = fagomrade,
-        sporing = Sporingsdata(correlationId = correlationId)
-    )
-
     constructor(
         journalpostId: String?,
         enhet: String?,
