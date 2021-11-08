@@ -27,5 +27,6 @@ data class JournalpostHendelse(
 data class Sporingsdata(
     var correlationId: String? = null,
     var brukerident: String? = null,
-    var saksbehandlersNavn: String? = null
+    var saksbehandlersNavn: String? = null,
+    var enhetsnummer: String? = null
 )
