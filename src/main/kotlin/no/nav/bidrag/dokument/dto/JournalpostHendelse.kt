@@ -14,18 +14,22 @@ data class JournalpostHendelse(
         enhet: String?,
         fagomrade: String?,
         journalstatus: String?,
-        correlationId: String?
+        correlationId: String?,
+        saksbehandlersEnhet: String?
     ) : this(
         journalpostId = journalpostId ?: "na",
         enhet = enhet,
         fagomrade = fagomrade,
         journalstatus = journalstatus,
         sporing = Sporingsdata(correlationId = correlationId)
-    )
+    ) {
+        sporing!!.enhetsnummer = saksbehandlersEnhet
+    }
 }
 
 data class Sporingsdata(
     var correlationId: String? = null,
     var brukerident: String? = null,
-    var saksbehandlersNavn: String? = null
+    var saksbehandlersNavn: String? = null,
+    var enhetsnummer: String? = null
 )

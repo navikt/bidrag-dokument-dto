@@ -173,7 +173,7 @@ class JsonMappingTest {
           "fagomrade",
           "enhet",
           "journalstatus",
-          new Sporingsdata("xyz", "jb", "Jon Blund")
+          new Sporingsdata("xyz", "jb", "Jon Blund", "1001")
       );
 
       var json = objectMapper.writeValueAsString(journalpostHendelse);
