@@ -20,7 +20,22 @@ data class JournalpostDto(
     @Schema(description = "Inngående (I), utgående (U) journalpost; (X) internt notat") var dokumentType: String? = null,
     @Schema(description = "Journalpostens status, (A, D, J, M, O, R, S, T, U)") var journalstatus: String? = null,
     @Schema(description = "Om journalposten er feilført på bidragssak") var feilfort: Boolean? = null,
-    @Schema(description = "Brevkoden til en journalpost") var brevkode: KodeDto? = null
+    @Schema(description = "Brevkoden til en journalpost") var brevkode: KodeDto? = null,
+    @Schema(description = "Informasjon om returdetaljer til journalpost") var returDetaljer: ReturDetaljer? = null
+)
+
+@Schema(description = "Metadata for retur detaljer")
+data class ReturDetaljer(
+    @Schema(description = "Dato for siste retur") var dato: LocalDate? = null,
+    @Schema(description = "Totalt antall returer") var antall: Int? = null,
+    @Schema(description = "Log av alle registrerte returer") var log: List<ReturDetaljerLog>? = emptyList(),
+
+    )
+
+@Schema(description = "Metadata for retur detaljer log")
+data class ReturDetaljerLog(
+    @Schema(description = "Dato for retur") var dato: LocalDate? = null,
+    @Schema(description = "Beskrivelse av retur (eks. addresse forsøkt sendt)") var beskrivelse: String? = null,
 )
 
 @Schema(description = "Metadata om en aktør")
@@ -83,7 +98,7 @@ data class EndreJournalpostCommand(
     @Schema(description = "Endre fagområde") var fagomrade: String? = null,
     @Schema(description = "Type ident for gjelder: FNR, ORGNR, AKTOERID") var gjelderType: String? = null,
     @Schema(description = "Tittel på journalposten") var tittel: String? = null,
-    @Schema(description = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false
+    @Schema(description = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false,
 ) {
     @Suppress("unused")
     fun manglerGjelder() = gjelder == null
@@ -102,6 +117,7 @@ data class KodeDto(
     @Schema(description = "Dekode (kodebeskrivelse)") var dekode: String? = null,
     @Schema(description = "Om kodeobjektet inneholder en gyldig verdi") var erGyldig: Boolean = true
 )
+
 
 @Schema(description = "Metadata til en respons etter journalpost med tilhørende data")
 data class JournalpostResponse(
