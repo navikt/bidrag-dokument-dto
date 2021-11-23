@@ -28,7 +28,7 @@ data class JournalpostDto(
 data class ReturDetaljer(
     @Schema(description = "Dato for siste retur") var dato: LocalDate? = null,
     @Schema(description = "Totalt antall returer") var antall: Int? = null,
-    @Schema(description = "Log av alle registrerte returer") var log: List<ReturDetaljerLog>? = emptyList(),
+    @Schema(description = "Liste med logg av alle registrerte returer") var logg: List<ReturDetaljerLog>? = emptyList(),
 
     )
 
