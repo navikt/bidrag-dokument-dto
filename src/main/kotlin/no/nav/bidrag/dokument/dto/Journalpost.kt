@@ -98,7 +98,7 @@ data class EndreJournalpostCommand(
     @Schema(description = "Endre fagområde") var fagomrade: String? = null,
     @Schema(description = "Type ident for gjelder: FNR, ORGNR, AKTOERID") var gjelderType: String? = null,
     @Schema(description = "Tittel på journalposten") var tittel: String? = null,
-    @Schema(description = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false,
+    @Schema(description = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false
 ) {
     @Suppress("unused")
     fun manglerGjelder() = gjelder == null
@@ -117,7 +117,6 @@ data class KodeDto(
     @Schema(description = "Dekode (kodebeskrivelse)") var dekode: String? = null,
     @Schema(description = "Om kodeobjektet inneholder en gyldig verdi") var erGyldig: Boolean = true
 )
-
 
 @Schema(description = "Metadata til en respons etter journalpost med tilhørende data")
 data class JournalpostResponse(
