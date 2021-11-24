@@ -9,6 +9,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
 1.1.0   | Endret            | Ny `AvvikType`: REGISTRER_RETUR
+1.1.0   | Lagt til          | `EndreJournalpostCommand`: add endreReturDetaljer property
 1.1.0   | Lagt til          | `JournalpostDto`: add returDetaljer property
 1.0.1.1 | Endret            | `JournalpostHendelse`: secondary constructor 
 1.0.1   | Endret            | `JournalpostHendelse.sporing`: lagt til sporing av enhetsnummer
