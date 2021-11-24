@@ -98,11 +98,19 @@ data class EndreJournalpostCommand(
     @Schema(description = "Endre fagområde") var fagomrade: String? = null,
     @Schema(description = "Type ident for gjelder: FNR, ORGNR, AKTOERID") var gjelderType: String? = null,
     @Schema(description = "Tittel på journalposten") var tittel: String? = null,
-    @Schema(description = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false
+    @Schema(description = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false,
+    @Schema(description = "Liste med retur detaljer som skal endres") var endreReturDetaljer: List<EndreReturDetaljer>? = null
 ) {
     @Suppress("unused")
     fun manglerGjelder() = gjelder == null
 }
+
+@Schema(description = "Metadata for endring av et retur detalj")
+data class EndreReturDetaljer (
+    @Schema(description = "Dato på retur detaljer som skal endres") var originalDato: LocalDate,
+    @Schema(description = "Ny dato på retur detaljer") var nyDato: LocalDate? = null,
+    @Schema(description = "Beskrivelse av retur (eks. addresse forsøkt sendt)") var beskrivelse: String,
+)
 
 @Schema(description = "Metadata for endring av et dokument")
 data class EndreDokument(
