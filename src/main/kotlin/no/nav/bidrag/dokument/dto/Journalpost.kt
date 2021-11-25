@@ -20,7 +20,22 @@ data class JournalpostDto(
     @Schema(description = "Inngående (I), utgående (U) journalpost; (X) internt notat") var dokumentType: String? = null,
     @Schema(description = "Journalpostens status, (A, D, J, M, O, R, S, T, U)") var journalstatus: String? = null,
     @Schema(description = "Om journalposten er feilført på bidragssak") var feilfort: Boolean? = null,
-    @Schema(description = "Brevkoden til en journalpost") var brevkode: KodeDto? = null
+    @Schema(description = "Brevkoden til en journalpost") var brevkode: KodeDto? = null,
+    @Schema(description = "Informasjon om returdetaljer til journalpost") var returDetaljer: ReturDetaljer? = null
+)
+
+@Schema(description = "Metadata for retur detaljer")
+data class ReturDetaljer(
+    @Schema(description = "Dato for siste retur") var dato: LocalDate? = null,
+    @Schema(description = "Totalt antall returer") var antall: Int? = null,
+    @Schema(description = "Liste med logg av alle registrerte returer") var logg: List<ReturDetaljerLog>? = emptyList(),
+
+    )
+
+@Schema(description = "Metadata for retur detaljer log")
+data class ReturDetaljerLog(
+    @Schema(description = "Dato for retur") var dato: LocalDate? = null,
+    @Schema(description = "Beskrivelse av retur (eks. addresse forsøkt sendt)") var beskrivelse: String? = null,
 )
 
 @Schema(description = "Metadata om en aktør")
@@ -83,11 +98,19 @@ data class EndreJournalpostCommand(
     @Schema(description = "Endre fagområde") var fagomrade: String? = null,
     @Schema(description = "Type ident for gjelder: FNR, ORGNR, AKTOERID") var gjelderType: String? = null,
     @Schema(description = "Tittel på journalposten") var tittel: String? = null,
-    @Schema(description = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false
+    @Schema(description = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false,
+    @Schema(description = "Liste med retur detaljer som skal endres") var endreReturDetaljer: List<EndreReturDetaljer>? = null
 ) {
     @Suppress("unused")
     fun manglerGjelder() = gjelder == null
 }
+
+@Schema(description = "Metadata for endring av et retur detalj")
+data class EndreReturDetaljer (
+    @Schema(description = "Dato på retur detaljer som skal endres") var originalDato: LocalDate,
+    @Schema(description = "Ny dato på retur detaljer") var nyDato: LocalDate? = null,
+    @Schema(description = "Beskrivelse av retur (eks. addresse forsøkt sendt)") var beskrivelse: String,
+)
 
 @Schema(description = "Metadata for endring av et dokument")
 data class EndreDokument(
