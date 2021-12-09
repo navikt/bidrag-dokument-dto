@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+1.2.0   | Lagt til          | `JournalpostDto`: add joarkJournalpostId property
 1.1.0   | Endret            | Ny `AvvikType`: REGISTRER_RETUR
 1.1.0   | Lagt til          | `EndreJournalpostCommand`: add endreReturDetaljer property
 1.1.0   | Lagt til          | `JournalpostDto`: add returDetaljer property

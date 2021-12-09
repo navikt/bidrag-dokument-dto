@@ -21,8 +21,9 @@ data class JournalpostDto(
     @Schema(description = "Journalpostens status, (A, D, J, M, O, R, S, T, U)") var journalstatus: String? = null,
     @Schema(description = "Om journalposten er feilført på bidragssak") var feilfort: Boolean? = null,
     @Schema(description = "Brevkoden til en journalpost") var brevkode: KodeDto? = null,
-    @Schema(description = "Informasjon om returdetaljer til journalpost") var returDetaljer: ReturDetaljer? = null
-)
+    @Schema(description = "Informasjon om returdetaljer til journalpost") var returDetaljer: ReturDetaljer? = null,
+    @Schema(description = "Joark journalpostid for bidrag journalpost som er arkivert i Joark") var joarkJournalpostId: String? = null
+    )
 
 @Schema(description = "Metadata for retur detaljer")
 data class ReturDetaljer(
@@ -100,7 +101,7 @@ data class EndreJournalpostCommand(
     @Schema(description = "Tittel på journalposten") var tittel: String? = null,
     @Schema(description = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false,
     @Schema(description = "Liste med retur detaljer som skal endres") var endreReturDetaljer: List<EndreReturDetaljer>? = null
-) {
+    ) {
     @Suppress("unused")
     fun manglerGjelder() = gjelder == null
 }
