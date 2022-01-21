@@ -8,6 +8,10 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+1.4.0   | Lagt til          | `Kanal`: add `SENTRAL_UTSKRIFT`, `SDP` and `LOKAL_UTSKRIFT`
+1.4.0   | Lagt til          | `JournalpostDto`: add kanal property
+1.4.0   | Lagt til          | `DistribuerJournalpostRequest` og `DistribuerJournalpostResponse`
+1.4.0   | Slettet           | `AvvikType`: OPPDATER_DISTRIBUSJONSINFO
 1.3.0   | Lagt til          | Ny `AvvikType`: OPPDATER_DISTRIBUSJONSINFO
 1.3.0   | Slettet           | `JournalpostDto`: remove joarkJournalpostId property
 1.2.0   | Lagt til          | `JournalpostDto`: add joarkJournalpostId property
