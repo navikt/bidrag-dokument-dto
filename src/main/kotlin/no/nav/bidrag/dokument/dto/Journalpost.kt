@@ -15,7 +15,8 @@ data class JournalpostDto(
     @Schema(description = "Saksbehandler som var journalfører") var journalfortAv: String? = null,
     @Schema(description = "Dato dokument ble journalført") var journalfortDato: LocalDate? = null,
     @Schema(description = "Identifikator av journalpost i midlertidig brevlager eller fra joark på formatet [BID|JOARK]-<journalpostId>") var journalpostId: String? = null,
-    @Schema(description = "Kanalen som er kilden til at journalposten ble registrert") var kilde: Kanal? = null,
+    @Schema(description = "Kanalen som er kilden til at journalposten ble registrert", deprecated = true) var kilde: Kanal? = null,
+    @Schema(description = "Kanalen journalposten ble mottatt i eller sendt ut på") var kanal: Kanal? = null,
     @Schema(description = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
     @Schema(description = "Inngående (I), utgående (U) journalpost; (X) internt notat") var dokumentType: String? = null,
     @Schema(description = "Journalpostens status, (A, D, J, M, O, R, S, T, U)") var journalstatus: String? = null,
@@ -69,7 +70,7 @@ data class DokumentDto(
     @Schema(description = "Kort oppsummert av journalført innhold") var tittel: String? = null
 )
 
-@Schema(description = "Journalpostens ble mottatt i kanal")
+@Schema(description = "Journalposten ble mottatt/sendt ut i kanal")
 enum class Kanal {
     @Schema(description = "Ditt NAV (Innsending bidrag)")
     NAV_NO_BID,
@@ -80,8 +81,17 @@ enum class Kanal {
     @Schema(description = "Ditt NAV")
     NAV_NO,
 
-    @Schema(description = "Skanning Nwra")
+    @Schema(description = "Skanning Nets")
     SKAN_NETS,
+
+    @Schema(description = "Lokal utskrift. Gjelder utgående journalposter som er printet og sendt ut manuelt")
+    LOKAL_UTSKRIFT,
+
+    @Schema(description = "Sentral utskrift. Brukes kun for utgående journalposter")
+    SENTRAL_UTSKRIFT,
+
+    @Schema(description = "Digital postkasse til innbyggere. Brevet er sendt via digital post til innbyggere. Brukes for utgående journalposter")
+    SDP,
 }
 
 @Schema(description = "Metadata for endring av en journalpost")
