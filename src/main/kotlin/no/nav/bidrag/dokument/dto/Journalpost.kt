@@ -19,10 +19,11 @@ data class JournalpostDto(
     @Schema(description = "Kanalen journalposten ble mottatt i eller sendt ut på") var kanal: Kanal? = null,
     @Schema(description = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
     @Schema(description = "Inngående (I), utgående (U) journalpost; (X) internt notat") var dokumentType: String? = null,
-    @Schema(description = "Journalpostens status, (A, D, J, M, O, R, S, T, U)") var journalstatus: String? = null,
+    @Schema(description = "Journalpostens status, (A, D, J, M, O, R, S, T, U, KP, EJ, E)") var journalstatus: String? = null,
     @Schema(description = "Om journalposten er feilført på bidragssak") var feilfort: Boolean? = null,
     @Schema(description = "Brevkoden til en journalpost") var brevkode: KodeDto? = null,
-    @Schema(description = "Informasjon om returdetaljer til journalpost") var returDetaljer: ReturDetaljer? = null
+    @Schema(description = "Informasjon om returdetaljer til journalpost") var returDetaljer: ReturDetaljer? = null,
+    @Schema(description = "Joark journalpostid for bidrag journalpost som er arkivert i Joark") var joarkJournalpostId: String? = null
     )
 
 @Schema(description = "Metadata for retur detaljer")
