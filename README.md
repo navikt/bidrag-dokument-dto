@@ -8,6 +8,8 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 versjon | endringstype      | beskrivelse
 --------|-------------------|------------------------
+1.4.2   | Endret            | `DistribuerTilAdresse`: remove adressetype property
+1.4.2   | Lagt til          | `JournalpostDto`: add distribuertTilAdresse property
 1.4.1   | Lagt til          | `JournalpostDto`: add joarkJournalpostId property
 1.4.0   | Lagt til          | `Kanal`: add `SENTRAL_UTSKRIFT`, `SDP` and `LOKAL_UTSKRIFT`
 1.4.0   | Lagt til          | `JournalpostDto`: add kanal property
