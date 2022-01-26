@@ -23,8 +23,10 @@ data class JournalpostDto(
     @Schema(description = "Om journalposten er feilført på bidragssak") var feilfort: Boolean? = null,
     @Schema(description = "Brevkoden til en journalpost") var brevkode: KodeDto? = null,
     @Schema(description = "Informasjon om returdetaljer til journalpost") var returDetaljer: ReturDetaljer? = null,
-    @Schema(description = "Joark journalpostid for bidrag journalpost som er arkivert i Joark") var joarkJournalpostId: String? = null
+    @Schema(description = "Joark journalpostid for bidrag journalpost som er arkivert i Joark") var joarkJournalpostId: String? = null,
+    @Schema(description = "Adresse som utgående journalpost var distribuert til ved sentral print") var distribuertTilAdresse: DistribuerTilAdresse? = null
     )
+
 
 @Schema(description = "Metadata for retur detaljer")
 data class ReturDetaljer(
