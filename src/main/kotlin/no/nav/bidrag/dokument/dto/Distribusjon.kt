@@ -19,7 +19,7 @@ data class DistribuerTilAdresse(
     var adresselinje2: String? = null,
     var adresselinje3: String? = null,
     @Schema(description = "ISO 3166-1 alpha-2 to-bokstavers landkode")
-    var land: String,
+    var land: String? = null,
     var postnummer: String? = null,
     var poststed: String? = null,
 )
