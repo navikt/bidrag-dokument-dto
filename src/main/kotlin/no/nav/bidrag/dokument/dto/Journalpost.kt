@@ -8,6 +8,7 @@ data class JournalpostDto(
     @Schema(description = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
     @Schema(description = "Dokumentene som følger journalposten") var dokumenter: List<DokumentDto> = emptyList(),
     @Schema(description = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
+    @Schema(description = "Dato dokumentene på journalposten ble sendt til bruker.") var ekspedertDato: LocalDate? = null,
     @Schema(description = "Fagområdet for journalposten. BID for bidrag og FAR for farskap") var fagomrade: String? = null,
     @Schema(description = "Aktøren for hvem/hva dokumente(t/ne) gjelder") var gjelderAktor: AktorDto? = null,
     @Schema(description = "Kort oppsummert av journalført innhold") var innhold: String? = null,
