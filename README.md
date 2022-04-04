@@ -8,7 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.4.5    | Lagt til          | Ny `AvvikType`: KOPIER_TIL_ANNEN_FAGOMRADE                                                                                                                            |
+| 1.4.5    | Lagt til          | Ny `AvvikType`: SEND_TIL_FAGOMRADE                                                                                                                                    |
 | 1.4.4    | Lagt til          | `JournalpostDto`: add ekspedertDato property                                                                                                                          |
 | 1.4.3    | Endret            | `DistribuerTilAdresse`: land property to optional                                                                                                                     |
 | 1.4.2    | Endret            | `DistribuerTilAdresse`: remove adressetype property                                                                                                                   |
