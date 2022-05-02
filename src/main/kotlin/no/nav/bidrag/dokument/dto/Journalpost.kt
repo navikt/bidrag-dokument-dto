@@ -5,7 +5,8 @@ import java.time.LocalDate
 
 @Schema(description = "Metadata til en journalpost")
 data class JournalpostDto(
-    @Schema(description = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
+    @Schema(description = "Avsenders navn (med eventuelt fornavn bak komma)", deprecated = true) var avsenderNavn: String? = null,
+    @Schema(description = "Informasjon om avsender eller mottaker") var avsenderMottaker: AvsenderMottakerDto? = null,
     @Schema(description = "Dokumentene som følger journalposten") var dokumenter: List<DokumentDto> = emptyList(),
     @Schema(description = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
     @Schema(description = "Dato dokumentene på journalposten ble sendt til bruker.") var ekspedertDato: LocalDate? = null,
@@ -28,6 +29,19 @@ data class JournalpostDto(
     @Schema(description = "Adresse som utgående journalpost var distribuert til ved sentral print") var distribuertTilAdresse: DistribuerTilAdresse? = null
     )
 
+
+@Schema(description = "Avsender eller Mottaker")
+data class AvsenderMottakerDto(
+    @Schema(description = "Avsenders/Mottakers navn (med eventuelt fornavn bak komma)") var navn: String? = null,
+    @Schema(description = "Ident eller organisasjonsnummer") var ident: String? = null,
+    @Schema(description = "Identtype") var type: AvsenderMottakerDtoIdType = AvsenderMottakerDtoIdType.UKJENT,
+)
+
+enum class AvsenderMottakerDtoIdType {
+    FNR,
+    ORGNR,
+    UKJENT
+}
 
 @Schema(description = "Metadata for retur detaljer")
 data class ReturDetaljer(
@@ -101,7 +115,9 @@ enum class Kanal {
 @Schema(description = "Metadata for endring av en journalpost")
 data class EndreJournalpostCommand(
     @Schema(description = "Identifikator av journalpost") var journalpostId: String? = null,
-    @Schema(description = "Avsenders navn (med eventuelt fornavn bak komma)") var avsenderNavn: String? = null,
+    @Schema(description = "Avsenders navn (med eventuelt fornavn bak komma)", deprecated = true) var avsenderNavn: String? = null,
+    @Schema(description = "Avsender/Mottakers navn (med eventuelt fornavn bak komma)") var avsenderMottakerNavn: String? = null,
+    @Schema(description = "Avsender/Mottakers id") var avsenderMottakerId: String? = null,
     @Schema(description = "Kort oppsummert av journalført innhold") var beskrivelse: String? = null,
     @Schema(description = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
     @Schema(description = "Fnr/dnr/bostnr eller orgnr for hvem/hva dokumentet gjelder") var gjelder: String? = null,
