@@ -137,7 +137,7 @@ data class EndreJournalpostCommand(
 
 @Schema(description = "Metadata for endring av et retur detalj")
 data class EndreReturDetaljer (
-    @Schema(description = "Dato på retur detaljer som skal endres") var originalDato: LocalDate,
+    @Schema(description = "Dato på retur detaljer som skal endres") var originalDato: LocalDate? = null,
     @Schema(description = "Ny dato på retur detaljer") var nyDato: LocalDate? = null,
     @Schema(description = "Beskrivelse av retur (eks. addresse forsøkt sendt)") var beskrivelse: String,
 )
