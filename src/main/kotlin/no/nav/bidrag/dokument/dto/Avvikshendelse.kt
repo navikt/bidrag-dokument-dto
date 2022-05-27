@@ -10,19 +10,21 @@ data class Avvikshendelse(
     @Schema(description = "Type avvik") var avvikType: String,
     @Schema(description = "Manuell beskrivelse av avvik") var beskrivelse: String? = null,
     @Schema(description = "Eventuelle detaljer som skal følge avviket") var detaljer: Map<String, String> = HashMap(),
-    @Schema(description = "Saksnummer til sak når journalpost er journalført") var saksnummer: String?
+    @Schema(description = "Saksnummer til sak når journalpost er journalført") var saksnummer: String?,
+    @Schema(description = "Addresse som skal brukes ved bestilling av ny distribusjon av utgående journalpost. Benyttes ved avvik BESTILL_NY_DISTRIBUSJON") var adresse: DistribuerTilAdresse?
 ) {
     constructor()
-            : this(avvikType = "avvik ikke angitt", beskrivelse = null, saksnummer = null)
+            : this(avvikType = "avvik ikke angitt", beskrivelse = null, saksnummer = null, adresse = null)
 
     constructor(avvikType: String, enhetsnummer: String)
-            : this(avvikType, detaljer = mapOf(Pair("enhetsnummer", enhetsnummer)), beskrivelse = null, saksnummer = null)
-
+            : this(avvikType, detaljer = mapOf(Pair("enhetsnummer", enhetsnummer)), beskrivelse = null, saksnummer = null, adresse = null)
+    constructor(avvikType: String, beskrivelse: String?, detaljer: Map<String, String>, saksnummer: String?)
+            : this(avvikType, beskrivelse, detaljer, saksnummer, null)
     constructor(avvikType: String, detaljer: Map<String, String>, saksnummer: String?)
-            : this(avvikType, null, detaljer, saksnummer)
+            : this(avvikType, null, detaljer, saksnummer, null)
 
     constructor(avvikType: String, enhetsnummer: String, saksnummer: String?)
-            : this(avvikType, detaljer = mapOf(Pair("enhetsnummer", enhetsnummer)), beskrivelse = null, saksnummer = saksnummer)
+            : this(avvikType, detaljer = mapOf(Pair("enhetsnummer", enhetsnummer)), beskrivelse = null, saksnummer = saksnummer, adresse = null)
 
     fun hent(): Optional<AvvikType> {
         val funnetAvvikstype = AvvikType.values()
@@ -54,11 +56,15 @@ enum class AvvikType {
     BESTILL_RESKANNING,
     BESTILL_SPLITTING,
     ENDRE_FAGOMRADE,
-    SEND_TIL_FAGOMRADE,
+    SEND_TIL_FAGOMRADE, //DEPRECATED
+    SEND_KOPI_TIL_FAGOMRADE,
     FEILFORE_SAK,
     INNG_TIL_UTG_DOKUMENT,
     OVERFOR_TIL_ANNEN_ENHET,
     SLETT_JOURNALPOST,
     TREKK_JOURNALPOST,
-    REGISTRER_RETUR
+    REGISTRER_RETUR,
+    MANGLER_ADRESSE,
+    BESTILL_NY_DISTRIBUSJON
+
 }
