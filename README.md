@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.5.2    | Lagt til          | Ny kanal `INGEN_DISTRIBUSJON`                                                                                                                                         |
 | 1.5.1    | Lagt til          | Ny optional parameter `adresse` i Avvikshendelse                                                                                                                      |
 | 1.5.1    | Lagt til          | Ny `AvvikType`: BESTILL_NY_DISTRIBUSJON, MANGLER_ADRESSE, SEND_KOPI_TIL_FAGOMRADE                                                                                     |
 | 1.5.0    | Lagt til          | `JournalpostDto`: add avsenderMottaker property                                                                                                                       |

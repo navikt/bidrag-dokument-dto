@@ -110,6 +110,9 @@ enum class Kanal {
 
     @Schema(description = "Digital postkasse til innbyggere. Brevet er sendt via digital post til innbyggere. Brukes for utgående journalposter")
     SDP,
+
+    @Schema(description = "Ingen distribusjon av journalpost. Mottaker har ingen gyldig adresse å sende til.")
+    INGEN_DISTRIBUSJON,
 }
 
 @Schema(description = "Metadata for endring av en journalpost")
