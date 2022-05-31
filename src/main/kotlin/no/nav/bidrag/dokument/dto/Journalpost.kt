@@ -47,6 +47,7 @@ enum class AvsenderMottakerDtoIdType {
 data class ReturDetaljer(
     @Schema(description = "Dato for siste retur") var dato: LocalDate? = null,
     @Schema(description = "Totalt antall returer") var antall: Int? = null,
+    @Schema(description = "Returdetalje er låst for endring. Dette blir satt etter en ny distribusjon er bestilt") var locked: Boolean? = false,
     @Schema(description = "Liste med logg av alle registrerte returer") var logg: List<ReturDetaljerLog>? = emptyList(),
 
     )
