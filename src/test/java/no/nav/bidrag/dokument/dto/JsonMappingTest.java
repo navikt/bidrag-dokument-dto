@@ -170,6 +170,7 @@ class JsonMappingTest {
       var journalpostHendelse = new JournalpostHendelse(
           "journalpostId",
           "aktorId",
+          "fnr",
           "fagomrade",
           "enhet",
           "journalstatus",
