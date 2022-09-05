@@ -11,7 +11,8 @@ data class Avvikshendelse(
     @Schema(description = "Manuell beskrivelse av avvik") var beskrivelse: String? = null,
     @Schema(description = "Eventuelle detaljer som skal følge avviket") var detaljer: Map<String, String> = HashMap(),
     @Schema(description = "Saksnummer til sak når journalpost er journalført") var saksnummer: String?,
-    @Schema(description = "Addresse som skal brukes ved bestilling av ny distribusjon av utgående journalpost. Benyttes ved avvik BESTILL_NY_DISTRIBUSJON") var adresse: DistribuerTilAdresse?
+    @Schema(description = "Addresse som skal brukes ved bestilling av ny distribusjon av utgående journalpost. Benyttes ved avvik BESTILL_NY_DISTRIBUSJON") var adresse: DistribuerTilAdresse?,
+    @Schema(description = "Dokumenter som brukes ved kopiering ny journalpost. Benyttes ved avvik KOPIER_FRA_ANNEN_FAGOMRADE") var dokumenter: List<DokumentDto>? = emptyList()
 ) {
     constructor()
             : this(avvikType = "avvik ikke angitt", beskrivelse = null, saksnummer = null, adresse = null)
@@ -57,6 +58,7 @@ enum class AvvikType {
     BESTILL_SPLITTING,
     ENDRE_FAGOMRADE,
     SEND_TIL_FAGOMRADE, //DEPRECATED
+    KOPIER_FRA_ANNEN_FAGOMRADE,
     SEND_KOPI_TIL_FAGOMRADE,
     FEILFORE_SAK,
     INNG_TIL_UTG_DOKUMENT,
