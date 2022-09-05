@@ -58,7 +58,7 @@ data class ReturDetaljerLog(
 )
 
 @Schema(description = "Metadata om en aktør")
-data class AktorDto(
+data class  AktorDto(
     @Schema(description = "Identifaktor til aktøren") var ident: String = "",
     @Schema(description = "Hvilken identtype som skal brukes") var type: String? = null
 ) {
@@ -83,10 +83,12 @@ enum class IdentType {
 
 @Schema(description = "Metadata for et dokument")
 data class DokumentDto(
-    @Schema(description = "Referanse som brukes når dokument er i midlertidig-brevlager") var dokumentreferanse: String? = null,
+    @Schema(description = "Referansen som brukes når dokument er i midlertidig-brevlager") var dokumentreferanse: String? = null,
     @Schema(description = "Inngående (I), utgående (U) dokument, (X) internt notat") var dokumentType: String? = null,
-    @Schema(description = "Kort oppsummert av journalført innhold") var tittel: String? = null
-)
+    @Schema(description = "Kort oppsummert av journalført innhold") var tittel: String? = null,
+    @Schema(description = "Selve PDF dokumentet formatert som Base64") var dokument: String? = null,
+    @Schema(description = "Typen dokument. Brevkoden sier noe om dokumentets innhold og oppbygning.") var brevkode: String? = null,
+    )
 
 @Schema(description = "Journalposten ble mottatt/sendt ut i kanal")
 enum class Kanal {
@@ -163,4 +165,28 @@ data class KodeDto(
 data class JournalpostResponse(
     @Schema(description = "journalposten som er etterspurt") var journalpost: JournalpostDto? = null,
     @Schema(description = "alle saker som journalposten er tilknyttet") var sakstilknytninger: List<String> = emptyList()
+)
+
+
+@Schema(description = "Metadata for opprettelse av utgående journalpost")
+data class OpprettJournalpostRequest(
+    @Schema(description = "Tittel på journalposten") var tittel: String? = null,
+    @Schema(description = "Bruker som journalposten gjelder") var gjelder: AktorDto? = null,
+    @Schema(description = "Avsender journalposten ble sendt fra/Mottaker journalposten skal sendes til") var avsenderMottaker: AvsenderMottakerDto? = null,
+    @Schema(description = "Dokumenter som skal knyttes til journalpost. En journalpost må minst ha et dokument.") var dokumenter: List<OpprettDokumentDto> = emptyList(),
+    @Schema(description = "Saksnummer til bidragsaker som journalpost skal tilknyttes") var tilknyttSaker: List<String> = emptyList(),
+    @Schema(description = "Behandlingstema") var behandlingstema: String? = null,
+    @Schema(description = "Referanse for journalpost. Hvis journalpost med samme referanse finnes vil tjenesten gå videre uten å opprette journalpost. Kan brukes for å lage løsninger idempotent") var referanseId: String? = null,
+    @Schema(description = "NAV-enhten som oppretter journalposten") var journalfoerendeEnhet: String? = null,
+)
+
+@Schema(description = "Metadata til en respons etter journalpost ble opprettet")
+data class OpprettJournalpostResponse(
+    @Schema(description = "Journalpostid på journalpost som ble opprettet") var journalpostId: String? = null,
+)
+@Schema(description = "Metadata for dokument som skal opprettes med journalpost")
+data class OpprettDokumentDto(
+    @Schema(description = "Dokumentets tittel") var tittel: String,
+    @Schema(description = "Typen dokument. Brevkoden sier noe om dokumentets innhold og oppbygning.") var brevkode: String? = null,
+    @Schema(description = "Selve PDF dokumentet formatert som Base64") var dokument: String,
 )

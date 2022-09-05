@@ -8,6 +8,8 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.5.6    | Opprettet         | `OpprettJournalpostRequest` og `OpprettJournalpostResponse` objekter                                                                                                  |
+| 1.5.6    | Lagt til          | Ny `AvvikType`: KOPIER_FRA_ANNEN_FAGOMRADE                                                                                                                            |
 | 1.5.5    | Lagt til          | Add `fnr` to `JournalpostHendelse`                                                                                                                                    |
 | 1.5.4    | Lagt til          | Remove parameter `locked` på `ReturDetaljer`                                                                                                                          |
 | 1.5.4    | Lagt til          | Ny parameter `locked` på `ReturDetaljerLog`                                                                                                                           |
