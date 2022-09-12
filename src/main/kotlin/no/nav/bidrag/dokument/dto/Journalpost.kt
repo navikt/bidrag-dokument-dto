@@ -89,6 +89,12 @@ data class DokumentDto(
     @Schema(description = "Selve PDF dokumentet formatert som Base64") var dokument: String? = null,
     @Schema(description = "Typen dokument. Brevkoden sier noe om dokumentets innhold og oppbygning.") var brevkode: String? = null,
     )
+{
+    override fun toString(): String {
+        return "(dokumentreferanse=${dokumentreferanse}, dokumentType=${dokumentType}, tittel=${tittel}, " +
+                "brevkode=${brevkode}, dokument=${dokument?.subSequence(0, 20)})"
+    }
+}
 
 @Schema(description = "Journalposten ble mottatt/sendt ut i kanal")
 enum class Kanal {
@@ -190,3 +196,21 @@ data class OpprettDokumentDto(
     @Schema(description = "Typen dokument. Brevkoden sier noe om dokumentets innhold og oppbygning.") var brevkode: String? = null,
     @Schema(description = "Selve PDF dokumentet formatert som Base64") var dokument: String,
 )
+
+object Journalstatus {
+    const val MOTTATT = "M"
+    const val JOURNALFORT = "J"
+    const val EKSPEDERT = "E"
+    const val AVBRUTT = "A"
+    const val KLAR_TIL_PRINT = "KP"
+    const val RETUR = "RE"
+    const val FERDIGSTILT = "FS"
+    const val FEILREGISTRERT = "F"
+    const val RESERVERT = "R"
+    const val UTGAR = "U"
+}
+
+object Fagomrade {
+    const val BIDRAG = "BID"
+    const val FARSKAP = "FAR"
+}
