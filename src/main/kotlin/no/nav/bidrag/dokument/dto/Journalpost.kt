@@ -92,7 +92,7 @@ data class DokumentDto(
 {
     override fun toString(): String {
         return "(dokumentreferanse=${dokumentreferanse}, dokumentType=${dokumentType}, tittel=${tittel}, " +
-                "brevkode=${brevkode}, dokument=${dokument?.subSequence(0, 20)})"
+                "brevkode=${brevkode}, dokument=${dokument?.subSequence(0, 20)}...)"
     }
 }
 

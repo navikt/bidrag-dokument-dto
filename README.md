@@ -8,7 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.5.8    | Endret            | `JournalpostHendelse` legg til `sakstilknytninger` og `tittel`                                                                                                        |
+| 1.5.7    | Endret            | `JournalpostHendelse` legg til `sakstilknytninger` og `tittel`                                                                                                        |
 | 1.5.7    | Fiks              | `DokumentDto` legg til toString metode                                                                                                                                |
 | 1.5.6    | Opprettet         | `OpprettJournalpostRequest` og `OpprettJournalpostResponse` objekter                                                                                                  |
 | 1.5.6    | Lagt til          | Ny `AvvikType`: KOPIER_FRA_ANNEN_FAGOMRADE                                                                                                                            |
