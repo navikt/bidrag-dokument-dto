@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
@@ -171,10 +172,13 @@ class JsonMappingTest {
           "journalpostId",
           "aktorId",
           "fnr",
-          "fagomrade",
-          "enhet",
+          "tittel",
+              "fagomrade",
+              "enhet",
           "journalstatus",
-          new Sporingsdata("xyz", "jb", "Jon Blund", "1001")
+          new Sporingsdata("xyz", "jb", "Jon Blund", "1001"),
+              new ArrayList<>(),
+              null, null
       );
 
       var json = objectMapper.writeValueAsString(journalpostHendelse);
