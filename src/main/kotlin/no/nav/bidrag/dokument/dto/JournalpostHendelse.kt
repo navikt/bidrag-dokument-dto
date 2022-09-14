@@ -19,15 +19,10 @@ data class JournalpostHendelse(
     fun harEnhet() = enhet != null
     fun harAktorId() = aktorId != null
     fun harJournalpostIdPrefix() = journalpostId.contains("-")
-    fun harJournalpostIdBIDPrefix() = harJournalpostIdPrefix() && journalpostId.startsWith("BID")
     fun erBidragJournalpost() = harJournalpostIdPrefix() && journalpostId.startsWith("BID")
     fun erJoarkJournalpost() = harJournalpostIdPrefix() && journalpostId.startsWith("JOARK")
-    fun hentEndretAvEnhetsnummer() = if (sporing?.enhetsnummer != null) sporing!!.enhetsnummer else enhet
-    fun hentSaksbehandlerInfo() = if (sporing != null) sporing!!.lagSaksbehandlerInfo(sporing?.enhetsnummer) else "ukjent saksbehandler"
-    val erMottattStatus get() = Journalstatus.MOTTATT == journalstatus
-    val erEksterntFagomrade get() = fagomrade != null && (fagomrade != Fagomrade.BIDRAG && fagomrade != Fagomrade.FARSKAP)
-    val journalpostIdUtenPrefix get() = if (harJournalpostIdPrefix()) journalpostId.split('-')[1] else journalpostId
-    val journalpostMedBareBIDprefix get() = if (harJournalpostIdBIDPrefix()) journalpostId else journalpostIdUtenPrefix
+    fun hentEndretAvEnhetsnummer() = sporing?.enhetsnummer ?: enhet
+    fun hentSaksbehandlerInfo() = sporing?.lagSaksbehandlerInfo() ?: "ukjent saksbehandler"
 
     constructor(
         journalpostId: String?,
@@ -55,6 +50,6 @@ data class Sporingsdata(
     var enhetsnummer: String? = null
 ){
 
-    internal fun lagSaksbehandlerInfo(enhetsnummer: String?) = if (brukerident == null) "ukjent saksbehandler" else hentBrukeridentMedSaksbehandler(enhetsnummer)
-    private fun hentBrukeridentMedSaksbehandler(enhetsnummer: String?) = if (saksbehandlersNavn == null) brukerident!! else "$saksbehandlersNavn ($brukerident, ${enhetsnummer?:""})"
+    fun lagSaksbehandlerInfo(saksbehandlerEnhet: String? = null) = if (brukerident == null) "ukjent saksbehandler" else hentBrukeridentMedSaksbehandler(saksbehandlerEnhet?:enhetsnummer)
+    private fun hentBrukeridentMedSaksbehandler(enhetsnummer: String?) = if (saksbehandlersNavn == null) brukerident?:"Ukjent" else "$saksbehandlersNavn ($brukerident, ${enhetsnummer?:""})"
 }
