@@ -46,10 +46,10 @@ data class JournalpostHendelse(
 data class Sporingsdata(
     var correlationId: String? = null,
     var brukerident: String? = null,
-    var saksbehandlersNavn: String? = null,
+    var saksbehandlersNavn: String? = "ukjent saksbehandler",
     var enhetsnummer: String? = null
 ){
 
-    fun lagSaksbehandlerInfo(saksbehandlerEnhet: String? = null) = if (brukerident == null) "ukjent saksbehandler" else hentBrukeridentMedSaksbehandler(saksbehandlerEnhet?:enhetsnummer)
-    private fun hentBrukeridentMedSaksbehandler(enhetsnummer: String?) = if (saksbehandlersNavn == null) brukerident?:"Ukjent" else "$saksbehandlersNavn ($brukerident, ${enhetsnummer?:""})"
+    fun lagSaksbehandlerInfo(saksbehandlerEnhet: String? = null) = if (brukerident == null && saksbehandlersNavn == null) "ukjent saksbehandler" else hentBrukeridentMedSaksbehandler(saksbehandlerEnhet?:enhetsnummer?:"")
+    private fun hentBrukeridentMedSaksbehandler(enhetsnummer: String) = "${saksbehandlersNavn?:"ukjent navn"} (${brukerident?:"ukjent"}, $enhetsnummer)"
 }
