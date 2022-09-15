@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.5.11   | Endret            | `JournalpostHendelse` add property `journalposttype`                                                                                                                  |
 | 1.5.10   | Endret            | `JournalpostHendelse` oppdatert hentSaksbehandlerInfo metode                                                                                                          |
 | 1.5.9    | Endret            | `JournalpostHendelse` oppdatert hentSaksbehandlerInfo metode                                                                                                          |
 | 1.5.8    | Endret            | `JournalpostHendelse` fjernet ubrukte metoder                                                                                                                         |

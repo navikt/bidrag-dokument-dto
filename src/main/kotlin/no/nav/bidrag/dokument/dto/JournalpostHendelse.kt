@@ -8,6 +8,7 @@ data class JournalpostHendelse(
     var fnr: String? = null,
     var tittel: String? = null,
     var fagomrade: String? = null,
+    var journalposttype: String? = null,
     var enhet: String? = null,
     var journalstatus: String? = null,
     var sporing: Sporingsdata? = null,
@@ -21,6 +22,8 @@ data class JournalpostHendelse(
     fun harJournalpostIdPrefix() = journalpostId.contains("-")
     fun erBidragJournalpost() = harJournalpostIdPrefix() && journalpostId.startsWith("BID")
     fun erJoarkJournalpost() = harJournalpostIdPrefix() && journalpostId.startsWith("JOARK")
+    fun erInngaaende() = journalposttype == "I"
+    fun erUtgaaende() = journalposttype == "U"
     fun hentEndretAvEnhetsnummer() = sporing?.enhetsnummer ?: enhet
     fun hentSaksbehandlerInfo() = sporing?.lagSaksbehandlerInfo() ?: "ukjent saksbehandler"
 

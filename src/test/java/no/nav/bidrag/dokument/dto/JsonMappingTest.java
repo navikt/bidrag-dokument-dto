@@ -174,6 +174,7 @@ class JsonMappingTest {
           "fnr",
           "tittel",
               "fagomrade",
+              "jptype",
               "enhet",
           "journalstatus",
           new Sporingsdata("xyz", "jb", "Jon Blund", "1001"),
