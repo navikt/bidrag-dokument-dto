@@ -51,5 +51,5 @@ data class Sporingsdata(
 ){
 
     fun lagSaksbehandlerInfo(saksbehandlerEnhet: String? = null) = if (brukerident == null && saksbehandlersNavn == null) "ukjent saksbehandler" else hentBrukeridentMedSaksbehandler(saksbehandlerEnhet?:enhetsnummer?:"")
-    private fun hentBrukeridentMedSaksbehandler(enhetsnummer: String) = "${saksbehandlersNavn?:"ukjent navn"} (${brukerident?:"ukjent"}, $enhetsnummer)"
+    private fun hentBrukeridentMedSaksbehandler(enhetsnummer: String) = "${saksbehandlersNavn?:"Ukjent"} (${brukerident?:"Ukjent"}, $enhetsnummer)"
 }
