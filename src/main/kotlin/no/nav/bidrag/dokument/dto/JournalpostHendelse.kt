@@ -2,6 +2,10 @@ package no.nav.bidrag.dokument.dto
 
 import java.time.LocalDate
 
+enum class HendelseType {
+    JOURNALFORING,
+    ENDRING
+}
 data class JournalpostHendelse(
     var journalpostId: String = "na",
     var aktorId: String? = null,
@@ -9,6 +13,7 @@ data class JournalpostHendelse(
     var tittel: String? = null,
     var fagomrade: String? = null,
     var journalposttype: String? = null,
+    var hendelseType: HendelseType? = null,
     var enhet: String? = null,
     var journalstatus: String? = null,
     var sporing: Sporingsdata? = null,
@@ -17,6 +22,7 @@ data class JournalpostHendelse(
     var journalfortDato: LocalDate? = null,
 ) {
 
+    fun erHendelseTypeJournalforing() = hendelseType == HendelseType.JOURNALFORING
     fun harEnhet() = enhet != null
     fun harAktorId() = aktorId != null
     fun harJournalpostIdPrefix() = journalpostId.contains("-")
