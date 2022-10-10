@@ -182,21 +182,29 @@ data class OpprettJournalpostRequest(
     @Schema(description = "Dokumenter som skal knyttes til journalpost. En journalpost må minst ha et dokument.") var dokumenter: List<OpprettDokumentDto> = emptyList(),
     @Schema(description = "Saksnummer til bidragsaker som journalpost skal tilknyttes") var tilknyttSaker: List<String> = emptyList(),
     @Schema(description = "Behandlingstema") var behandlingstema: String? = null,
+    @Schema(description = "Tema") var tema: String? = null,
+    @Schema(description = "Journalposttype, dette kan enten være Utgående eller Notat") var journalposttype: JournalpostType? = null,
     @Schema(description = "Referanse for journalpost. Hvis journalpost med samme referanse finnes vil tjenesten gå videre uten å opprette journalpost. Kan brukes for å lage løsninger idempotent") var referanseId: String? = null,
-    @Schema(description = "NAV-enhten som oppretter journalposten") var journalfoerendeEnhet: String? = null,
+    @Schema(description = "NAV-enheten som oppretter journalposten") var journalfoerendeEnhet: String? = null,
 )
 
 @Schema(description = "Metadata til en respons etter journalpost ble opprettet")
 data class OpprettJournalpostResponse(
     @Schema(description = "Journalpostid på journalpost som ble opprettet") var journalpostId: String? = null,
+    @Schema(description = "Liste med dokumenter som er knyttet til journalposten") var dokumenter: List<OpprettDokumentDto> = emptyList(),
 )
-@Schema(description = "Metadata for dokument som skal opprettes med journalpost")
+@Schema(description = "Metadata for dokument som skal knyttes til journalpost")
 data class OpprettDokumentDto(
     @Schema(description = "Dokumentets tittel") var tittel: String,
     @Schema(description = "Typen dokument. Brevkoden sier noe om dokumentets innhold og oppbygning.") var brevkode: String? = null,
-    @Schema(description = "Selve PDF dokumentet formatert som Base64") var dokument: String,
+    @Schema(description = "Referansen til dokumentet hvis det er lagret et annet arkivsystem") var dokumentreferanse: String? = null,
+    @Schema(description = "Selve PDF dokumentet formatert som Base64") var dokument: String? = null,
 )
 
+enum class JournalpostType {
+    UTGAAENDE,
+    NOTAT
+}
 object Journalstatus {
     const val MOTTATT = "M"
     const val JOURNALFORT = "J"
