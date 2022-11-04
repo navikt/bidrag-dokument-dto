@@ -186,6 +186,7 @@ data class OpprettJournalpostRequest(
     @Schema(description = "Journalposttype, dette kan enten være Utgående eller Notat") var journalposttype: JournalpostType? = null,
     @Schema(description = "Referanse for journalpost. Hvis journalpost med samme referanse finnes vil tjenesten gå videre uten å opprette journalpost. Kan brukes for å lage løsninger idempotent") var referanseId: String? = null,
     @Schema(description = "NAV-enheten som oppretter journalposten") var journalfoerendeEnhet: String? = null,
+    @Schema(description = "Ident til saksbehandler som oppretter journalpost. Dette vil prioriteres over ident som tilhører tokenet til kallet.") val saksbehandlerIdent: String? = null,
 )
 
 @Schema(description = "Metadata til en respons etter journalpost ble opprettet")
