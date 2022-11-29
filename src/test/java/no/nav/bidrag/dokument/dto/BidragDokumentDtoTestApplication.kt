@@ -1,13 +1,13 @@
-package no.nav.bidrag.dokument.dto;
+package no.nav.bidrag.dokument.dto
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-public class BidragDokumentDtoTestApplication {
+class BidragDokumentDtoTestApplication
 
-  public static void main(String[] args) {
-    SpringApplication.run(BidragDokumentDtoTestApplication.class, args);
-  }
-
+fun main(args: Array<String>) {
+    val app = SpringApplication(BidragDokumentDtoTestApplication::class.java)
+    app.setAdditionalProfiles(*args)
+    app.run(*args)
 }
