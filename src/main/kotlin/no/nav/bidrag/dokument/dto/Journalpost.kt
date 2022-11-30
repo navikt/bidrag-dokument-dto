@@ -243,13 +243,17 @@ object Fagomrade {
     const val FARSKAP = "FAR"
 }
 
-@Schema(description = "Mottak/Utsendingskanal som settes ved opprettelse av journalpost")
-
+@Schema(description = """
+    Mottak/Utsendingskanal som settes ved opprettelse av journalpost
+    
+    DIGITAL - Skal bare settes for inngående journalpost. Oversettes til NAV_NO. Dette er default for inngående
+    
+    SKANNING_BIDRAG - Skal settes hvis inngående journalpost er mottatt via Bidrag skanning
+    
+    LOKAL_UTSKRIFT - Skal settes hvis utgående journalpost er sendt via lokal utskrift. Kanal for utgående journalposter blir ellers satt av dokumentdistribusjons løsningen.
+""")
 enum class MottakUtsendingKanal {
-    @Schema(description = "Skal bare settes for inngående journalpost. Oversettes til NAV_NO. Dette er default for inngående")
     DIGITALT,
-    @Schema(description = "Skal settes hvis inngående journalpost er mottatt via Bidrag skanning")
     SKANNING_BIDRAG,
-    @Schema(description = "Skal settes hvis utgående journalpost er sendt via lokal utskrift. Kanal for utgående journalposter blir ellers satt av dokumentdistribusjons løsningen.")
     LOKAL_UTSKRIFT
 }
