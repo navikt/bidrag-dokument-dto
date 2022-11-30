@@ -8,7 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.5.16    | Endret            | `JournalpostHendelse` lagt til parameter `behandlingstema`                                                                                                            |
+| 1.5.16   | Endret            | `JournalpostHendelse` lagt til parameter `behandlingstema`                                                                                                            |
 | 1.5.15   | Endret            | `OpprettJournalpostRequest` refaktorer                                                                                                                                |
 | 1.5.14   | Endret            | `OpprettJournalpostRequest` lagt til `saksbehandlerIdent`                                                                                                             |
 | 1.5.13   | Endret            | `OpprettJournalpostRequest` og  `OpprettJournalpostResponse`                                                                                                          |
