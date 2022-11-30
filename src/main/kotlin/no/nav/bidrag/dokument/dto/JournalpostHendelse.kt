@@ -10,6 +10,7 @@ data class JournalpostHendelse(
     var journalpostId: String = "na",
     var aktorId: String? = null,
     var fnr: String? = null,
+    var behandlingstema: String? = null,
     var tittel: String? = null,
     var fagomrade: String? = null,
     var journalposttype: String? = null,
