@@ -7,19 +7,20 @@ enum class HendelseType {
     ENDRING
 }
 data class JournalpostHendelse(
-    var journalpostId: String = "na",
-    var aktorId: String? = null,
-    var fnr: String? = null,
-    var tittel: String? = null,
-    var fagomrade: String? = null,
-    var journalposttype: String? = null,
-    var hendelseType: HendelseType? = null,
-    var enhet: String? = null,
-    var journalstatus: String? = null,
-    var sporing: Sporingsdata? = null,
-    var sakstilknytninger: List<String>? = emptyList(),
-    var dokumentDato: LocalDate? = null,
-    var journalfortDato: LocalDate? = null,
+    val journalpostId: String = "na",
+    val aktorId: String? = null,
+    val fnr: String? = null,
+    val behandlingstema: String? = null,
+    val tittel: String? = null,
+    val fagomrade: String? = null,
+    val journalposttype: String? = null,
+    val hendelseType: HendelseType? = null,
+    val enhet: String? = null,
+    val journalstatus: String? = null,
+    val sporing: Sporingsdata? = null,
+    val sakstilknytninger: List<String>? = emptyList(),
+    val dokumentDato: LocalDate? = null,
+    val journalfortDato: LocalDate? = null,
 ) {
 
     fun erHendelseTypeJournalforing() = hendelseType == HendelseType.JOURNALFORING
@@ -49,7 +50,7 @@ data class JournalpostHendelse(
     ) {
         sporing!!.enhetsnummer = saksbehandlersEnhet
     }
-    fun printSummary() = "{journalpostId=$journalpostId,fagomrade=$fagomrade,enhet=$enhet,saksbehandlerEnhet=${sporing?.enhetsnummer},journalstatus=$journalstatus,saker=${sakstilknytninger},dokumentDato=${dokumentDato},journalfortDato=${journalfortDato},tittel=${tittel}....}"
+    fun printSummary() = "{journalpostId=$journalpostId,fagomrade=$fagomrade,enhet=$enhet,saksbehandlerEnhet=${sporing?.enhetsnummer},journalstatus=$journalstatus,saker=${sakstilknytninger},dokumentDato=${dokumentDato},journalfortDato=${journalfortDato},tittel=${tittel},behandlingstema=$behandlingstema....}"
 }
 
 data class Sporingsdata(
