@@ -172,6 +172,7 @@ class JsonMappingTest {
           "journalpostId",
           "aktorId",
           "fnr",
+          "behandlingstema",
           "tittel",
               "fagomrade",
               "jptype",

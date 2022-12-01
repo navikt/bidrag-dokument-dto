@@ -182,7 +182,7 @@ data class JournalpostResponse(
 
 @Schema(description = "Metadata for opprettelse av journalpost")
 data class OpprettJournalpostRequest(
-    @Schema(description = "Om journalposten skal journalføres etter opprettelse. Journalføring betyr at journalpost låses for framtidige endringer") val skalJournalføres: Boolean = false,
+    @Schema(description = "Om journalposten skal journalføres etter opprettelse. Journalføring betyr at journalpost låses for framtidige endringer") val skalFerdigstilles: Boolean = false,
     @Schema(description = "Tittel på journalposten (Tittel settes til hoveddokumentes tittel for Joark journalposter)", deprecated = true) val tittel: String? = null,
     @Schema(description = "Bruker som journalposten gjelder") val gjelder: AktorDto? = null,
     @Schema(description = "Ident til brukeren som journalposten gjelder") val gjelderIdent: String? = null,
