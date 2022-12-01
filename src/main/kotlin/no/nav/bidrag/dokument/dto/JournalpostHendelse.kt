@@ -18,7 +18,7 @@ data class JournalpostHendelse(
     val enhet: String? = null,
     val journalstatus: String? = null,
     val sporing: Sporingsdata? = null,
-    var sakstilknytninger: List<String>? = emptyList(),
+    val sakstilknytninger: List<String>? = emptyList(),
     val dokumentDato: LocalDate? = null,
     val journalfortDato: LocalDate? = null,
 ) {
