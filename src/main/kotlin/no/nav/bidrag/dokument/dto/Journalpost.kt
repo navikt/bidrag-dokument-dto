@@ -181,6 +181,7 @@ data class JournalpostResponse(
 
 
 @Schema(description = "Metadata for opprettelse av journalpost")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class OpprettJournalpostRequest(
     @Schema(description = "Om journalposten skal journalføres etter opprettelse. Journalføring betyr at journalpost låses for framtidige endringer") val skalFerdigstilles: Boolean = false,
     @Schema(description = "Tittel på journalposten (Tittel settes til hoveddokumentes tittel for Joark journalposter)", deprecated = true) val tittel: String? = null,
@@ -194,8 +195,8 @@ data class OpprettJournalpostRequest(
     val dokumenter: List<OpprettDokumentDto> = emptyList(),
     @Schema(description = "Saksnummer til bidragsaker som journalpost skal tilknyttes") val tilknyttSaker: List<String> = emptyList(),
     @Schema(description = "Behandlingstema") val behandlingstema: String? = null,
-    @Schema(description = "Dato journalposten mottatt. Kan settes for inngående journalposter. Settes til i dag som default hvis ikke satt") val datoMottatt: LocalDateTime? = LocalDateTime.now(),
-    @Schema(description = "Type kanal som benyttes ved mottak/utsending av journalpost", defaultValue = "DIGITALT") val kanal: MottakUtsendingKanal? = MottakUtsendingKanal.DIGITALT,
+    @Schema(description = "Dato journalposten mottatt. Kan settes for inngående journalposter. Settes til i dag som default hvis ikke satt") val datoMottatt: LocalDateTime? = null,
+    @Schema(description = "Type kanal som benyttes ved mottak/utsending av journalpost", defaultValue = "DIGITALT") val kanal: MottakUtsendingKanal? = null,
     @Schema(description = "Tema (Gyldige verdier er FAR og BID). Hvis det ikke settes opprettes journalpost med tema BID", defaultValue = "BID") val tema: String? = null,
     @Schema(description = "Journalposttype, dette kan enten være Inngående, Utgående eller Notat", required = true) val journalposttype: JournalpostType? = null,
     @Schema(description = "Referanse for journalpost. Hvis journalpost med samme referanse finnes vil tjenesten gå videre uten å opprette journalpost. Kan brukes for å lage løsninger idempotent") val referanseId: String? = null,
