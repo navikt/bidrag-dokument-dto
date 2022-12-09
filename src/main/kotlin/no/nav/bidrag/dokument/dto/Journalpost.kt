@@ -219,7 +219,12 @@ data class OpprettDokumentDto(
     @Schema(description = "Referansen til dokumentet hvis det er lagret i et annet arkivsystem") val dokumentreferanse: String? = null,
     @Schema(description = "Selve PDF dokumentet formatert som Base64", deprecated = true) val dokument: String? = null,
     @Schema(description = "Selve PDF dokumentet formatert som Base64") val fysiskDokument: ByteArray? = null,
-)
+) {
+    override fun toString(): String {
+        return "(tittel=${tittel}, brevkode=${brevkode}, dokumentreferanse=${dokumentreferanse}, " +
+                "fysiskDokument(lengde)=${fysiskDokument?.size ?: 0}, dokument=${dokument?.subSequence(0, 20)}"
+    }
+}
 enum class JournalpostType {
     INNGÅENDE,
     @Schema(description = "Bruk UTGÅENDE istedenfor", deprecated = true) UTGAAENDE,
