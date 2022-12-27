@@ -110,11 +110,13 @@ data class DokumentDto(
     @Schema(description = "Typen dokument. Brevkoden sier noe om dokumentets innhold og oppbygning. Erstattes av dokumentmalId", deprecated = true) var brevkode: String? = null,
     @Schema(description = "Typen dokument. Dokumentmal sier noe om dokumentets innhold og oppbygning.") var dokumentmalId: String? = null,
     @Schema(description = "Dokumentets status. Benyttes hvis journalposten er av typen forsendelse") val status: DokumentStatusDto? = null,
+    @Schema(description = "Arkivsystem hvor dokumentet er produsert og lagret") val arkivSystem: DokumentArkivSystemDto? = null,
+    @Schema(description = "Metadata om dokumentet") val metadata: Map<String, String> = emptyMap(),
     )
 {
     override fun toString(): String {
-        return "(dokumentreferanse=${dokumentreferanse},journalpostId=$journalpostId, dokumentType=${dokumentType}, tittel=${tittel}, status=$status, " +
-                "brevkode=${brevkode}, dokument=${dokument?.subSequence(0, 20)}...)"
+        return "(dokumentreferanse=${dokumentreferanse},journalpostId=$journalpostId, dokumentType=${dokumentType}, tittel=${tittel}, status=$status, arkivSystem=$arkivSystem " +
+                "brevkode=${brevkode}, metadata=$metadata, dokument=${dokument?.subSequence(0, 20)}...)"
     }
 }
 
@@ -126,6 +128,14 @@ enum class DokumentStatusDto {
     UNDER_REDIGERING,
     FERDIGSTILT
 }
+
+enum class DokumentArkivSystemDto {
+    JOARK,
+    MIDL_BREVLAGER,
+    UKJENT,
+    BIDRAG
+}
+
 
 @Schema(description = "Journalposten ble mottatt/sendt ut i kanal")
 enum class Kanal {
