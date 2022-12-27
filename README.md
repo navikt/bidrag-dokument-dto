@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.2    | Endret            | Oppdater `JournalpostDto` med støtte for forsendelse parametere                                                                                                       |
 | 1.6.1    | Endret            | Oppdater `DokumentHendelse` data objekt                                                                                                                               |
 | 1.6.0    | Opprettet         | `DokumentHendelse` data objekt                                                                                                                                        |
 | 1.5.18   | Endret            | `OpprettDokumentDto` lagt til toString metode for å hindre logging av dokument                                                                                        |

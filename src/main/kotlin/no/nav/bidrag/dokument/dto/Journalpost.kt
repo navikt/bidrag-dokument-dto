@@ -13,6 +13,7 @@ data class JournalpostDto(
     @Schema(description = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
     @Schema(description = "Dato dokumentene på journalposten ble sendt til bruker.") var ekspedertDato: LocalDate? = null,
     @Schema(description = "Fagområdet for journalposten. BID for bidrag og FAR for farskap") var fagomrade: String? = null,
+    @Schema(description = "Ident for hvem/hva dokumente(t/ne) gjelder") var gjelderIdent: String? = null,
     @Schema(description = "Aktøren for hvem/hva dokumente(t/ne) gjelder") var gjelderAktor: AktorDto? = null,
     @Schema(description = "Kort oppsummert av journalført innhold") var innhold: String? = null,
     @Schema(description = "Enhetsnummer hvor journalføring ble gjort") var journalforendeEnhet: String? = null,
@@ -28,7 +29,8 @@ data class JournalpostDto(
     @Schema(description = "Brevkoden til en journalpost") var brevkode: KodeDto? = null,
     @Schema(description = "Informasjon om returdetaljer til journalpost") var returDetaljer: ReturDetaljer? = null,
     @Schema(description = "Joark journalpostid for bidrag journalpost som er arkivert i Joark") var joarkJournalpostId: String? = null,
-    @Schema(description = "Adresse som utgående journalpost var distribuert til ved sentral print") var distribuertTilAdresse: DistribuerTilAdresse? = null
+    @Schema(description = "Adresse som utgående journalpost var distribuert til ved sentral print") var distribuertTilAdresse: DistribuerTilAdresse? = null,
+    @Schema(description = "Informasjon om returdetaljer til journalpost") val sakstilknytninger: List<String> = emptyList(),
     )
 
 
@@ -39,6 +41,7 @@ data class AvsenderMottakerDto(
     @Schema(description = "Avsenders/Mottakers navn (med eventuelt fornavn bak komma). Skal ikke oppgis hvis ident er en FNR") var navn: String? = null,
     @Schema(description = "Ident eller organisasjonsnummer") var ident: String? = null,
     @Schema(description = "Identtype") var type: AvsenderMottakerDtoIdType = AvsenderMottakerDtoIdType.FNR,
+    @Schema(description = "Adresse til mottaker hvis dokumentet skal sendes/er sendt gjennom sentral print") val adresse: MottakerAdresseTo? = null
 )
 
 enum class AvsenderMottakerDtoIdType {
@@ -48,6 +51,16 @@ enum class AvsenderMottakerDtoIdType {
     UTL_ORG,
     UKJENT
 }
+
+data class MottakerAdresseTo(
+    val adresselinje1: String,
+    val adresselinje2: String? = null,
+    val adresselinje3: String? = null,
+    val bruksenhetsnummer: String? = null,
+    @Schema(description = "Lankode må være i format") val landkode: String? = null,
+    val postnummer: String? = null,
+    val poststed: String? = null,
+)
 
 @Schema(description = "Metadata for retur detaljer")
 data class ReturDetaljer(
@@ -89,15 +102,17 @@ enum class IdentType {
 
 @Schema(description = "Metadata for et dokument")
 data class DokumentDto(
-    @Schema(description = "Referansen som brukes når dokument er i midlertidig-brevlager") var dokumentreferanse: String? = null,
-    @Schema(description = "Inngående (I), utgående (U) dokument, (X) internt notat") var dokumentType: String? = null,
-    @Schema(description = "Kort oppsummert av journalført innhold") var tittel: String? = null,
+    @Schema(description = "Referansen til dokumentet i arkivsystemet") var dokumentreferanse: String? = null,
+    @Schema(description = "Journalpost hvor dokumentet er arkivert. Dette brukes hvis dokumentet er arkivert i annen arkivsystem enn det som er sendt med i forespørsel.") val journalpostId: String? = null,
+    @Schema(description = "Inngående (I), utgående (U) dokument, (X) internt notat", deprecated = true) var dokumentType: String? = null,
+    @Schema(description = "Kort oppsummering av dokumentets innhold") var tittel: String? = null,
     @Schema(description = "Selve PDF dokumentet formatert som Base64") var dokument: String? = null,
-    @Schema(description = "Typen dokument. Brevkoden sier noe om dokumentets innhold og oppbygning.") var brevkode: String? = null,
+    @Schema(description = "Typen dokument. Brevkoden sier noe om dokumentets innhold og oppbygning. Erstattes av dokumentmalId", deprecated = true) var brevkode: String? = null,
+    @Schema(description = "Typen dokument. Dokumentmal sier noe om dokumentets innhold og oppbygning.") var dokumentmalId: String? = null,
     )
 {
     override fun toString(): String {
-        return "(dokumentreferanse=${dokumentreferanse}, dokumentType=${dokumentType}, tittel=${tittel}, " +
+        return "(dokumentreferanse=${dokumentreferanse},journalpostId=$journalpostId, dokumentType=${dokumentType}, tittel=${tittel}, " +
                 "brevkode=${brevkode}, dokument=${dokument?.subSequence(0, 20)}...)"
     }
 }
