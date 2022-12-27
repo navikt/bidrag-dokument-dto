@@ -109,12 +109,22 @@ data class DokumentDto(
     @Schema(description = "Selve PDF dokumentet formatert som Base64") var dokument: String? = null,
     @Schema(description = "Typen dokument. Brevkoden sier noe om dokumentets innhold og oppbygning. Erstattes av dokumentmalId", deprecated = true) var brevkode: String? = null,
     @Schema(description = "Typen dokument. Dokumentmal sier noe om dokumentets innhold og oppbygning.") var dokumentmalId: String? = null,
+    @Schema(description = "Dokumentets status. Benyttes hvis journalposten er av typen forsendelse") val status: DokumentStatusDto? = null,
     )
 {
     override fun toString(): String {
-        return "(dokumentreferanse=${dokumentreferanse},journalpostId=$journalpostId, dokumentType=${dokumentType}, tittel=${tittel}, " +
+        return "(dokumentreferanse=${dokumentreferanse},journalpostId=$journalpostId, dokumentType=${dokumentType}, tittel=${tittel}, status=$status, " +
                 "brevkode=${brevkode}, dokument=${dokument?.subSequence(0, 20)}...)"
     }
+}
+
+enum class DokumentStatusDto {
+    IKKE_BESTILT,
+    BESTILT,
+    AVBRUTT,
+    UNDER_PRODUKSJON,
+    UNDER_REDIGERING,
+    FERDIGSTILT
 }
 
 @Schema(description = "Journalposten ble mottatt/sendt ut i kanal")
