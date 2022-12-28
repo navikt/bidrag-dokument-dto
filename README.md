@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.5    | Endret            | Oppdater `JournalpostDto` lagt til mottaker landkode3 og språk                                                                                                        |
 | 1.6.4    | Endret            | Oppdater `JournalpostDto.DokumentDto` lagt til parameter arkivsystem og metadata                                                                                      |
 | 1.6.3    | Endret            | Oppdater `JournalpostDto.DokumentDto` lagt til parameter status                                                                                                       |
 | 1.6.2    | Endret            | Oppdater `JournalpostDto` med støtte for forsendelse parametere                                                                                                       |

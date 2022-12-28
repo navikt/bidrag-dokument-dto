@@ -31,6 +31,7 @@ data class JournalpostDto(
     @Schema(description = "Joark journalpostid for bidrag journalpost som er arkivert i Joark") var joarkJournalpostId: String? = null,
     @Schema(description = "Adresse som utgående journalpost var distribuert til ved sentral print") var distribuertTilAdresse: DistribuerTilAdresse? = null,
     @Schema(description = "Informasjon om returdetaljer til journalpost") val sakstilknytninger: List<String> = emptyList(),
+    @Schema(description = "Språket til dokumentet i Journalposten") val språk: String? = null,
     )
 
 
@@ -57,7 +58,8 @@ data class MottakerAdresseTo(
     val adresselinje2: String? = null,
     val adresselinje3: String? = null,
     val bruksenhetsnummer: String? = null,
-    @Schema(description = "Lankode må være i format") val landkode: String? = null,
+    @Schema(description = "Lankode må være i ISO 3166-1 alpha-2 format") val landkode: String? = null,
+    @Schema(description = "Lankode må være i ISO 3166-1 alpha-3 format") val landkode3: String? = null,
     val postnummer: String? = null,
     val poststed: String? = null,
 )
