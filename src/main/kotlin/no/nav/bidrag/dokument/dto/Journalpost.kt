@@ -32,6 +32,7 @@ data class JournalpostDto(
     @Schema(description = "Adresse som utgående journalpost var distribuert til ved sentral print") var distribuertTilAdresse: DistribuerTilAdresse? = null,
     @Schema(description = "Informasjon om returdetaljer til journalpost") val sakstilknytninger: List<String> = emptyList(),
     @Schema(description = "Språket til dokumentet i Journalposten") val språk: String? = null,
+    @Schema(description = "Saksbehandler som opprettet journalposten") val opprettetAvIdent: String? = null,
     )
 
 
