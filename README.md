@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.10   | Endret            | `ÅpneDokumentMetadata` legg til arkivsystem                                                                                                                           |
 | 1.6.9    | Endret            | `ÅpneDokumentMetadata` legg til journalpostid og dokumentreferanse                                                                                                    |
 | 1.6.8    | Opprettet         | `ÅpneDokumentMetadata` for informasjon om hvordan dokument skal åpnes                                                                                                 |
 | 1.6.7    | Endret            | Oppdater `DokumentHendelse` og Dokument dto                                                                                                                           |
