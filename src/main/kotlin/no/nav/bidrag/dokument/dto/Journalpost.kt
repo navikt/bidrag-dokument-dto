@@ -123,23 +123,6 @@ data class DokumentDto(
     }
 }
 
-enum class DokumentStatusDto {
-    IKKE_BESTILT,
-    BESTILT,
-    AVBRUTT,
-    UNDER_PRODUKSJON,
-    UNDER_REDIGERING,
-    FERDIGSTILT
-}
-
-enum class DokumentArkivSystemDto {
-    JOARK,
-    MIDL_BREVLAGER,
-    UKJENT,
-    BIDRAG
-}
-
-
 @Schema(description = "Journalposten ble mottatt/sendt ut i kanal")
 enum class Kanal {
     @Schema(description = "Ditt NAV (Innsending bidrag)")
