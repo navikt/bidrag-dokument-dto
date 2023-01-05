@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.8    | Opprettet         | `ÅpneDokumentMetadata` for informasjon om hvordan dokument skal åpnes                                                                                                 |
 | 1.6.7    | Endret            | Oppdater `DokumentHendelse` og Dokument dto                                                                                                                           |
 | 1.6.6    | Endret            | Oppdater `JournalpostDto` lagt til opprettetAvIdent                                                                                                                   |
 | 1.6.5    | Endret            | Oppdater `JournalpostDto` lagt til mottaker landkode3 og språk                                                                                                        |
