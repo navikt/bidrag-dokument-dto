@@ -182,9 +182,10 @@ data class EndreReturDetaljer (
 
 @Schema(description = "Metadata for endring av et dokument")
 data class EndreDokument(
-    @Schema(description = "Brevkoden til dokumentet") var brevkode: String? = null,
-    @Schema(description = "Identifikator av dokument informasjon") var dokId: Long = -1,
-    @Schema(description = "Tittel på dokumentet") var tittel: String? = null
+    @Schema(description = "Brevkoden til dokumentet") val brevkode: String? = null,
+    @Schema(description = "Identifikator av dokument informasjon", deprecated = true) val dokId: String? = null,
+    @Schema(description = "Identifikator til dokumentet") val dokumentreferanse: String? = null,
+    @Schema(description = "Tittel på dokumentet") val tittel: String? = null
 )
 
 @Schema(description = "Metadata for kode vs dekode i et kodeobjekt")
