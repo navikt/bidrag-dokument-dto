@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.12   | Endret            | `DistribuerJournalpostRequest` lagt til parameter `lokalUtskrift`                                                                                                     |
 | 1.6.11   | Endret            | `EndreDokument` endret dokId typen fra Long til String                                                                                                                |
 | 1.6.10   | Endret            | `ÅpneDokumentMetadata` legg til arkivsystem                                                                                                                           |
 | 1.6.9    | Endret            | `ÅpneDokumentMetadata` legg til journalpostid og dokumentreferanse                                                                                                    |
