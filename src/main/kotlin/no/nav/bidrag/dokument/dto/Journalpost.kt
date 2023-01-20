@@ -2,6 +2,8 @@ package no.nav.bidrag.dokument.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import io.swagger.v3.oas.annotations.media.Schema
+import org.apache.commons.lang3.Range
+import org.apache.commons.lang3.StringUtils
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -253,6 +255,11 @@ enum class JournalpostType {
     UTGÅENDE,
     NOTAT
 }
+object DokumentType {
+    const val NOTAT = "X"
+    const val UTGÅENDE = "U"
+    const val INNGÅENDE = "I"
+}
 object Journalstatus {
     const val MOTTATT = "M"
     const val JOURNALFORT = "J"
@@ -264,6 +271,7 @@ object Journalstatus {
     const val FEILREGISTRERT = "F"
     const val RESERVERT = "R"
     const val UTGAR = "U"
+    const val UNDER_PRODUKSJON = "D"
 }
 
 object Fagomrade {
@@ -284,4 +292,48 @@ enum class MottakUtsendingKanal {
     DIGITALT,
     SKANNING_BIDRAG,
     LOKAL_UTSKRIFT
+}
+
+val BID_JP_RANGE: Range<Long> = Range.between(18900000L, 40000000L)
+val FORSENDELSE_RANGE: Range<Long> = Range.between(1000000000L, 10000000000L)
+fun isBidJournalpostId(jpId: String) = (StringUtils.isNumeric(jpId) && BID_JP_RANGE.contains(jpId.toLong()))
+fun isForsendelse(jpId: String) = (StringUtils.isNumeric(jpId) && FORSENDELSE_RANGE.contains(jpId.toLong()))
+
+val String.numeric get() =  this.replace("\\D".toRegex(), "").toLong()
+val String.isNumeric get() = this.all { char -> char.isDigit() }
+enum class JournalpostSystem {
+    JOARK,
+    MIDLERTIDLIG_BREVLAGER,
+    FORSENDELSE,
+    UKJENT
+}
+class JournalpostId(val id: String?){
+
+    private val system: JournalpostSystem
+    val idNumerisk get() = id?.numeric
+    init {
+        system = parseId()
+    }
+
+    private fun parseId(): JournalpostSystem{
+        if (id.isNullOrEmpty()) return JournalpostSystem.UKJENT
+        val prefixSplit = id.split("-")
+        if (prefixSplit.size == 2){
+           return when(prefixSplit[0].uppercase()){
+                "BID" -> JournalpostSystem.MIDLERTIDLIG_BREVLAGER
+                "JOARK" -> JournalpostSystem.JOARK
+                "BIF" -> JournalpostSystem.FORSENDELSE
+                else -> JournalpostSystem.UKJENT
+            }
+        }
+
+        if (!id.isNumeric) return JournalpostSystem.UKJENT
+
+        if (isBidJournalpostId(id)) return JournalpostSystem.MIDLERTIDLIG_BREVLAGER
+        if (isForsendelse(id)) return JournalpostSystem.FORSENDELSE
+        return JournalpostSystem.JOARK
+    }
+    val erSystemBidrag get() = system == JournalpostSystem.MIDLERTIDLIG_BREVLAGER
+    val erSystemJoark get() = system == JournalpostSystem.JOARK
+    val erSystemForsendelse get() = system == JournalpostSystem.FORSENDELSE
 }

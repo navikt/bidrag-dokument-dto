@@ -8,6 +8,8 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.14   | Opprettet         | `JournalpostId` klasse for felles behandling journalpost id                                                                                                           |
+| 1.6.14   | Endret            | `DokumentType` og `Journalstatus` kode verdier                                                                                                                        |
 | 1.6.13   | Endret            | `ÅpneDokumentMetadata` endret navn til `DokumentMetadata`                                                                                                             |
 | 1.6.12   | Endret            | `DistribuerJournalpostRequest` lagt til parameter `lokalUtskrift`                                                                                                     |
 | 1.6.11   | Endret            | `EndreDokument` endret dokId typen fra Long til String                                                                                                                |

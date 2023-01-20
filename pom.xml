@@ -33,6 +33,7 @@
     <!-- dependencies -->
     <spring-boot.version>2.7.6</spring-boot.version>
     <springdoc-open-api.version>1.6.13</springdoc-open-api.version>
+    <kotest.version>5.5.4</kotest.version>
 
     <!-- build -->
     <maven-compiler.version>3.8.1</maven-compiler.version>
@@ -111,6 +112,12 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.kotest</groupId>
+      <artifactId>kotest-assertions-core-jvm</artifactId>
+      <version>${kotest.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
