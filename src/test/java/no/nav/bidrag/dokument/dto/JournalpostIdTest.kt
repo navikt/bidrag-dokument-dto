@@ -25,6 +25,7 @@ class JournalpostIdTest {
         journalpostId.erSystemForsendelse shouldBe false
         journalpostId.id shouldBe "DDD:123213213"
         journalpostId.idNumerisk shouldBe 123213213
+        journalpostId.medSystemPrefiks shouldBe "DDD:123213213"
     }
 
     @Test
@@ -36,6 +37,19 @@ class JournalpostIdTest {
         journalpostId.erSystemForsendelse shouldBe false
         journalpostId.id shouldBe "BID-123213213"
         journalpostId.idNumerisk shouldBe 123213213
+        journalpostId.medSystemPrefiks shouldBe "BID-123213213"
+    }
+
+    @Test
+    fun `skal parse journalpostId for midlertidlig brevlager og ignorere case`(){
+        val journalpostId = JournalpostId("bid-123213213")
+
+        journalpostId.erSystemBidrag shouldBe true
+        journalpostId.erSystemJoark shouldBe false
+        journalpostId.erSystemForsendelse shouldBe false
+        journalpostId.id shouldBe "bid-123213213"
+        journalpostId.idNumerisk shouldBe 123213213
+        journalpostId.medSystemPrefiks shouldBe "BID-123213213"
     }
 
     @Test
@@ -47,6 +61,7 @@ class JournalpostIdTest {
         journalpostId.erSystemForsendelse shouldBe true
         journalpostId.id shouldBe "BIF-123213213"
         journalpostId.idNumerisk shouldBe 123213213
+        journalpostId.medSystemPrefiks shouldBe "BIF-123213213"
     }
 
     @Test
@@ -58,6 +73,7 @@ class JournalpostIdTest {
         journalpostId.erSystemForsendelse shouldBe false
         journalpostId.id shouldBe "JOARK-123213213"
         journalpostId.idNumerisk shouldBe 123213213
+        journalpostId.medSystemPrefiks shouldBe "JOARK-123213213"
     }
 
     @Test
@@ -70,6 +86,7 @@ class JournalpostIdTest {
 
         journalpostId.id shouldBe null
         journalpostId.idNumerisk shouldBe null
+        journalpostId.medSystemPrefiks shouldBe null
     }
 
     @Test
@@ -79,6 +96,7 @@ class JournalpostIdTest {
         journalpostId.erSystemBidrag shouldBe true
         journalpostId.erSystemJoark shouldBe false
         journalpostId.erSystemForsendelse shouldBe false
+        journalpostId.medSystemPrefiks shouldBe "BID-39010946"
     }
 
     @Test
@@ -88,6 +106,7 @@ class JournalpostIdTest {
         journalpostId.erSystemBidrag shouldBe false
         journalpostId.erSystemJoark shouldBe true
         journalpostId.erSystemForsendelse shouldBe false
+        journalpostId.medSystemPrefiks shouldBe "JOARK-598113714"
     }
 
     @Test
@@ -97,5 +116,6 @@ class JournalpostIdTest {
         journalpostId.erSystemBidrag shouldBe false
         journalpostId.erSystemJoark shouldBe false
         journalpostId.erSystemForsendelse shouldBe true
+        journalpostId.medSystemPrefiks shouldBe "BIF-1000000085"
     }
 }

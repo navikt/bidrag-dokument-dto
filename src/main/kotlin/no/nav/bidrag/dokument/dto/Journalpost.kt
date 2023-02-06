@@ -35,6 +35,7 @@ data class JournalpostDto(
     @Schema(description = "Informasjon om returdetaljer til journalpost") val sakstilknytninger: List<String> = emptyList(),
     @Schema(description = "Språket til dokumentet i Journalposten") val språk: String? = null,
     @Schema(description = "Saksbehandler som opprettet journalposten") val opprettetAvIdent: String? = null,
+    @Schema(description = "Referanse til originale kilden til journalposten. Kan være referanse til forsendelse eller bidrag journalpost med prefiks. Feks BID_12323 eller BIF_123213") val eksternReferanseId: String? = null,
     )
 
 
@@ -42,17 +43,16 @@ data class JournalpostDto(
 Avsender journalposten ble sendt fra hvis utgående.
 Mottaker journalposten skal sendes til hvis inngående.""")
 data class AvsenderMottakerDto(
-    @Schema(description = "Avsenders/Mottakers navn (med eventuelt fornavn bak komma). Skal ikke oppgis hvis ident er en FNR") var navn: String? = null,
-    @Schema(description = "Ident eller organisasjonsnummer") var ident: String? = null,
-    @Schema(description = "Identtype") var type: AvsenderMottakerDtoIdType = AvsenderMottakerDtoIdType.FNR,
+    @Schema(description = "Avsenders/Mottakers navn (med eventuelt fornavn bak komma). Skal ikke oppgis hvis ident er en FNR") val navn: String? = null,
+    @Schema(description = "Person ident eller organisasjonsnummer") val ident: String? = null,
+    @Schema(description = "Identtype") val type: AvsenderMottakerDtoIdType? = null,
     @Schema(description = "Adresse til mottaker hvis dokumentet skal sendes/er sendt gjennom sentral print") val adresse: MottakerAdresseTo? = null
 )
-
 enum class AvsenderMottakerDtoIdType {
     FNR,
+    SAMHANDLER,
     ORGNR,
-    HPRNR,
-    UTL_ORG,
+    UTENLANDSK_ORGNR,
     UKJENT
 }
 
@@ -301,39 +301,34 @@ fun isForsendelse(jpId: String) = (StringUtils.isNumeric(jpId) && FORSENDELSE_RA
 
 val String.numeric get() =  this.replace("\\D".toRegex(), "").toLong()
 val String.isNumeric get() = this.all { char -> char.isDigit() }
-enum class JournalpostSystem {
-    JOARK,
-    MIDLERTIDLIG_BREVLAGER,
-    FORSENDELSE,
-    UKJENT
+object JournalpostSystemPrefix {
+    const val JOARK = "JOARK"
+    const val MIDLERTIDLIG_BREVLAGER = "BID"
+    const val FORSENDELSE = "BIF"
+    const val UKJENT = "UKJENT"
 }
-class JournalpostId(val id: String?){
+
+typealias JournalpostSystem = String
+class JournalpostId(val id: String?, private val defaultSystem: JournalpostSystem? = null){
 
     private val system: JournalpostSystem
     val idNumerisk get() = id?.numeric
+    val medSystemPrefiks get() = if (system != JournalpostSystemPrefix.UKJENT) "$system-$idNumerisk" else id
     init {
         system = parseId()
     }
 
-    private fun parseId(): JournalpostSystem{
-        if (id.isNullOrEmpty()) return JournalpostSystem.UKJENT
+    private fun parseId(): JournalpostSystem {
+        if (id.isNullOrEmpty()) return JournalpostSystemPrefix.UKJENT
         val prefixSplit = id.split("-")
-        if (prefixSplit.size == 2){
-           return when(prefixSplit[0].uppercase()){
-                "BID" -> JournalpostSystem.MIDLERTIDLIG_BREVLAGER
-                "JOARK" -> JournalpostSystem.JOARK
-                "BIF" -> JournalpostSystem.FORSENDELSE
-                else -> JournalpostSystem.UKJENT
-            }
-        }
 
-        if (!id.isNumeric) return JournalpostSystem.UKJENT
-
-        if (isBidJournalpostId(id)) return JournalpostSystem.MIDLERTIDLIG_BREVLAGER
-        if (isForsendelse(id)) return JournalpostSystem.FORSENDELSE
-        return JournalpostSystem.JOARK
+        return if (prefixSplit.size == 2) prefixSplit[0].uppercase()
+        else defaultSystem ?: if (!id.isNumeric) JournalpostSystemPrefix.UKJENT
+        else if (isBidJournalpostId(id)) JournalpostSystemPrefix.MIDLERTIDLIG_BREVLAGER
+        else if (isForsendelse(id)) JournalpostSystemPrefix.FORSENDELSE
+        else JournalpostSystemPrefix.JOARK
     }
-    val erSystemBidrag get() = system == JournalpostSystem.MIDLERTIDLIG_BREVLAGER
-    val erSystemJoark get() = system == JournalpostSystem.JOARK
-    val erSystemForsendelse get() = system == JournalpostSystem.FORSENDELSE
+    val erSystemBidrag get() = system == JournalpostSystemPrefix.MIDLERTIDLIG_BREVLAGER
+    val erSystemJoark get() = system == JournalpostSystemPrefix.JOARK
+    val erSystemForsendelse get() = system == JournalpostSystemPrefix.FORSENDELSE
 }
