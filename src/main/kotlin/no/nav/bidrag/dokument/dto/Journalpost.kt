@@ -45,7 +45,7 @@ Mottaker journalposten skal sendes til hvis inngående.""")
 data class AvsenderMottakerDto(
     @Schema(description = "Avsenders/Mottakers navn (med eventuelt fornavn bak komma). Skal ikke oppgis hvis ident er en FNR") val navn: String? = null,
     @Schema(description = "Person ident eller organisasjonsnummer") val ident: String? = null,
-    @Schema(description = "Identtype") val type: AvsenderMottakerDtoIdType? = null,
+    @Schema(description = "Identtype") val type: AvsenderMottakerDtoIdType = AvsenderMottakerDtoIdType.FNR,
     @Schema(description = "Adresse til mottaker hvis dokumentet skal sendes/er sendt gjennom sentral print") val adresse: MottakerAdresseTo? = null
 )
 enum class AvsenderMottakerDtoIdType {
