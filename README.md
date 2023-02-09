@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.17   | Opprettet         | `SakHendelse` data klasse som inneholder informasjon om sak hendelser                                                                                                 |
 | 1.6.16   | Endret            | `Journalpost` avsenderMottaker.types skal default være FNR                                                                                                            |
 | 1.6.15   | Endret            | `JournalpostId` lagt til metode for å hente journalpostid med prefiks                                                                                                 |
 | 1.6.14   | Opprettet         | `JournalpostId` klasse for felles behandling journalpost id                                                                                                           |
