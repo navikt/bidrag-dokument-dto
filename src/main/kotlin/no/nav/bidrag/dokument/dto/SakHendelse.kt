@@ -12,6 +12,7 @@ data class SakRolle(
     val rolleType: String,
     val samhandlerId: String? = null,
     val reelmottaker: String? = null,
+    val erUkjent: Boolean = false
 )
 enum class SakHendelseType {
     ENDRING,
