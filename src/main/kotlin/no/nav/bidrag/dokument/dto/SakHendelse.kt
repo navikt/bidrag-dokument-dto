@@ -8,8 +8,10 @@ data class SakHendelse(
 )
 
 data class SakRolle(
-    val fødselsnummer: String,
-    val rolleType: String
+    val ident: String? = null,
+    val rolleType: String,
+    val samhandlerId: String? = null,
+    val reelmottaker: String? = null,
 )
 enum class SakHendelseType {
     ENDRING,
