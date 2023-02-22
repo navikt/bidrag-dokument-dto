@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.20   | Endret            | `JournalpostHendelse` oppdatert parametere                                                                                                                            |
 | 1.6.19   | Endret            | `SakHendelse` rolle lagt til parameter `erUkjent`                                                                                                                     |
 | 1.6.18   | Endret            | `SakHendelse` lagt til samhandlerId og reelmottaker i SakRolle                                                                                                        |
 | 1.6.17   | Opprettet         | `SakHendelse` data klasse som inneholder informasjon om sak hendelser                                                                                                 |
