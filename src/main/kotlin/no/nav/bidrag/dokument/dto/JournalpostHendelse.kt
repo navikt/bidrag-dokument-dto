@@ -18,6 +18,7 @@ data class JournalpostHendelse(
     @Deprecated("Bruk tema istedenfor")
     val fagomrade: String? = null,
     val tema: String? = null,
+    val batchId: String? = null,
     val journalposttype: String? = null,
     val hendelseType: HendelseType? = null,
     val enhet: String? = null,

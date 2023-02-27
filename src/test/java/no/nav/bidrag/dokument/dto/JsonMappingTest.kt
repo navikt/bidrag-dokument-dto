@@ -293,6 +293,7 @@ internal class JsonMappingTest {
                 "tittel",
                 "tema",
                 "tema",
+                "batchId",
                 "jptype",
                 HendelseType.JOURNALFORING,
                 "s",
