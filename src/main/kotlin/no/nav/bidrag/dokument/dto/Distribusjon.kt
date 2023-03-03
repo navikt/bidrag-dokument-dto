@@ -1,5 +1,6 @@
 package no.nav.bidrag.dokument.dto
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import io.swagger.v3.oas.annotations.media.Schema
 
 @Schema(description = "Bestill distribusjon av journalpost")
@@ -24,4 +25,17 @@ data class DistribuerTilAdresse(
     var land: String? = null,
     var postnummer: String? = null,
     var poststed: String? = null,
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class DistribusjonInfoDto(
+    val journalstatus: String,
+    val kanal: Kanal,
+    val utsendingsinfo: UtsendingsInfo? = null
+)
+
+enum class UtsendingsInfo(
+    val adresse: String? = null,
+    val tittel: String? = null,
+    val varslingstekst: String? = null
 )

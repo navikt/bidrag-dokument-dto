@@ -13,6 +13,7 @@ data class JournalpostDto(
     @Schema(description = "Informasjon om avsender eller mottaker") var avsenderMottaker: AvsenderMottakerDto? = null,
     @Schema(description = "Dokumentene som følger journalposten") var dokumenter: List<DokumentDto> = emptyList(),
     @Schema(description = "Dato for dokument i journalpost") var dokumentDato: LocalDate? = null,
+    @Schema(description = "Tidspunkt for dokument i journalpost") var dokumentTidspunkt: LocalDateTime? = null,
     @Schema(description = "Dato dokumentene på journalposten ble sendt til bruker.") var ekspedertDato: LocalDate? = null,
     @Schema(description = "Fagområdet for journalposten. BID for bidrag og FAR for farskap") var fagomrade: String? = null,
     @Schema(description = "Ident for hvem/hva dokumente(t/ne) gjelder") var gjelderIdent: String? = null,
@@ -36,18 +37,21 @@ data class JournalpostDto(
     @Schema(description = "Språket til dokumentet i Journalposten") val språk: String? = null,
     @Schema(description = "Saksbehandler som opprettet journalposten") val opprettetAvIdent: String? = null,
     @Schema(description = "Referanse til originale kilden til journalposten. Kan være referanse til forsendelse eller bidrag journalpost med prefiks. Feks BID_12323 eller BIF_123213") val eksternReferanseId: String? = null,
-    )
+)
 
 
-@Schema(description = """
+@Schema(
+    description = """
 Avsender journalposten ble sendt fra hvis utgående.
-Mottaker journalposten skal sendes til hvis inngående.""")
+Mottaker journalposten skal sendes til hvis inngående."""
+)
 data class AvsenderMottakerDto(
     @Schema(description = "Avsenders/Mottakers navn (med eventuelt fornavn bak komma). Skal ikke oppgis hvis ident er en FNR") val navn: String? = null,
     @Schema(description = "Person ident eller organisasjonsnummer") val ident: String? = null,
     @Schema(description = "Identtype") val type: AvsenderMottakerDtoIdType = AvsenderMottakerDtoIdType.FNR,
     @Schema(description = "Adresse til mottaker hvis dokumentet skal sendes/er sendt gjennom sentral print") val adresse: MottakerAdresseTo? = null
 )
+
 enum class AvsenderMottakerDtoIdType {
     FNR,
     SAMHANDLER,
@@ -112,13 +116,15 @@ data class DokumentDto(
     @Schema(description = "Inngående (I), utgående (U) dokument, (X) internt notat", deprecated = true) var dokumentType: String? = null,
     @Schema(description = "Kort oppsummering av dokumentets innhold") var tittel: String? = null,
     @Schema(description = "Selve PDF dokumentet formatert som Base64") var dokument: String? = null,
-    @Schema(description = "Typen dokument. Brevkoden sier noe om dokumentets innhold og oppbygning. Erstattes av dokumentmalId", deprecated = true) var brevkode: String? = null,
+    @Schema(
+        description = "Typen dokument. Brevkoden sier noe om dokumentets innhold og oppbygning. Erstattes av dokumentmalId",
+        deprecated = true
+    ) var brevkode: String? = null,
     @Schema(description = "Typen dokument. Dokumentmal sier noe om dokumentets innhold og oppbygning.") var dokumentmalId: String? = null,
     @Schema(description = "Dokumentets status. Benyttes hvis journalposten er av typen forsendelse") val status: DokumentStatusDto? = null,
     @Schema(description = "Arkivsystem hvor dokumentet er produsert og lagret") val arkivSystem: DokumentArkivSystemDto? = null,
     @Schema(description = "Metadata om dokumentet") val metadata: Map<String, String> = emptyMap(),
-    )
-{
+) {
     override fun toString(): String {
         return "(dokumentreferanse=${dokumentreferanse},journalpostId=$journalpostId, dokumentType=${dokumentType}, tittel=${tittel}, status=$status, arkivSystem=$arkivSystem " +
                 "brevkode=${brevkode}, metadata=$metadata, dokument=${dokument?.subSequence(0, 20)}...)"
@@ -170,13 +176,13 @@ data class EndreJournalpostCommand(
     @Schema(description = "Tittel på journalposten") var tittel: String? = null,
     @Schema(description = "Skal journalposten journalføres aka. registreres") var skalJournalfores: Boolean = false,
     @Schema(description = "Liste med retur detaljer som skal endres") var endreReturDetaljer: List<EndreReturDetaljer>? = null
-    ) {
+) {
     @Suppress("unused")
     fun manglerGjelder() = gjelder == null
 }
 
 @Schema(description = "Metadata for endring av et retur detalj")
-data class EndreReturDetaljer (
+data class EndreReturDetaljer(
     @Schema(description = "Dato på retur detaljer som skal endres") var originalDato: LocalDate? = null,
     @Schema(description = "Ny dato på retur detaljer") var nyDato: LocalDate? = null,
     @Schema(description = "Beskrivelse av retur (eks. addresse forsøkt sendt)") var beskrivelse: String,
@@ -208,21 +214,36 @@ data class JournalpostResponse(
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class OpprettJournalpostRequest(
     @Schema(description = "Om journalposten skal journalføres etter opprettelse. Journalføring betyr at journalpost låses for framtidige endringer") val skalFerdigstilles: Boolean = false,
-    @Schema(description = "Tittel på journalposten (Tittel settes til hoveddokumentes tittel for Joark journalposter)", deprecated = true) val tittel: String? = null,
+    @Schema(
+        description = "Tittel på journalposten (Tittel settes til hoveddokumentes tittel for Joark journalposter)",
+        deprecated = true
+    ) val tittel: String? = null,
     @Schema(description = "Bruker som journalposten gjelder") val gjelder: AktorDto? = null,
     @Schema(description = "Ident til brukeren som journalposten gjelder") val gjelderIdent: String? = null,
     val avsenderMottaker: AvsenderMottakerDto? = null,
-    @Schema(description = """
+    @Schema(
+        description = """
     Dokumenter som skal knyttes til journalpost. 
     En journalpost må minst ha et dokument. 
-    Det første dokument i meldingen blir tilknyttet som hoveddokument på journalposten.""", required = true)
+    Det første dokument i meldingen blir tilknyttet som hoveddokument på journalposten.""", required = true
+    )
     val dokumenter: List<OpprettDokumentDto> = emptyList(),
     @Schema(description = "Saksnummer til bidragsaker som journalpost skal tilknyttes") val tilknyttSaker: List<String> = emptyList(),
     @Schema(description = "Behandlingstema") val behandlingstema: String? = null,
     @Schema(description = "Dato journalposten mottatt. Kan settes for inngående journalposter. Settes til i dag som default hvis ikke satt") val datoMottatt: LocalDateTime? = null,
-    @Schema(description = "Type kanal som benyttes ved mottak/utsending av journalpost", defaultValue = "DIGITALT") val kanal: MottakUtsendingKanal? = null,
-    @Schema(description = "Tema (Gyldige verdier er FAR og BID). Hvis det ikke settes opprettes journalpost med tema BID", defaultValue = "BID") val tema: String? = null,
-    @Schema(description = "Journalposttype, dette kan enten være Inngående, Utgående eller Notat", required = true) val journalposttype: JournalpostType? = null,
+    @Schema(description = "Dato når selve dokumentet ble opprettet") val datoDokument: LocalDateTime? = null,
+    @Schema(
+        description = "Type kanal som benyttes ved mottak/utsending av journalpost",
+        defaultValue = "DIGITALT"
+    ) val kanal: MottakUtsendingKanal? = null,
+    @Schema(
+        description = "Tema (Gyldige verdier er FAR og BID). Hvis det ikke settes opprettes journalpost med tema BID",
+        defaultValue = "BID"
+    ) val tema: String? = null,
+    @Schema(
+        description = "Journalposttype, dette kan enten være Inngående, Utgående eller Notat",
+        required = true
+    ) val journalposttype: JournalpostType? = null,
     @Schema(description = "Referanse for journalpost. Hvis journalpost med samme referanse finnes vil tjenesten gå videre uten å opprette journalpost. Kan brukes for å lage løsninger idempotent") val referanseId: String? = null,
     @Schema(description = "NAV-enheten som oppretter journalposten", deprecated = true) val journalfoerendeEnhet: String? = null,
     @Schema(description = "NAV-enheten som oppretter journalposten") val journalførendeEnhet: String? = null,
@@ -235,6 +256,7 @@ data class OpprettJournalpostResponse(
     @Schema(description = "Journalpostid på journalpost som ble opprettet") val journalpostId: String? = null,
     @Schema(description = "Liste med dokumenter som er knyttet til journalposten") val dokumenter: List<OpprettDokumentDto> = emptyList(),
 )
+
 @Schema(description = "Metadata for dokument som skal knyttes til journalpost")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class OpprettDokumentDto(
@@ -249,17 +271,22 @@ data class OpprettDokumentDto(
                 "fysiskDokument(lengde)=${fysiskDokument?.size ?: 0}, dokument=${dokument?.subSequence(0, 20)}"
     }
 }
+
 enum class JournalpostType {
     INNGÅENDE,
-    @Schema(description = "Bruk UTGÅENDE istedenfor", deprecated = true) UTGAAENDE,
+
+    @Schema(description = "Bruk UTGÅENDE istedenfor", deprecated = true)
+    UTGAAENDE,
     UTGÅENDE,
     NOTAT
 }
+
 object DokumentType {
     const val NOTAT = "X"
     const val UTGÅENDE = "U"
     const val INNGÅENDE = "I"
 }
+
 object Journalstatus {
     const val MOTTATT = "M"
     const val JOURNALFORT = "J"
@@ -279,7 +306,8 @@ object Fagomrade {
     const val FARSKAP = "FAR"
 }
 
-@Schema(description = """
+@Schema(
+    description = """
     Mottak/Utsendingskanal som settes ved opprettelse av journalpost
     
     DIGITAL - Skal bare settes for inngående journalpost. Oversettes til NAV_NO. Dette er default for inngående
@@ -287,7 +315,8 @@ object Fagomrade {
     SKANNING_BIDRAG - Skal settes hvis inngående journalpost er mottatt via Bidrag skanning
     
     LOKAL_UTSKRIFT - Skal settes hvis utgående journalpost er sendt via lokal utskrift. Kanal for utgående journalposter blir ellers satt av dokumentdistribusjons løsningen.
-""")
+"""
+)
 enum class MottakUtsendingKanal {
     DIGITALT,
     SKANNING_BIDRAG,
@@ -299,8 +328,9 @@ val FORSENDELSE_RANGE: Range<Long> = Range.between(1000000000L, 10000000000L)
 fun isBidJournalpostId(jpId: String) = (StringUtils.isNumeric(jpId) && BID_JP_RANGE.contains(jpId.toLong()))
 fun isForsendelse(jpId: String) = (StringUtils.isNumeric(jpId) && FORSENDELSE_RANGE.contains(jpId.toLong()))
 
-val String.numeric get() =  this.replace("\\D".toRegex(), "").toLong()
+val String.numeric get() = this.replace("\\D".toRegex(), "").toLong()
 val String.isNumeric get() = this.all { char -> char.isDigit() }
+
 object JournalpostSystemPrefix {
     const val JOARK = "JOARK"
     const val MIDLERTIDLIG_BREVLAGER = "BID"
@@ -309,11 +339,13 @@ object JournalpostSystemPrefix {
 }
 
 typealias JournalpostSystem = String
-class JournalpostId(val id: String?, private val defaultSystem: JournalpostSystem? = null){
+
+class JournalpostId(val id: String?, private val defaultSystem: JournalpostSystem? = null) {
 
     private val system: JournalpostSystem
     val idNumerisk get() = id?.numeric
     val medSystemPrefiks get() = if (system != JournalpostSystemPrefix.UKJENT) "$system-$idNumerisk" else id
+
     init {
         system = parseId()
     }
@@ -328,6 +360,7 @@ class JournalpostId(val id: String?, private val defaultSystem: JournalpostSyste
         else if (isForsendelse(id)) JournalpostSystemPrefix.FORSENDELSE
         else JournalpostSystemPrefix.JOARK
     }
+
     val erSystemBidrag get() = system == JournalpostSystemPrefix.MIDLERTIDLIG_BREVLAGER
     val erSystemJoark get() = system == JournalpostSystemPrefix.JOARK
     val erSystemForsendelse get() = system == JournalpostSystemPrefix.FORSENDELSE
