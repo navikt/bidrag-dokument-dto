@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.25   | Endret            | `OpprettJournalpostRequest` formatering av felt `datoDokument`                                                                                                        |
 | 1.6.24   | Endret            | `OpprettJournalpostRequest` lagt til ny felt `datoDokument`                                                                                                           |
 | 1.6.21   | Endret            | `JournalpostHendelse` legg til batchId                                                                                                                                |
 | 1.6.20   | Endret            | `JournalpostHendelse` oppdatert parametere                                                                                                                            |

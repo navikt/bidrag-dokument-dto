@@ -1,5 +1,6 @@
 package no.nav.bidrag.dokument.dto
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonInclude
 import io.swagger.v3.oas.annotations.media.Schema
 import org.apache.commons.lang3.Range
@@ -231,6 +232,7 @@ data class OpprettJournalpostRequest(
     @Schema(description = "Saksnummer til bidragsaker som journalpost skal tilknyttes") val tilknyttSaker: List<String> = emptyList(),
     @Schema(description = "Behandlingstema") val behandlingstema: String? = null,
     @Schema(description = "Dato journalposten mottatt. Kan settes for inngående journalposter. Settes til i dag som default hvis ikke satt") val datoMottatt: LocalDateTime? = null,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @Schema(description = "Dato når selve dokumentet ble opprettet") val datoDokument: LocalDateTime? = null,
     @Schema(
         description = "Type kanal som benyttes ved mottak/utsending av journalpost",
