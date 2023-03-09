@@ -8,7 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.6.23   | Endret            | `OpprettJournalpostRequest` lagt til ny felt `datoDokument`                                                                                                           |
+| 1.6.24   | Endret            | `OpprettJournalpostRequest` lagt til ny felt `datoDokument`                                                                                                           |
 | 1.6.21   | Endret            | `JournalpostHendelse` legg til batchId                                                                                                                                |
 | 1.6.20   | Endret            | `JournalpostHendelse` oppdatert parametere                                                                                                                            |
 | 1.6.19   | Endret            | `SakHendelse` rolle lagt til parameter `erUkjent`                                                                                                                     |
