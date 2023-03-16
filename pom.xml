@@ -136,6 +136,12 @@
             <useReleaseProfile>true</useReleaseProfile>
             <releaseProfiles>release</releaseProfiles>
             <goals>deploy</goals>
+            <preparationGoals>clean install</preparationGoals>
+            <checkModificationExcludes>
+              <checkModificationExclude>
+                pom.xml
+              </checkModificationExclude>
+            </checkModificationExcludes>
           </configuration>
         </plugin>
       </plugins>

@@ -30,12 +30,21 @@ data class DistribuerTilAdresse(
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class DistribusjonInfoDto(
     val journalstatus: String,
-    val kanal: Kanal,
-    val utsendingsinfo: UtsendingsInfo? = null
+    val kanal: String,
+    val utsendingsinfo: UtsendingsInfoDto? = null
 )
 
-enum class UtsendingsInfo(
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class UtsendingsInfoDto(
+    val varseltype: UtsendingsInfoVarselTypeDto? = null,
     val adresse: String? = null,
     val tittel: String? = null,
     val varslingstekst: String? = null
 )
+
+enum class UtsendingsInfoVarselTypeDto {
+    EPOST,
+    SMS,
+    DIGIPOST,
+    FYSISK_POST
+}
