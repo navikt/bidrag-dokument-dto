@@ -106,4 +106,5 @@ enum class JournalpostStatus {
     RESERVERT,
     UTGÅR,
     UNDER_PRODUKSJON,
+    UKJENT,
 }

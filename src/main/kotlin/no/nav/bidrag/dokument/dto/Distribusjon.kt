@@ -2,6 +2,7 @@ package no.nav.bidrag.dokument.dto
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import io.swagger.v3.oas.annotations.media.Schema
+import java.time.LocalDateTime
 
 @Schema(description = "Bestill distribusjon av journalpost")
 data class DistribuerJournalpostRequest(
@@ -29,9 +30,12 @@ data class DistribuerTilAdresse(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class DistribusjonInfoDto(
-    val journalstatus: String,
+    val journalstatus: JournalpostStatus,
     val kanal: String,
-    val utsendingsinfo: UtsendingsInfoDto? = null
+    val utsendingsinfo: UtsendingsInfoDto? = null,
+    val distribuertDato: LocalDateTime? = null,
+    val distribuertAvIdent: String? = null,
+    val bestillingId: String? = null
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
