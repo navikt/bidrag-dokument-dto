@@ -48,6 +48,7 @@ data class JournalpostHendelse(
             JournalpostStatus.RETUR.name, Journalstatus.RETUR -> JournalpostStatus.RETUR
             JournalpostStatus.RESERVERT.name, Journalstatus.RESERVERT -> JournalpostStatus.RESERVERT
             JournalpostStatus.JOURNALFØRT.name, Journalstatus.JOURNALFORT -> JournalpostStatus.JOURNALFØRT
+            JournalpostStatus.DISTRIBUERT.name -> JournalpostStatus.DISTRIBUERT
             else -> null
         }
     }
