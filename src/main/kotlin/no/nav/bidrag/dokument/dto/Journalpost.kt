@@ -38,7 +38,9 @@ data class JournalpostDto(
     @Schema(description = "Språket til dokumentet i Journalposten") val språk: String? = null,
     @Schema(description = "Saksbehandler som opprettet journalposten") val opprettetAvIdent: String? = null,
     @Schema(description = "Referanse til originale kilden til journalposten. Kan være referanse til forsendelse eller bidrag journalpost med prefiks. Feks BID_12323 eller BIF_123213") val eksternReferanseId: String? = null,
-)
+){
+    fun erFarskapUtelukket() = innhold?.startsWith(FARSKAP_UTELUKKET_PREFIKS, ignoreCase = true) == true
+}
 
 
 @Schema(
