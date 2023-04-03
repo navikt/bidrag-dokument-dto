@@ -32,7 +32,7 @@
 
     <!-- dependencies -->
     <spring-boot.version>2.7.6</spring-boot.version>
-    <springdoc-open-api.version>1.6.13</springdoc-open-api.version>
+    <springdoc-open-api.version>1.7.0</springdoc-open-api.version>
     <kotest.version>5.5.4</kotest.version>
 
     <!-- build -->
