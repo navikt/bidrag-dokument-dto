@@ -64,7 +64,7 @@
   <dependencies>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib-jdk8</artifactId>
+      <artifactId>kotlin-stdlib</artifactId>
       <version>${kotlin.version}</version>
       <scope>compile</scope>
     </dependency>
@@ -161,7 +161,7 @@
           </execution>
         </executions>
         <configuration>
-          <jvmTarget>1.8</jvmTarget>
+          <jvmTarget>17</jvmTarget>
           <args>
             <arg>-Xjsr305=strict</arg>
           </args>
@@ -217,8 +217,8 @@
         </executions>
         <configuration>
           <release>${java.version}</release>
-          <source>15</source>
-          <target>15</target>
+          <source>17</source>
+          <target>17</target>
         </configuration>
       </plugin>
 

@@ -8,7 +8,8 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.6.32   | Endret            | Oppdtatert avhengigheter slik at prosjektet er kompatibelt med SPring boot 3                                                                                          |
+| 1.6.33   | Endret            | Oppdtatert jvm-target til 17                                                                                                                                          |
+| 1.6.32   | Endret            | Oppdtatert avhengigheter slik at prosjektet er kompatibelt med Spring boot 3                                                                                          |
 | 1.6.31   | Endret            | `DokumentMetadata` lagt til tittel                                                                                                                                    |
 | 1.6.30   | Endret            | `Journalpost` farskap utelukket metode skal også sjekke hoveddokument tittel                                                                                          |
 | 1.6.29   | Endret            | `Journalpost` farskap utelukket metode                                                                                                                                |
