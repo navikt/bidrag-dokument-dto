@@ -28,7 +28,7 @@
 
     <!-- language -->
     <java.version>17</java.version>
-    <kotlin.version>1.8.0</kotlin.version>
+    <kotlin.version>1.8.20</kotlin.version>
 
     <!-- dependencies -->
     <springdoc-open-api.version>2.1.0</springdoc-open-api.version>
