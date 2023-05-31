@@ -28,7 +28,9 @@ data class JournalpostDto(
     @Schema(description = "Kanalen journalposten ble mottatt i eller sendt ut på") var kanal: Kanal? = null,
     @Schema(description = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
     @Schema(description = "Inngående (I), utgående (U) journalpost; (X) internt notat") var dokumentType: String? = null,
-    @Schema(description = "Journalpostens status, (A, D, J, M, O, R, S, T, U, KP, EJ, E)") var journalstatus: String? = null,
+    @Deprecated("Bruk status istedenfor")
+    @Schema(description = "Journalpostens status, (A, D, J, M, O, R, S, T, U, KP, EJ, E)", deprecated = true) var journalstatus: String? = null,
+    @Schema(description = "Journalpostens status") val status: JournalpostStatus? = null,
     @Schema(description = "Om journalposten er feilført på bidragssak") var feilfort: Boolean? = null,
     @Schema(description = "Brevkoden til en journalpost") var brevkode: KodeDto? = null,
     @Schema(description = "Informasjon om returdetaljer til journalpost") var returDetaljer: ReturDetaljer? = null,
@@ -42,6 +44,7 @@ data class JournalpostDto(
     fun hentHoveddokument() = dokumenter.firstOrNull()
     fun hentTittel() = hentHoveddokument()?.tittel ?: innhold
     fun erFarskapUtelukket() = hentTittel()?.startsWith(FARSKAP_UTELUKKET_PREFIKS, ignoreCase = true) == true
+    fun hentStatus(): JournalpostStatus? = JournalpostStatus.konverterStatus(journalstatus) ?: status
 }
 
 
@@ -305,6 +308,7 @@ object Journalstatus {
     const val RESERVERT = "R"
     const val UTGAR = "U"
     const val UNDER_PRODUKSJON = "D"
+    const val UNDER_OPPRETTELSE = "UO"
 }
 
 object Fagomrade {

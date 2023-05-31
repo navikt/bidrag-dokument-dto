@@ -33,25 +33,7 @@ data class JournalpostHendelse(
     fun erHendelseTypeJournalforing() = hendelseType == HendelseType.JOURNALFORING
     fun harEnhet() = enhet != null
     fun harAktorId() = aktorId != null
-    fun hentStatus(): JournalpostStatus? = konverterStatus(journalstatus) ?: konverterStatus(status)
-
-    private fun konverterStatus(status: String?): JournalpostStatus? {
-        return when (status) {
-            JournalpostStatus.MOTTATT.name, Journalstatus.MOTTATT -> JournalpostStatus.MOTTATT
-            JournalpostStatus.FEILREGISTRERT.name, Journalstatus.FEILREGISTRERT -> JournalpostStatus.FEILREGISTRERT
-            JournalpostStatus.UNDER_PRODUKSJON.name, Journalstatus.UNDER_PRODUKSJON -> JournalpostStatus.UNDER_PRODUKSJON
-            JournalpostStatus.FERDIGSTILT.name, Journalstatus.FERDIGSTILT -> JournalpostStatus.FERDIGSTILT
-            JournalpostStatus.EKSPEDERT.name, Journalstatus.EKSPEDERT -> JournalpostStatus.EKSPEDERT
-            JournalpostStatus.AVBRUTT.name, Journalstatus.AVBRUTT -> JournalpostStatus.AVBRUTT
-            JournalpostStatus.KLAR_FOR_DISTRIBUSJON.name, Journalstatus.KLAR_TIL_PRINT -> JournalpostStatus.KLAR_FOR_DISTRIBUSJON
-            JournalpostStatus.UTGÅR.name, Journalstatus.UTGAR -> JournalpostStatus.UTGÅR
-            JournalpostStatus.RETUR.name, Journalstatus.RETUR -> JournalpostStatus.RETUR
-            JournalpostStatus.RESERVERT.name, Journalstatus.RESERVERT -> JournalpostStatus.RESERVERT
-            JournalpostStatus.JOURNALFØRT.name, Journalstatus.JOURNALFORT -> JournalpostStatus.JOURNALFØRT
-            JournalpostStatus.DISTRIBUERT.name -> JournalpostStatus.DISTRIBUERT
-            else -> null
-        }
-    }
+    fun hentStatus(): JournalpostStatus? = JournalpostStatus.konverterStatus(journalstatus) ?: JournalpostStatus.konverterStatus(status)
 
     fun hentJournalposttype(): JournalpostType? {
         return when (journalposttype) {
@@ -94,18 +76,3 @@ data class Sporingsdata(
         "${saksbehandlersNavn ?: "Ukjent"} (${brukerident ?: "Ukjent"}, $enhetsnummer)"
 }
 
-enum class JournalpostStatus {
-    MOTTATT,
-    JOURNALFØRT,
-    EKSPEDERT,
-    DISTRIBUERT,
-    AVBRUTT,
-    KLAR_FOR_DISTRIBUSJON,
-    RETUR,
-    FERDIGSTILT,
-    FEILREGISTRERT,
-    RESERVERT,
-    UTGÅR,
-    UNDER_PRODUKSJON,
-    UKJENT,
-}
