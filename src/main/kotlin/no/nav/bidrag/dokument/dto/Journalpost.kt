@@ -24,13 +24,13 @@ data class JournalpostDto(
     @Schema(description = "Saksbehandler som var journalfører") var journalfortAv: String? = null,
     @Schema(description = "Dato dokument ble journalført") var journalfortDato: LocalDate? = null,
     @Schema(description = "Identifikator av journalpost i midlertidig brevlager eller fra joark på formatet [BID|JOARK]-<journalpostId>") var journalpostId: String? = null,
-    @Schema(description = "Kanalen som er kilden til at journalposten ble registrert", deprecated = true) var kilde: Kanal? = null,
-    @Schema(description = "Kanalen journalposten ble mottatt i eller sendt ut på") var kanal: Kanal? = null,
+    @Schema(description = "Kanalen som er kilden til at journalposten ble registrert", deprecated = true, enumAsRef = true) var kilde: Kanal? = null,
+    @Schema(description = "Kanalen journalposten ble mottatt i eller sendt ut på", enumAsRef = true) var kanal: Kanal? = null,
     @Schema(description = "Dato for når dokument er mottat, dvs. dato for journalføring eller skanning") var mottattDato: LocalDate? = null,
     @Schema(description = "Inngående (I), utgående (U) journalpost; (X) internt notat") var dokumentType: String? = null,
     @Deprecated("Bruk status istedenfor")
     @Schema(description = "Journalpostens status, (A, D, J, M, O, R, S, T, U, KP, EJ, E)", deprecated = true) var journalstatus: String? = null,
-    @Schema(description = "Journalpostens status") val status: JournalpostStatus? = null,
+    @Schema(description = "Journalpostens status", enumAsRef = true) val status: JournalpostStatus? = null,
     @Schema(description = "Om journalposten er feilført på bidragssak") var feilfort: Boolean? = null,
     @Schema(description = "Brevkoden til en journalpost") var brevkode: KodeDto? = null,
     @Schema(description = "Informasjon om returdetaljer til journalpost") var returDetaljer: ReturDetaljer? = null,
@@ -56,7 +56,7 @@ Mottaker journalposten skal sendes til hvis inngående."""
 data class AvsenderMottakerDto(
     @Schema(description = "Avsenders/Mottakers navn (med eventuelt fornavn bak komma). Skal ikke oppgis hvis ident er en FNR") val navn: String? = null,
     @Schema(description = "Person ident eller organisasjonsnummer") val ident: String? = null,
-    @Schema(description = "Identtype") val type: AvsenderMottakerDtoIdType = AvsenderMottakerDtoIdType.FNR,
+    @Schema(description = "Identtype", enumAsRef = true) val type: AvsenderMottakerDtoIdType = AvsenderMottakerDtoIdType.FNR,
     @Schema(description = "Adresse til mottaker hvis dokumentet skal sendes/er sendt gjennom sentral print") val adresse: MottakerAdresseTo? = null
 )
 
@@ -129,8 +129,8 @@ data class DokumentDto(
         deprecated = true
     ) var brevkode: String? = null,
     @Schema(description = "Typen dokument. Dokumentmal sier noe om dokumentets innhold og oppbygning.") var dokumentmalId: String? = null,
-    @Schema(description = "Dokumentets status. Benyttes hvis journalposten er av typen forsendelse") val status: DokumentStatusDto? = null,
-    @Schema(description = "Arkivsystem hvor dokumentet er produsert og lagret") val arkivSystem: DokumentArkivSystemDto? = null,
+    @Schema(description = "Dokumentets status. Benyttes hvis journalposten er av typen forsendelse", enumAsRef = true) val status: DokumentStatusDto? = null,
+    @Schema(description = "Arkivsystem hvor dokumentet er produsert og lagret", enumAsRef = true) val arkivSystem: DokumentArkivSystemDto? = null,
     @Schema(description = "Metadata om dokumentet") val metadata: Map<String, String> = emptyMap(),
 ) {
     override fun toString(): String {
