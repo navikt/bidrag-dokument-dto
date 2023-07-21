@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.35   | Endret            | DokumentArkivSystemDto lagt til Forsendelse                                                                                                                           |
 | 1.6.34   | Endret            | JournalpostDto ny status felt                                                                                                                                         |
 | 1.6.33   | Endret            | Oppdtatert jvm-target til 17                                                                                                                                          |
 | 1.6.32   | Endret            | Oppdtatert avhengigheter slik at prosjektet er kompatibelt med Spring boot 3                                                                                          |

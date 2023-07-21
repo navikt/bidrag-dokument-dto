@@ -4,7 +4,8 @@ enum class DokumentArkivSystemDto {
     JOARK,
     MIDLERTIDLIG_BREVLAGER,
     UKJENT,
-    BIDRAG
+    BIDRAG,
+    FORSENDELSE
 }
 
 /**
