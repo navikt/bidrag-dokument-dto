@@ -217,8 +217,8 @@
         </executions>
         <configuration>
           <release>${java.version}</release>
-          <source>15</source>
-          <target>15</target>
+          <source>17</source>
+          <target>17</target>
         </configuration>
       </plugin>
 
