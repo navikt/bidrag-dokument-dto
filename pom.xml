@@ -31,7 +31,7 @@
     <kotlin.version>1.8.0</kotlin.version>
 
     <!-- dependencies -->
-    <springdoc-open-api.version>2.1.0</springdoc-open-api.version>
+    <springdoc-open-api.version>2.2.0</springdoc-open-api.version>
     <kotest.version>5.5.4</kotest.version>
 
     <!-- build -->
