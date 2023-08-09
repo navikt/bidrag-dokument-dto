@@ -141,14 +141,17 @@ data class DokumentDto(
 
 @Schema(description = "Journalposten ble mottatt/sendt ut i kanal")
 enum class Kanal {
+    @Schema(description = "Ditt NAV")
+    NAV_NO,
+
     @Schema(description = "Ditt NAV (Innsending bidrag)")
     NAV_NO_BID,
 
     @Schema(description = "Skanning Bidrag")
     SKAN_BID,
 
-    @Schema(description = "Ditt NAV")
-    NAV_NO,
+    @Schema(description = "Skanning Iron mountain")
+    SKAN_IM,
 
     @Schema(description = "Skanning Nets")
     SKAN_NETS,
@@ -164,6 +167,15 @@ enum class Kanal {
 
     @Schema(description = "Ingen distribusjon av journalpost. Mottaker har ingen gyldig adresse å sende til.")
     INGEN_DISTRIBUSJON,
+
+    @Schema(description = "Registrert av Nav-ansatt")
+    INNSENDT_NAV_ANSATT,
+
+    @Schema(description = "Nav.no uten ID-porten-pålogging")
+    NAV_NO_UINNLOGGET,
+
+    @Schema(description = "Innlogget samtale")
+    NAV_NO_CHAT
 }
 
 @Schema(description = "Metadata for endring av en journalpost")
