@@ -8,6 +8,7 @@ Artifakt inneholder dto'er for felles kommunikasjon i bidrag-dokument
 
 | versjon  | endringstype      | beskrivelse                                                                                                                                                           |
 |----------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.40   | Endret            | Fjern spring boot 3 avhengighet                                                                                                                                       |
 | 1.6.39   | Endret            | Lagt til flere kanaler                                                                                                                                                |
 | 1.6.38   | Endret            | Maven compiler target til 17                                                                                                                                          |
 | 1.6.37   | Endret            | Maven compiler target til 15                                                                                                                                          |
