@@ -337,12 +337,14 @@ object Fagomrade {
     SKANNING_BIDRAG - Skal settes hvis inngående journalpost er mottatt via Bidrag skanning
     
     LOKAL_UTSKRIFT - Skal settes hvis utgående journalpost er sendt via lokal utskrift. Kanal for utgående journalposter blir ellers satt av dokumentdistribusjons løsningen.
+    INGEN_DISTRIBUSJON - Skal settes hvis utgående journalpost ikke skal distribueres. Dette kan skje pga mottaker mangler adresse
 """
 )
 enum class MottakUtsendingKanal {
     DIGITALT,
     SKANNING_BIDRAG,
-    LOKAL_UTSKRIFT
+    LOKAL_UTSKRIFT,
+    INGEN_DISTRIBUSJON
 }
 
 val BID_JP_RANGE: Range<Long> = Range.between(18900000L, 40000000L)
